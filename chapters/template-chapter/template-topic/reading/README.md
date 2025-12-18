@@ -19,6 +19,8 @@ For integrating figures, you will use `![Example SVG](../media/app-os-cpu-intera
 
 ![Example SVG](../media/app-os-cpu-interaction.svg)
 
+## Summary
+- summary
 ## Drills
 ### Challenge 1
 Description

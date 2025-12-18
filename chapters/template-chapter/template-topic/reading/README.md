@@ -18,3 +18,11 @@ For each skill learned in the lab, you will use a subsection which will touch up
 For integrating figures, you will use `![Example SVG](../media/app-os-cpu-interaction.svg)`.
 
 ![Example SVG](../media/app-os-cpu-interaction.svg)
+
+## Drills
+### Challenge 1
+Description
+### Challenge 2
+Description
+### Challenge 3
+Description

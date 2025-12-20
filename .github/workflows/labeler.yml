@@ -2,7 +2,6 @@ name: Labeler Actions Workflow
 
 on:
   schedule:
-    - cron: "0 */12 * * *"
   workflow_dispatch:
 
 jobs:

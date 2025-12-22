@@ -7,11 +7,11 @@
 
 The term **DFIR (Digital Forensics and Incident Response)** is often used referring to the broader discipline including incident response.
 
-## Standards for digital evidence handling
-According to ISO/IEC 27037:
+## Objectives of the [digital forensic process](https://www.unodc.org/cld/en/education/tertiary/cybercrime/module-4/key-issues/standards-and-best-practices-for-digital-forensics.html)
 - identification;
 - collection;
-- acquisition;
+- analysis;
+- reporting;
 - preservation.
 
 ## Evidence
@@ -20,10 +20,11 @@ Main _**types of evidence**_ retrieved and analyzed:
 - memory (process, linked libraries, network connections, etc.);
 - network capture.
 
-For each skill learned in the lab, you will use a subsection which will touch up on new concepts.
+## Chain of custody
+Preserving the *integrity* of the evidence (preventing alteration or deletion), is paramount. <br />
+**Chain of custody** is a process used to track evidence by documenting each person and organization who handles it, the date/time it was collected or transferred, and the purpose of the transfer.
 
 For integrating figures, you will use `![Example SVG](../media/app-os-cpu-interaction.svg)`.
-
 ![Example SVG](../media/app-os-cpu-interaction.svg)
 
 ## Summary
@@ -35,3 +36,8 @@ Description
 Description
 ### Challenge 3
 Description
+
+## Further reading
+ISO/IEC 27037:2012
+[Chain of custody](https://www.cisa.gov/sites/default/files/publications/cisa-insights_chain-of-custody-and-ci-systems_508.pdf)
+

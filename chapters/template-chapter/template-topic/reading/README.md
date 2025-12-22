@@ -16,7 +16,7 @@ According to ISO/IEC 27037:
 
 ## Evidence
 Main _**types of evidence**_ retrieved and analyzed:
-- disk (files, logs, command history, etc.);
+- disk (files, logs, command history, browser artifacts, etc.);
 - memory (process, linked libraries, network connections, etc.);
 - network capture.
 

@@ -21,8 +21,8 @@ Main _**types of evidence**_ retrieved and analyzed:
 - network capture.
 
 ## Chain of custody
-Preserving the *integrity* of the evidence (preventing alteration or deletion), is paramount. <br />
-**Chain of custody** is a process used to track evidence by documenting each person and organization who handles it, the date/time it was collected or transferred, and the purpose of the transfer.
+Preserving the *integrity* of the evidence (preventing alteration or deletion) is prioritized. <br />
+**Chain of custody** is used to track evidence by documenting each person and organization who handles it, the date/time it was collected or transferred, and the purpose of the transfer.
 
 For integrating figures, you will use `![Example SVG](../media/app-os-cpu-interaction.svg)`.
 ![Example SVG](../media/app-os-cpu-interaction.svg)

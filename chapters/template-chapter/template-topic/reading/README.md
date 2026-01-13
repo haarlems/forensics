@@ -28,6 +28,15 @@ Preserving the *integrity* of the evidence (preventing alteration or deletion) i
 Example [chain of custody form](https://www.oreilly.com/library/view/implementing-digital-forensic/9780128045015/XHTML/B9780128044544150142/B9780128044544150142.xhtml):
 ![Example SVG](../media/coc.jpg)
 <br />
+## Case examples
+[Cat's Got Your Files: Lynx Ransomware](https://thedfirreport.com/2025/11/17/cats-got-your-files-lynx-ransomware/)
+- initial access: RDP with compromised credentials to internet-exposed system
+- internal recon: enumerate virtual infrastructure and file shares using standard windows utilities and [netscan](https://www.softperfect.com/products/networkscanner/)
+- lateral movement: to Domain Controller via separate compromised domain account (likely obtained from initial access broker)
+- persistence: create new accounts via [dsa.msc](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage-user-accounts-in-windows-server) and add them to privileged groups
+- exfil: sensitive files from network shares, 7z compressed via temporary file service temp.sh
+- ransomware: delete backup jobs, deploy lynx across multiple backup and file servers via RDP
+
 ## Summary
 - summary
 ## Drills

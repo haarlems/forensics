@@ -25,7 +25,7 @@ Preserving the *integrity* of the evidence (preventing alteration or deletion) i
 **Chain of custody** is used to track evidence by documenting each person and organization who handles it, the date/time it was collected or transferred, and the purpose of the transfer. <br />
 Example chain of custody form:
 ![Example SVG](../media/coc.jpg)
-(source)[https://www.oreilly.com/library/view/implementing-digital-forensic/9780128045015/XHTML/B9780128044544150142/B9780128044544150142.xhtml]
+[source](https://www.oreilly.com/library/view/implementing-digital-forensic/9780128045015/XHTML/B9780128044544150142/B9780128044544150142.xhtml)
 ## Summary
 - summary
 ## Drills

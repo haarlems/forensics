@@ -1,5 +1,6 @@
 # Forensic investigation methodology
-[Digital forensics](https://www.nist.gov/digital-evidence) is the field of forensic science concerned with ***retrieving, storing and analyzing*** data that can be useful in investigations. This includes information from computers, mobile phones, motor vehicles, IoT devices, drones or the cloud. <br />
+[Digital forensics](https://www.nist.gov/digital-evidence) is the field of forensic science concerned with ***retrieving, storing and analyzing*** data that can be useful in investigations. <br />
+This includes information from computers, mobile phones, IoT devices, motor vehicles, drones, or the cloud. <br />
 **Digital forensic investigators** face challenges such as:
 - extracting data from damaged devices;
 - locating evidence among vast quantities of data;
@@ -23,9 +24,11 @@ Main _**types of evidence**_ retrieved and analyzed:
 ## Chain of custody
 Preserving the *integrity* of the evidence (preventing alteration or deletion) is prioritized. <br />
 **Chain of custody** is used to track evidence by documenting each person and organization who handles it, the date/time it was collected or transferred, and the purpose of the transfer. <br />
+<br />
 Example chain of custody form:
 ![Example SVG](../media/coc.jpg)
 [source](https://www.oreilly.com/library/view/implementing-digital-forensic/9780128045015/XHTML/B9780128044544150142/B9780128044544150142.xhtml)
+<br />
 ## Summary
 - summary
 ## Drills

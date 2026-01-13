@@ -8,6 +8,7 @@ This includes information from computers, mobile phones, IoT devices, motor vehi
 - ensuring that their methods capture data **reliably**, without altering it in any way.
 
 The term **DFIR (Digital Forensics and Incident Response)** is often used referring to the broader discipline including incident response.
+![Methodology](../media/methodology.png)
 
 ## Objectives of the [digital forensic process](https://www.unodc.org/cld/en/education/tertiary/cybercrime/module-4/key-issues/standards-and-best-practices-for-digital-forensics.html)
 - identification;

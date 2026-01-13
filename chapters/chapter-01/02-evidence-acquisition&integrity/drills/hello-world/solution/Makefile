@@ -1,16 +1,15 @@
 CFLAGS = -Wall -Wextra
 CPPFLAGS = -I utils/ -I utils/log/
-LDLIBS = -lpthread
 
-EXEC = race_condition
+EXEC = hello-world
 OBJ = $(patsubst %,%.o,$(EXEC))
 SRC = $(patsubst %,%.c,$(EXEC))
 
 all: $(EXEC)
 
-$(EXEC): $(OBJS) utils/log/log.o
+$(EXEC): $(OBJ) utils/log/log.o
 
-$(OBJS): $(SRC)
+$(OBJ): $(SRC)
 
 utils/log/log.o: utils/log/log.c
 

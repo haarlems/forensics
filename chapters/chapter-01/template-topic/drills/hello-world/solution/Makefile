@@ -1,17 +1,15 @@
 CFLAGS = -Wall -Wextra
-CPPFLAGS = -I utils/ -I utils/log/ -D ATOMIC
-LDLIBS = -lpthread
+CPPFLAGS = -I utils/ -I utils/log/
 
-EXEC = race_condition_atomic
+EXEC = hello-world
 OBJ = $(patsubst %,%.o,$(EXEC))
-SRC = race_condition.c
+SRC = $(patsubst %,%.c,$(EXEC))
 
 all: $(EXEC)
 
 $(EXEC): $(OBJ) utils/log/log.o
 
 $(OBJ): $(SRC)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
 utils/log/log.o: utils/log/log.c
 

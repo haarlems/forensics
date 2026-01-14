@@ -43,9 +43,8 @@ Example [chain of custody form](https://www.oreilly.com/library/view/implementin
 - privilege escalation: add new accounts to privileged groups
 - exfil: sensitive files from network shares, 7z compressed via temporary file service [temp.sh](http://temp.sh)
 - c2: RDP, AnyDesk (installed but not used)
-- ransomware deployment: delete backup jobs, deploy lynx across multiple backup and file servers via RDP
-<br />
-[Diamond model](../media/diamond01lynx.png)
+- ransomware deployment: delete backup jobs, deploy lynx across multiple backup and file servers via RDP<br />
+![Diamond model](../media/diamond01lynx.png)
 
 [From a Single Click: How Lunar Spider Enabled a Near Two-Month Intrusion](https://thedfirreport.com/2025/09/29/from-a-single-click-how-lunar-spider-enabled-a-near-two-month-intrusion/)
 - initial access: javascript file disguised as tax form, downloads and executes Brute Ratel via MSI installer
@@ -55,9 +54,8 @@ Example [chain of custody form](https://www.oreilly.com/library/view/implementin
 - privilege escalation: Windows’ Secondary Logon service to enable runas with admin credentials found in unattend.xml file, UAC bypass via Cobalt Strike [uac-token-duplication](https://hstechdocs.helpsystems.com/manuals/cobaltstrike/current/userguide/content/topics/post-exploitation_privilege-escalation.htm)
 - exfil: Rclone, FTP
 - c2: Latrodectus/BackConnect VNC, Brute Ratel, lsassa.exe .NET malware, metasploit, Cobalt Strike
-- credential harvesting: lsass, Latrodectus stealer module extracted from Outlook by querying registry keys, unattend.xml file, [.ps1 file](https://github.com/sadshade/veeam-creds) targeting backup software Veeam
-<br />
-[Diamond model](../media/diamond01lunar.png)
+- credential harvesting: lsass, Latrodectus stealer module extracted from Outlook by querying registry keys, unattend.xml file, [.ps1 file](https://github.com/sadshade/veeam-creds) targeting backup software Veeam<br />
+![Diamond model](../media/diamond01lunar.png)
 
 ## Summary
 - digital forensics includes retrieving, storing and analyzing data

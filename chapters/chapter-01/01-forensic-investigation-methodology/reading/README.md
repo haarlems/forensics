@@ -14,11 +14,10 @@ A 10 step investigation methodology: <br />
 
 The term **DFIR (Digital Forensics and Incident Response)** is often used referring to the broader discipline including incident response.
 
-## Objectives of the [digital forensic process](https://www.unodc.org/cld/en/education/tertiary/cybercrime/module-4/key-issues/standards-and-best-practices-for-digital-forensics.html)
+## Phases of the [digital forensic process](https://www.unodc.org/cld/en/education/tertiary/cybercrime/module-4/key-issues/standards-and-best-practices-for-digital-forensics.html)
 - identification;
 - collection;
 - analysis;
-- reporting;
 - preservation.
 
 ## Evidence
@@ -45,6 +44,7 @@ Example [chain of custody form](https://www.oreilly.com/library/view/implementin
 - c2: RDP, AnyDesk (installed but not used)
 - ransomware deployment: delete backup jobs, deploy lynx across multiple backup and file servers via RDP<br />
 ![Diamond model](../media/diamond01lynx.png)
+*image source: the DFIR Report*
 
 [From a Single Click: How Lunar Spider Enabled a Near Two-Month Intrusion](https://thedfirreport.com/2025/09/29/from-a-single-click-how-lunar-spider-enabled-a-near-two-month-intrusion/)
 - initial access: javascript file disguised as tax form, downloads and executes Brute Ratel via MSI installer
@@ -56,11 +56,12 @@ Example [chain of custody form](https://www.oreilly.com/library/view/implementin
 - c2: Latrodectus/BackConnect VNC, Brute Ratel, lsassa.exe .NET malware, metasploit, Cobalt Strike
 - credential harvesting: lsass, Latrodectus stealer module extracted from Outlook by querying registry keys, unattend.xml file, [.ps1 file](https://github.com/sadshade/veeam-creds) targeting backup software Veeam<br />
 ![Diamond model](../media/diamond01lunar.png)
+*image source: the DFIR Report*
 
 ## Summary
 - digital forensics includes retrieving, storing and analyzing data
 - investigator's challenges: extraction, finding evidence in large amounts of data, reliability
-- objectives: identify, collect, analyze, report, preserve
+- phases: identify, collect, analyze, report, preserve
 - evidence sources: disk, memory, network
 - chain of custody is a priority
 ## Drills

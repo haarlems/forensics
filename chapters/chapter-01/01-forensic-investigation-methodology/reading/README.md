@@ -57,9 +57,13 @@ Example [chain of custody form](https://www.oreilly.com/library/view/implementin
 - credential harvesting: lsass, Latrodectus stealer module extracted from Outlook by querying registry keys, unattend.xml file, [.ps1 file](https://github.com/sadshade/veeam-creds) targeting backup software Veeam 
 
 ## Summary
-- summary
+- digital forensics includes retrieving, storing and analyzing data
+- investigator's challenges: extraction, finding evidence in large amounts of data, reliability
+- objectives: identiyf, collect, analyze, report, preserve
+- evidence sources: disk, memory, network
+- chain of custody is a priority
 ## Drills
-### Challenge 1 - OSINT (read DFIR Report)
+### Challenge 1
 Description
 ### Challenge 2
 Description

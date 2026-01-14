@@ -15,11 +15,14 @@ A 10 step investigation methodology: <br />
 The term **DFIR (Digital Forensics and Incident Response)** is often used referring to the broader discipline including incident response.
 
 ## Phases of the [digital forensic process](https://www.unodc.org/cld/en/education/tertiary/cybercrime/module-4/key-issues/standards-and-best-practices-for-digital-forensics.html)
+According to the standards and best practices for digital forensics published by [ISO](https://www.iso.org/home.html) and [IEC](https://www.iec.ch/) as ISO/IEC 27037, the phases are:
 - identification;
 - collection;
+- acquisition;
+- preservation.<br />
+The following phases are part of the forensic process, though not included in the ISO/IEC standards:
 - analysis;
-- preservation.
-
+- reporting.
 ## Evidence
 Main _**types of evidence**_ retrieved and analyzed:
 - disk (files, logs, command history, browser artifacts, etc.);

@@ -59,7 +59,7 @@ Example [chain of custody form](https://www.oreilly.com/library/view/implementin
 ## Summary
 - digital forensics includes retrieving, storing and analyzing data
 - investigator's challenges: extraction, finding evidence in large amounts of data, reliability
-- objectives: identiyf, collect, analyze, report, preserve
+- objectives: identify, collect, analyze, report, preserve
 - evidence sources: disk, memory, network
 - chain of custody is a priority
 ## Drills

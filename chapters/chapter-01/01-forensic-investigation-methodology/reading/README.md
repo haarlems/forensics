@@ -2,7 +2,10 @@
 [Digital forensics](https://www.nist.gov/digital-evidence) is the field of forensic science concerned with ***retrieving, storing and analyzing*** data that can be useful in investigations. <br />
 This includes information from computers, mobile phones, IoT devices, motor vehicles, drones, or the cloud. <br />
 <br />
-![Methodology](../media/methodology.png)
+A 10 step investigation methodology: <br />
+![Methodology](../media/fim.png)<br />
+*image source: Digital Forensics and Incident Response, Gerard Johansen*
+<br />
 <br />
 **Digital forensic investigators** face challenges such as:
 - extracting data from damaged devices;
@@ -54,9 +57,13 @@ Example [chain of custody form](https://www.oreilly.com/library/view/implementin
 - credential harvesting: lsass, Latrodectus stealer module extracted from Outlook by querying registry keys, unattend.xml file, [.ps1 file](https://github.com/sadshade/veeam-creds) targeting backup software Veeam 
 
 ## Summary
-- summary
+- digital forensics includes retrieving, storing and analyzing data
+- investigator's challenges: extraction, finding evidence in large amounts of data, reliability
+- objectives: identify, collect, analyze, report, preserve
+- evidence sources: disk, memory, network
+- chain of custody is a priority
 ## Drills
-### Challenge 1 - OSINT (read DFIR Report)
+### Challenge 1
 Description
 ### Challenge 2
 Description
@@ -65,4 +72,5 @@ Description
 
 ## Further reading
 ISO/IEC 27037:2012
-[Chain of custody](https://www.cisa.gov/sites/default/files/publications/cisa-insights_chain-of-custody-and-ci-systems_508.pdf)
+[Chain of custody](https://www.cisa.gov/sites/default/files/publications/cisa-insights_chain-of-custody-and-ci-systems_508.pdf)<br />
+Digital Forensics and Incident Response book by Gerard Johansen<br />

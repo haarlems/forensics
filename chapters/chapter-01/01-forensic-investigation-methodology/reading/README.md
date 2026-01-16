@@ -1,21 +1,20 @@
 # Forensic investigation methodology
 [Digital forensics](https://www.nist.gov/digital-evidence) is the field of forensic science concerned with ***retrieving, storing and analyzing*** data that can be useful in investigations. <br />
-This includes information from computers, mobile phones, IoT devices, motor vehicles, drones, or the cloud. <br />
+This includes information retrieved from computers, mobile phones, IoT devices, motor vehicles, drones, satellites or the cloud. 
 <br />
-A 10 step investigation methodology: <br />
+## A 10 step investigation methodology
 ![Methodology](../media/fim.png)<br />
 *image source: Digital Forensics and Incident Response, Gerard Johansen*
-<br />
-<br />
-**Digital forensic investigators** face challenges such as:
-- extracting data from damaged devices;
-- locating evidence among vast quantities of data;
-- ensuring that their methods capture data **reliably**, without altering it in any way.
 
-The term **DFIR (Digital Forensics and Incident Response)** is often used referring to the broader discipline including incident response.
+## DFIR
+The term **DFIR (Digital Forensics and Incident Response)** is often used referring to the broader discipline including incident response.<br />
+This track focuses on the Digital Forensics process.<br />
+For those seeking more info on Incident Response, refer to the [NIST Special Publication 800-61r3](https://csrc.nist.gov/pubs/sp/800/61/r3/final)<br />
+![DFIR](../media/dfir.png)
+*image source: WIZ*
 
 ## Phases of the [digital forensic process](https://www.unodc.org/cld/en/education/tertiary/cybercrime/module-4/key-issues/standards-and-best-practices-for-digital-forensics.html)
-According to the standards and best practices for digital forensics published by [ISO](https://www.iso.org/home.html) and [IEC](https://www.iec.ch/) as ISO/IEC 27037, the phases are:
+According to the standards and best practices for digital forensics published by [ISO](https://www.iso.org/home.html) (International Organization for Standardization) and [IEC](https://www.iec.ch/) (International Electrotechnical Commission) as ISO/IEC 27037, the phases are:
 - identification;
 - collection;
 - acquisition;
@@ -23,19 +22,13 @@ According to the standards and best practices for digital forensics published by
 The following phases are part of the forensic process, though not included in the ISO/IEC standards:
 - analysis;
 - reporting.
+
 ## Evidence
 Main _**types of evidence**_ retrieved and analyzed:
 - disk (files, logs, command history, browser artifacts, etc.);
 - memory (process, linked libraries, network connections, etc.);
 - network capture.
 
-## Chain of custody
-Preserving the *integrity* of the evidence (preventing alteration or deletion) is prioritized. <br />
-**Chain of custody** is used to track evidence by documenting each person and organization who handles it, the date/time it was collected or transferred, and the purpose of the transfer. <br />
-<br />
-Example [chain of custody form](https://www.oreilly.com/library/view/implementing-digital-forensic/9780128045015/XHTML/B9780128044544150142/B9780128044544150142.xhtml):<br />
-![Example SVG](../media/coc.jpg)
-<br />
 ## Case examples
 [Cat's Got Your Files: Lynx Ransomware](https://thedfirreport.com/2025/11/17/cats-got-your-files-lynx-ransomware/)
 - initial access: RDP with compromised credentials to internet-exposed system
@@ -61,11 +54,26 @@ Example [chain of custody form](https://www.oreilly.com/library/view/implementin
 ![Diamond model](../media/diamond01lunar.png)
 *image source: the DFIR Report*
 
+## Investigator's challenges
+**Digital forensic investigators** face challenges such as:
+- extracting data from damaged devices;
+- locating evidence among vast quantities of data;
+- ensuring that their methods capture data **reliably**, without altering it in any way.
+
+## Chain of custody
+Preserving the *integrity* of the evidence (preventing alteration or deletion) is prioritized. <br />
+**Chain of custody** is used to track evidence by documenting each person and organization who handles it, the date/time it was collected or transferred, and the purpose of the transfer. <br />
+<br />
+Example [chain of custody form](https://www.oreilly.com/library/view/implementing-digital-forensic/9780128045015/XHTML/B9780128044544150142/B9780128044544150142.xhtml):<br />
+![Example SVG](../media/coc.jpg)
+
 ## Summary
 - digital forensics includes retrieving, storing and analyzing data
-- investigator's challenges: extraction, finding evidence in large amounts of data, reliability
+- DFIR includes incident response, out of scope for this track
 - phases: identify, collect, analyze, report, preserve
 - evidence sources: disk, memory, network
+- DFIR reports provide case examples
+- investigator's challenges: extraction, finding evidence in large amounts of data, reliability
 - chain of custody is a priority
 ## Drills
 ### Challenge 1
@@ -76,6 +84,7 @@ Description
 Description
 
 ## Further reading
-ISO/IEC 27037:2012
-[Chain of custody](https://www.cisa.gov/sites/default/files/publications/cisa-insights_chain-of-custody-and-ci-systems_508.pdf)<br />
 Digital Forensics and Incident Response book by Gerard Johansen<br />
+[NIST Special Publication 800-61r3](https://csrc.nist.gov/pubs/sp/800/61/r3/final)<br />
+ISO/IEC 27037:2012 <br />
+[Chain of custody](https://www.cisa.gov/sites/default/files/publications/cisa-insights_chain-of-custody-and-ci-systems_508.pdf)<br />

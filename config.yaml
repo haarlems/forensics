@@ -48,13 +48,13 @@ docusaurus:
     static_assets:
       - template-chapter-template-topic: /build/make_assets/chapters/template-chapter/template-topic/slides/_site
     config_meta:
-      title: Template Repo
-      url: http://localhost/
-      baseUrl: /oer-template/
+      title: forensics
+      url: http://haarlems.github.io/
+      baseUrl: /forensics/
       onBrokenLinks: warn
       onBrokenMarkdownLinks: warn
     config_socials:
-      Main site: https://example.com
-      OCW: https://example.com
-      Facebook: https://www.facebook.com/zuck/
+      Main site: -
+      OCW: -
+      Facebook: -
     copyright_string: Example Copyright

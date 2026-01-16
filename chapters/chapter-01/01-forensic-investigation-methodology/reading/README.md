@@ -3,18 +3,19 @@
 This includes information retrieved from computers, mobile phones, IoT devices, motor vehicles, drones, satellites or the cloud. 
 <br />
 ## A 10 step investigation methodology
+The general approach of this methodology is the analysis of digital evidence to prove or disprove a hypothesis. [1]
 ![Methodology](../media/fim.png)<br />
 *image source: Digital Forensics and Incident Response by Gerard Johansen*
 
 ## DFIR
 The term **DFIR (Digital Forensics and Incident Response)** is often used referring to the broader discipline including incident response.<br />
 This track focuses on the Digital Forensics process.<br />
-For those seeking more info on Incident Response, refer to the [NIST Special Publication 800-61r3](https://csrc.nist.gov/pubs/sp/800/61/r3/final)<br />
+For those seeking more info on Incident Response, refer to the [NIST Special Publication 800-61r3](https://csrc.nist.gov/pubs/sp/800/61/r3/final). [2]<br />
 ![DFIR](../media/dfir.png)
-*image source: WIZ*
+*image source: WIZ* 
 
 ## Phases of the [digital forensic process](https://www.unodc.org/cld/en/education/tertiary/cybercrime/module-4/key-issues/standards-and-best-practices-for-digital-forensics.html)
-According to the standards and best practices for digital forensics published by [ISO](https://www.iso.org/home.html) (International Organization for Standardization) and [IEC](https://www.iec.ch/) (International Electrotechnical Commission) as ISO/IEC 27037, the phases are:
+According to the standards and best practices for digital forensics published by [ISO](https://www.iso.org/home.html) (International Organization for Standardization) and [IEC](https://www.iec.ch/) (International Electrotechnical Commission) as ISO/IEC 27037 [3], the phases are:
 - identification;
 - collection;
 - acquisition;
@@ -24,6 +25,8 @@ The following phases are part of the forensic process, though not included in th
 - reporting.
 
 ## Evidence
+A key principle in forensics is **Locard's principle of exchange**, often summarized as "every contact leaves a trace". <br />
+It states that when a criminal comes in contact with an object, or a person, a cross-transfer of **evidence** occurs. <br />
 Main _**types of evidence**_ retrieved and analyzed:
 - disk (files, logs, command history, browser artifacts, etc.);
 - memory (process, linked libraries, network connections, etc.);
@@ -62,7 +65,7 @@ Main _**types of evidence**_ retrieved and analyzed:
 
 ## Chain of custody
 Preserving the *integrity* of the evidence (preventing alteration or deletion) is prioritized. <br />
-**Chain of custody** is used to track evidence by documenting each person and organization who handles it, the date/time it was collected or transferred, and the purpose of the transfer. <br />
+**Chain of custody** is used to track evidence by documenting each person and organization who handles it, the date/time it was collected or transferred, and the purpose of the transfer. [4] <br />
 <br />
 Example [chain of custody form](https://www.oreilly.com/library/view/implementing-digital-forensic/9780128045015/XHTML/B9780128044544150142/B9780128044544150142.xhtml):<br />
 ![Example SVG](../media/coc.jpg)<br />
@@ -84,8 +87,9 @@ Description
 ### Challenge 3
 Description
 
-## Further reading
-Digital Forensics and Incident Response book by Gerard Johansen<br />
-[NIST Special Publication 800-61r3](https://csrc.nist.gov/pubs/sp/800/61/r3/final)<br />
-ISO/IEC 27037:2012 <br />
-[Chain of custody](https://www.cisa.gov/sites/default/files/publications/cisa-insights_chain-of-custody-and-ci-systems_508.pdf)<br />
+## References & further reading
+[1] Digital Forensics and Incident Response, chapter 4. Investigation methodology, section "Functional digital forensic investigation methodology" by Gerard Johansen<br />
+[2] [NIST Special Publication 800-61r3](https://csrc.nist.gov/pubs/sp/800/61/r3/final)<br />
+[3] ISO/IEC 27037:2012 <br />
+[4] [Chain of custody](https://www.cisa.gov/sites/default/files/publications/cisa-insights_chain-of-custody-and-ci-systems_508.pdf)<br />
+[*] [Overview of Digital Forensics, ISACA](https://www.isaca.org/resources/white-papers/overview-of-digital-forensics)

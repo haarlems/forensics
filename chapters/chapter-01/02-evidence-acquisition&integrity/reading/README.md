@@ -29,8 +29,13 @@ UAC comes with two basic pre-defined profiles:
 - "ir_triage" – captures important system artifacts needed for typical investigations
 - "full" – everything in "ir_triage" plus browser and other user application artifacts
 
-### 
+### Autopsy 
+
+### FTK Imager
+
+
 ## Preserving integrity
+### Hash verification
 
 ## Summary
 - summary
@@ -43,6 +48,6 @@ Description
 Description
 
 ## References & further reading
-[1] ISACA Whitepaper - [Overview of Digital Forensics](https://www.isaca.org/resources/white-papers/overview-of-digital-forensics)
-[*] IETF [RFC 3227 - Guidelines for Evidence Collection and Archiving](https://www.ietf.org/rfc/rfc3227.txt)
-[*] Hal Pomeranz's [Linux Forensics](https://archive.org/details/HalLinuxForensics)
+[1] ISACA Whitepaper - [Overview of Digital Forensics](https://www.isaca.org/resources/white-papers/overview-of-digital-forensics)<br />
+[+] IETF [RFC 3227 - Guidelines for Evidence Collection and Archiving](https://www.ietf.org/rfc/rfc3227.txt)<br />
+[+] Hal Pomeranz's [Linux Forensics](https://archive.org/details/HalLinuxForensics)<br />

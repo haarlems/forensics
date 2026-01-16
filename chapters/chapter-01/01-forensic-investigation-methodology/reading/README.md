@@ -32,6 +32,10 @@ Main _**types of evidence**_ retrieved and analyzed:
 - memory (process, linked libraries, network connections, etc.);
 - network capture.
 
+## Diamond model
+
+![Diamond model](../media/diamondmodel.png)
+
 ## Case examples
 [Cat's Got Your Files: Lynx Ransomware](https://thedfirreport.com/2025/11/17/cats-got-your-files-lynx-ransomware/)
 - initial access: RDP with compromised credentials to internet-exposed system

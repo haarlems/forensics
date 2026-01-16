@@ -34,7 +34,8 @@ Main _**types of evidence**_ retrieved and analyzed:
 
 ## Diamond model
 
-![Diamond model](../media/diamondmodel.png)
+![Diamond model](../media/diamondmodel.png) <br />
+*image source: Digital Forensics and Incident Response by Gerard Johansen, originally published in the [The Diamond Model of Intrusion Analysis](https://www.researchgate.net/publication/379381999_The_Diamond_Model_of_Intrusion_Analysis) by Sergio Caltagirone, Andrew Pendergast, Cristopher Betz*
 
 ## Case examples
 [Cat's Got Your Files: Lynx Ransomware](https://thedfirreport.com/2025/11/17/cats-got-your-files-lynx-ransomware/)

@@ -54,7 +54,7 @@ docusaurus:
       onBrokenLinks: warn
       onBrokenMarkdownLinks: warn
     config_socials:
-      Main site: -
-      OCW: -
-      Facebook: -
+      Main site: http://example.com
+      OCW: http://example.com
+      Facebook: http://example.com
     copyright_string: Example Copyright

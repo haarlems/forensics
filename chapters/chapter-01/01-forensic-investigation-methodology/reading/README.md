@@ -4,7 +4,7 @@ This includes information retrieved from computers, mobile phones, IoT devices, 
 <br />
 ## A 10 step investigation methodology
 ![Methodology](../media/fim.png)<br />
-*image source: Digital Forensics and Incident Response, Gerard Johansen*
+*image source: Digital Forensics and Incident Response by Gerard Johansen*
 
 ## DFIR
 The term **DFIR (Digital Forensics and Incident Response)** is often used referring to the broader discipline including incident response.<br />
@@ -65,7 +65,8 @@ Preserving the *integrity* of the evidence (preventing alteration or deletion) i
 **Chain of custody** is used to track evidence by documenting each person and organization who handles it, the date/time it was collected or transferred, and the purpose of the transfer. <br />
 <br />
 Example [chain of custody form](https://www.oreilly.com/library/view/implementing-digital-forensic/9780128045015/XHTML/B9780128044544150142/B9780128044544150142.xhtml):<br />
-![Example SVG](../media/coc.jpg)
+![Example SVG](../media/coc.jpg)<br />
+*image source: Implementing Digital Forensic Readiness by Jason Sachowski*
 
 ## Summary
 - digital forensics includes retrieving, storing and analyzing data

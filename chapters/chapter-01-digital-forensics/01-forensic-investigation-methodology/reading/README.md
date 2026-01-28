@@ -81,7 +81,7 @@ Example [chain of custody form](https://www.oreilly.com/library/view/implementin
 - DFIR includes incident response, out of scope for this track
 - phases: identify, collect, analyze, report, preserve
 - evidence sources: disk, memory, network
-- DFIR reports provide case examples
+- DFIR case reports provide examples
 - investigator's challenges: extraction, finding evidence in large amounts of data, reliability
 - chain of custody is a priority
 ## Drills

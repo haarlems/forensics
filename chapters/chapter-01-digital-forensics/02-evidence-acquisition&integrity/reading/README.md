@@ -1,9 +1,10 @@
 # Evidence acquisition & integrity
-Because digital forensics is concerned with analyzing _“digital evidence in a manner that is legally acceptable in any legal proceedings (i.e., a court of law)”_[1], evidence integrity is key.<br /> 
+Because digital forensics is concerned with analyzing _“digital evidence in a manner that is legally acceptable in any legal proceedings”_, evidence integrity is key. [1]<br /> 
 After an incident has been identified and scoped, next comes the evidence collection phase.<br /> 
+<br /> 
 Evidence must:
 - be relevant and of consequence to proving or disproving a hypothesis;
-- have its integrity preserved;
+- have its integrity preserved.
 
 ## Evidence volatility
 Evidence collection should be prioritized based on evidence volatility.<br />
@@ -15,9 +16,16 @@ Here is an example order of volatility for a typical system.
 -  disk;
 -  remote logging and monitoring data that is relevant to the system in question;
 -  physical configuration, network topology;
--  archival media.
+-  archival media.<br />
 
-## Evidence acquisition
+For example, if network logs roll over a 24h period, they should be acquired as soon as possible at the debut of the investigation, and then assess if they are required.
+## Evidence acquisition - Host-based
+From the hosts we can collect disk and memory artifacts.<br />
+Disk artifacts include:
+- information about execution (ex. on Windows file system metadata in $MFT file, evidence of execution in Prefetch, SRUM, BITS Database, USN Journal)
+- browser artifacts (ex. credentials, cookies, browsing history, etc)
+
+Memory artifacts include memory dumps.
 
 ### UAC - [Unix-like Artifacts Collector](https://github.com/tclahr/uac)
 Live collection tool for Unix-like operating systems.<br />
@@ -33,6 +41,9 @@ UAC comes with two basic pre-defined profiles:
 
 ### FTK Imager
 
+## Evidence acquisition - Network
+
+## Evidence acquisition - Remote
 
 ## Preserving integrity
 ### Hash verification

@@ -19,10 +19,14 @@ Here is an example order of volatility for a typical system.
 -  archival media.<br />
 
 For example, if network logs roll over a 24h period, they should be acquired as soon as possible at the debut of the investigation, and then assess if they are required.
+
 ## Evidence acquisition - Host-based
-From the hosts we can collect disk and memory artifacts.<br />
+From the hosts we usually collect disk and memory artifacts.<br />
 Disk artifacts include:
-- information about execution (ex. on Windows file system metadata in $MFT file, evidence of execution in Prefetch, SRUM, BITS Database, USN Journal)
+- information about file system metadata (ex. $MFT file on windows)
+- evidence of execution (ex. Prefetch files, SRUM)
+- evidence of past file presence (ex. USN Journal)
+- evidence of network communication (ex. BITS Database)
 - browser artifacts (ex. credentials, cookies, browsing history, etc)
 
 Memory artifacts include memory dumps.

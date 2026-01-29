@@ -1,8 +1,7 @@
 # Evidence acquisition & integrity
-Because digital forensics is concerned with analyzing _“digital evidence in a manner that is legally acceptable in any legal proceedings”_, evidence integrity is key. [1]<br /> 
+Because digital forensics is concerned with _"analyzing digital evidence in a manner that is legally acceptable in any legal proceedings”_, evidence integrity is key. [1]<br /> 
 After an incident has been identified and scoped, next comes the evidence collection phase.<br /> 
-<br /> 
-Evidence must:
+Collected evidence must:
 - be relevant and of consequence to proving or disproving a hypothesis;
 - have its integrity preserved.
 
@@ -25,8 +24,9 @@ From the hosts we usually collect disk and memory artifacts.<br />
 Disk artifacts include:
 - information about file system metadata (ex. $MFT file on windows)
 - evidence of execution (ex. Prefetch files, SRUM)
-- evidence of past file presence (ex. USN Journal)
+- evidence of past file presence (ex. USN Journal, Windows Search Index)
 - evidence of network communication (ex. BITS Database)
+- evidence of access (ex. shellbags)
 - browser artifacts (ex. credentials, cookies, browsing history, etc)
 
 Memory artifacts include memory dumps.
@@ -44,6 +44,17 @@ UAC comes with two basic pre-defined profiles:
 ### Autopsy 
 
 ### FTK Imager
+
+### EZ Tools
+- mftecmd (extract and parse MFT and USN Journal)
+
+- pecmd (Prefetch parser)
+
+- Registry Explorer (parser and viewer, fixes dirty hives)
+
+- AppCompatCacheParser (shimcache, amcache parser)
+
+- JLECmd (jumplist parser)
 
 ## Evidence acquisition - Network
 

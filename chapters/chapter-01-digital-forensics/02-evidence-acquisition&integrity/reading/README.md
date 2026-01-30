@@ -41,27 +41,37 @@ UAC comes with two basic pre-defined profiles:
 - "ir_triage" – captures important system artifacts needed for typical investigations
 - "full" – everything in "ir_triage" plus browser and other user application artifacts
 
-### Autopsy 
-
 ### FTK Imager
+Live collection tool to capture disk and memory on Windows.<br />
+Options:
+- create disk image
+- capture memory
 
 ### EZ Tools
+- KAPE - Kroll Artifact Parser and Extractor
 - mftecmd (extract and parse MFT and USN Journal)
-
 - pecmd (Prefetch parser)
-
 - Registry Explorer (parser and viewer, fixes dirty hives)
-
 - AppCompatCacheParser (shimcache, amcache parser)
-
 - JLECmd (jumplist parser)
 
 ## Evidence acquisition - Network
+### Wireshark
+### tcpdump
 
 ## Evidence acquisition - Remote
+### Velociraptor
 
 ## Preserving integrity
+It is recommended that a unique hash value per each file collected is calculated.<br/>
+A hash is a numeric value of a fixed length that uniquely identifies data, computed based on a chosen algorithm:
+- sha256
+- sha1
+- md5
+
 ### Hash verification
+- sha256sum, shasum, md5sum
+- certutil, Get-FileHash
 
 ## Summary
 - summary

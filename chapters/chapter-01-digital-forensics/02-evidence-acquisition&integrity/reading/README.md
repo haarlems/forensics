@@ -64,7 +64,8 @@ Options:
 
 ## Preserving integrity
 It is recommended that a unique hash value per each file collected is calculated.<br/>
-A hash is a numeric value of a fixed length that uniquely identifies data, computed based on a chosen algorithm:
+A hash is a numeric value of a fixed length that uniquely identifies data, computed based on a chosen algorithm.<br />
+Commonly used algorithms:
 - sha256
 - sha1
 - md5

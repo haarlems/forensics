@@ -42,7 +42,7 @@ UAC comes with two basic pre-defined profiles:
 - "full" – everything in "ir_triage" plus browser and other user application artifacts
 
 ### [FTK Imager](https://www.exterro.com/digital-forensics-software/ftk-imager)
-Live collection tool to capture disk and memory on Windows.<br />
+Live collection tool to capture disk and memory on Windows. It has a free version and multiple capabilities. <br />
 Options:
 - create disk image
 - capture memory
@@ -63,13 +63,13 @@ Options:
 
 ## Evidence acquisition - Network
 ### [tcpdump](https://www.tcpdump.org/)
-Command line packet-capture and inspection tool.<br />
+Command line packet-capture and inspection tool, with powerful filtering capabilities. <br />
 Usage:
 ```
 sudo tcpdump -i eth0 # Capture all traffic on interface eth0
 ```
 ### [Wireshark](https://www.wireshark.org/download.html)
-GUI packet-capture and inspection tool.<br />
+GUI packet-capture and inspection tool, allows analysis in a graphical interface, with shortcomings when it comes to large file sizes (it must load the entire .pcap file in memory). <br />
 ![wireshark](../media/wireshark.png) <br />
 *image source: Wireshark*
 

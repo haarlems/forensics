@@ -1,5 +1,5 @@
 # Evidence acquisition & integrity
-Because digital forensics is concerned with _"analyzing digital evidence in a manner that is legally acceptable in any legal proceedings”_, evidence integrity is key. [1]<br /> 
+Digital forensics is concerned with "analyzing digital evidence in a manner that is legally acceptable in any legal proceedings”, thus evidence integrity is key. [1]<br /> 
 After an incident has been identified and scoped, next comes the evidence collection phase.<br /> 
 Collected evidence must:
 - be relevant and of consequence to proving or disproving a hypothesis;
@@ -20,12 +20,12 @@ Here is an example order of volatility for a typical system.
 For example, if network logs roll over a 24h period, they should be acquired as soon as possible at the debut of the investigation, and then assess if they are required.
 
 ## Evidence acquisition - Host-based
-From the hosts we usually collect disk and memory artifacts.<br />
+From the hosts we usually collect disk and memory artifacts (_network captures can also be performed on a single host, but they are usually performed at the edge of a network perimeter_). <br />
 Disk artifacts include:
 - information about file system metadata (ex. $MFT file on windows)
 - evidence of execution (ex. Prefetch files, SRUM)
 - evidence of past file presence (ex. USN Journal, Windows Search Index)
-- evidence of network communication (ex. BITS Database)
+- evidence of network communication (ex. BITS Database, packet capture)
 - evidence of access (ex. shellbags)
 - browser artifacts (ex. credentials, cookies, browsing history, etc)
 
@@ -47,6 +47,8 @@ Options:
 - create disk image
 - capture memory
 
+![ftk](../media/ftk.png)
+
 ### EZ Tools
 - KAPE - Kroll Artifact Parser and Extractor
 - mftecmd (extract and parse MFT and USN Journal)
@@ -55,6 +57,7 @@ Options:
 - AppCompatCacheParser (shimcache, amcache parser)
 - JLECmd (jumplist parser)
 
+![ez](../media/ez.png)
 ## Evidence acquisition - Network
 ### Wireshark
 ### tcpdump

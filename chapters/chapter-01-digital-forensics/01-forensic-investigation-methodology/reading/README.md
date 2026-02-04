@@ -32,6 +32,14 @@ Main _**types of evidence**_ retrieved and analyzed:
 - memory (process, linked libraries, network connections, etc.);
 - network capture.
 
+### Indicators of compromise
+IoCs (or eyeoks, depending on who you ask) represent evidence that an attackeer has breached an entity’s network or endpoint. They may include:
+- unusual network traffic;
+- suspicious file hashes;
+- malicious IPs/domains;
+- suspicious login failures;
+- unauthorized changes to system configurations, and more.
+
 ## Diamond model
 
 ![Diamond model](../media/diamondmodel.png) <br />

@@ -41,15 +41,16 @@ UAC comes with two basic pre-defined profiles:
 - "ir_triage" – captures important system artifacts needed for typical investigations
 - "full" – everything in "ir_triage" plus browser and other user application artifacts
 
-### FTK Imager
+### [FTK Imager](https://www.exterro.com/digital-forensics-software/ftk-imager)
 Live collection tool to capture disk and memory on Windows.<br />
 Options:
 - create disk image
 - capture memory
 
-![ftk](../media/ftk.png)
+![ftk](../media/ftk.png) <br />
+*image source: FTK Imager*
 
-### EZ Tools
+### [EZ Tools](https://ericzimmerman.github.io/)
 - KAPE - Kroll Artifact Parser and Extractor
 - mftecmd (extract and parse MFT and USN Journal)
 - pecmd (Prefetch parser)
@@ -57,25 +58,27 @@ Options:
 - AppCompatCacheParser (shimcache, amcache parser)
 - JLECmd (jumplist parser)
 
-![ez](../media/ez.png)
+![ez](../media/ez.png) <br />
+*image source: ericzimmerman.github.io*
 
 ## Evidence acquisition - Network
-### tcpdump
+### [tcpdump](https://www.tcpdump.org/)
 Command line packet-capture and inspection tool.<br />
 Usage:
 ```
 sudo tcpdump -i eth0 # Capture all traffic on interface eth0
 ```
-### Wireshark
+### [Wireshark](https://www.wireshark.org/download.html)
 GUI packet-capture and inspection tool.<br />
-![wireshark](../media/wireshark.png)
+![wireshark](../media/wireshark.png) <br />
+*image source: Wireshark*
 
 ## Evidence acquisition - Remote
-### Velociraptor
+### [Velociraptor](https://github.com/Velocidex/velociraptor)
 Tool for collecting host based state information remotely via agents deployed on hosts. <br />
 Typical deployment: <br />
-![velociraptor](../media/velociraptor.png)
-
+![velociraptor](../media/velociraptor.png) <br />
+*image source: docs.velociraptor.app*
 
 ## Preserving integrity
 It is recommended that a unique hash value per each file collected is calculated.<br/>

@@ -58,12 +58,24 @@ Options:
 - JLECmd (jumplist parser)
 
 ![ez](../media/ez.png)
+
 ## Evidence acquisition - Network
-### Wireshark
 ### tcpdump
+Command line packet-capture and inspection tool.<br />
+Usage:
+```
+sudo tcpdump -i eth0 # Capture all traffic on interface eth0
+```
+### Wireshark
+GUI packet-capture and inspection tool.<br />
+![wireshark](../media/wireshark.png)
 
 ## Evidence acquisition - Remote
 ### Velociraptor
+Tool for collecting host based state information remotely via agents deployed on hosts. <br />
+Typical deployment: <br />
+![velociraptor](../media/velociraptor.png)
+
 
 ## Preserving integrity
 It is recommended that a unique hash value per each file collected is calculated.<br/>
@@ -74,11 +86,23 @@ Commonly used algorithms:
 - md5
 
 ### Hash verification
-- sha256sum, shasum, md5sum
-- certutil, Get-FileHash
+- sha256sum, shasum, md5sum<br />
+Usage:
+```
+sha256sum <file.iso>
+```
+- certutil, Get-FileHash<br />
+Usage:
+```
+certutil.exe -hashfile <file.iso> SHA1
+Get-FileHash <file.iso> -Algorithm MD5
+```
 
 ## Summary
-- summary
+- evidence must maintain integrity
+- prioritize by volatility
+- acquire data from hosts or network devices
+- verify integrity
 ## Drills
 ### Challenge 1
 Description

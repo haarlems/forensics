@@ -118,3 +118,9 @@ Description
 [1] ISACA Whitepaper - [Overview of Digital Forensics](https://www.isaca.org/resources/white-papers/overview-of-digital-forensics)<br />
 [+] IETF [RFC 3227 - Guidelines for Evidence Collection and Archiving](https://www.ietf.org/rfc/rfc3227.txt)<br />
 [+] Hal Pomeranz's [Linux Forensics](https://archive.org/details/HalLinuxForensics)<br />
+[+] UAC - [Unix-like Artifacts Collector](https://github.com/tclahr/uac)<br />
+[+] [FTK Imager](https://www.exterro.com/digital-forensics-software/ftk-imager)<br />
+[+] [EZ Tools](https://ericzimmerman.github.io/)<br />
+[+] [tcpdump](https://www.tcpdump.org/)<br />
+[+] [Wireshark](https://www.wireshark.org/download.html)<br />
+[+] [Velociraptor](https://github.com/Velocidex/velociraptor)<br />

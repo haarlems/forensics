@@ -11,7 +11,7 @@ The general approach of this methodology is the analysis of digital evidence to 
 The term **DFIR (Digital Forensics and Incident Response)** is often used referring to the broader discipline including incident response.<br />
 This track focuses on the Digital Forensics process.<br />
 For those seeking more info on Incident Response, refer to the [NIST Special Publication 800-61r3](https://csrc.nist.gov/pubs/sp/800/61/r3/final). [2]<br />
-![DFIR](../media/dfir.png)
+![DFIR](../media/dfir.png) <br />
 *image source: WIZ* 
 
 ## Phases of the [digital forensic process](https://www.unodc.org/cld/en/education/tertiary/cybercrime/module-4/key-issues/standards-and-best-practices-for-digital-forensics.html)

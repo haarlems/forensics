@@ -33,7 +33,7 @@ Main _**types of evidence**_ retrieved and analyzed:
 - network capture.
 
 ### Indicators of compromise
-IoCs (or eyeoks, depending on who you ask) represent evidence that an attackeer has breached an entity’s network or endpoint. They may include:
+IoCs (or eyeoks, depending on who you ask) represent evidence that an attackeer has breached an entity’s network or endpoint. Indicators may be email based, network, host or behavioural. They may include:
 - unusual network traffic;
 - suspicious file hashes;
 - malicious IPs/domains;

@@ -12,6 +12,20 @@ Enter: **the file**. <br />
 <br />
 The part of the operating system dealing with files is the **file system**.
 
+## Files
+A file is an abstraction, that gives a way to store data on the disk and read it, shielding the user from the details data storage. <br />
+- files may have extensions
+  - in Unix like systems, extensions are just conventions, not enforced by the OS
+  - in Windows systems, extensions are assigned meaning
+- file is just a sequence of bytes, but the OS will execute a file based on its format
+  - for example, an executable has five sections: header, text, data, relocation bits, and symbol table
+    - the _header_ starts with a so-called _magic number_, identifying the file type
+    - after the header are the _text_ and _data_ of the program itself
+    - these are loaded into memory and relocated using the _relocation bits_
+    - the _symbol table_ is used for debugging
+![Executable Sections](../media/exesections.png)
+## Directories
+
 ## EXT4
 The newest version of an old Unix file system. Similar flavors include FFS (BSD) and UFS (Solaris). <br />
 Other Unix file systems include ZFS, ZFS, or BTRFS, but forensic support is still limited for them. <br />

@@ -5,6 +5,8 @@
 
 ### Identify execution
 
+### Log analysis
+
 ## App & user activity artifacts
 
 ### Identify logins

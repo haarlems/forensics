@@ -105,4 +105,4 @@ Description
 [2] [NIST Special Publication 800-61r3](https://csrc.nist.gov/pubs/sp/800/61/r3/final)<br />
 [3] ISO/IEC 27037:2012 <br />
 [4] [Chain of custody](https://www.cisa.gov/sites/default/files/publications/cisa-insights_chain-of-custody-and-ci-systems_508.pdf)<br />
-[*] [Overview of Digital Forensics, ISACA](https://www.isaca.org/resources/white-papers/overview-of-digital-forensics)
+[+] [Overview of Digital Forensics, ISACA](https://www.isaca.org/resources/white-papers/overview-of-digital-forensics)

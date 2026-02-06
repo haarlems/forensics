@@ -25,6 +25,16 @@ A file is an abstraction, that gives a way to store data on the disk and read it
     - the _symbol table_ is used for debugging
 ![Executable Sections](../media/exesections.png)
 ## Directories
+To keep track of files, file systems have directories, which are themselves files.
+When the file system is organized as a directory tree, file names are specified by one of two methods:
+- files are given an absolute path name consisting of the path from the root directory to the file. As an example, the path /usr/sss/forensics
+  - **absolute path** names always start at the root directory and are unique.
+    - In UNIX the components of the path are separated by /. In Windows the separator is \ .
+      - The same path name would be:
+        - Windows \usr\sss\forensics
+        - UNIX /usr/sss/forensics
+  - **relative path** names, used in conjunction with the concept of the current working directory
+
 
 ## EXT4
 The newest version of an old Unix file system. Similar flavors include FFS (BSD) and UFS (Solaris). <br />

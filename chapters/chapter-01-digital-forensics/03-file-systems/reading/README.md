@@ -69,9 +69,36 @@ _image and layers source: Hal Pomeranz' Linux Forensics_
   - Each block group contains inodes and data blocks
 
 ## NTFS
-New Technology File System (NTFS) is the default file system for modern Windows-based operating systems.
+New Technology File System (NTFS) is the default file system for modern Windows-based operating systems.<br />
+Formatting a volume with NTFS results in the creation of several system metadata files that store information about all files and folders on the NTFS volume:
+- **$MFT** — Master File Table
+- **$Bitmap**
+- **$LogFile**
+- and others.
+
+### Layout
+![ntfs](../media/ntfs.png)<br />
+_image source: ntfs.com_
+- an NTFS volume starts with the Partition Boot Sector (**$Boot** metadata file), beginning at sector 0 and can be up to 16 sectors.<br />
+- $Boot describes NTFS volume information (bytes per sector, sectors per cluster, etc) and the location of the $MFT
+- $MFT is the main metadata file, each file in the NTFS volume is represented by a record in this table
+
+![$MFT](../media/mft.png)<br />
+_image source: ntfs.com_
+
+### Data streams
+NTFS supports multiple data streams:
+- a stream name identifies a new data attribute on the file
+- a handle can be opened to each data stream
+
+Example: `file.dat:stream2` <br />
+Attackers commonly abuse Alternate Data Streams to [hide artifacts](https://attack.mitre.org/techniques/T1564/004/), like data or payloads, in file metadata instead of file data.
 
 ## FAT
+- FAT is a series of simple Windows file systems (FAT12, FAT16 and FAT32), that use a file allocation table
+- a disk formatted with FAT is allocated in clusters, whose size is determined by the size of the volume
+- updating the FAT table is time consuming
+- usually found in older removable media (USB sticks, SD cards, etc).
 
 ## APFS
 
@@ -116,6 +143,7 @@ Description
 ### NTFS
 [+] [NTFS Overview](https://learn.microsoft.com/en-us/windows-server/storage/file-server/ntfs-overview)<br />
 [+] [NTFS](https://ntfs.com/ntfs_basics.htm)<br />
-[+] []()<br />
+### FAT
+[+] [FAT](https://forensics.wiki/fat/)<br />
 [+] []()<br />
 [+] []()<br />

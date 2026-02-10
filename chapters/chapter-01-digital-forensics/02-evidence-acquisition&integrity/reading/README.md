@@ -73,6 +73,16 @@ GUI packet-capture and inspection tool, allows analysis in a graphical interface
 ![wireshark](../media/wireshark.png) <br />
 *image source: Wireshark*
 
+### [Arkime](https://github.com/arkime/arkime)
+Arkime is an open-source network analysis and packet capture system that allows large-scale operations. Can be deployed on multiple systems and handle tens of GB/sec. 3 main components:
+- capture
+- viewer
+- opensearch / elasticsearch
+
+The GUI for exploring network data includes the Sessions page overview, listing individual sessions that can be expanded to view metadata and packet details.
+![Arkime](../media/arkime.png)<br />
+_image source: [arkime](https://github.com/arkime/arkimeweb/blob/main/assets/sessions.png)_
+
 ## Evidence acquisition - Remote
 ### [Velociraptor](https://github.com/Velocidex/velociraptor)
 Tool for collecting host based state information remotely via agents deployed on hosts. <br />

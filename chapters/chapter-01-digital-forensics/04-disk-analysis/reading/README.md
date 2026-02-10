@@ -12,11 +12,17 @@ Depending on the type of incident investigated (ransomware, insider threat, cryp
 - Registry (UserAssist, ShimCache / AppCompatCache, AmCache, RunMRU)
 
 ## Log analysis
+- windows event logs
+  - security logs
+    - eventID 4624 and 4634 - logon and logoff
+    - eventID 4625 - failed logon
+    - eventID 4672 - privilege escalation
+    - eventID 4688 - new process created
+  - application logs
+  - system logs
 
 ## App & user activity artifacts
 - Registry (RecentDocs, OpenSaveMRU, ShellBags)
-
-### Identify logins
 
 ### Command history
 

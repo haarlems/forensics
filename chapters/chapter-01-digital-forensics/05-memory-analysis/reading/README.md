@@ -2,11 +2,25 @@
 
 ## Memory artifacts
 
-### Identify suspicious ppid-pid
+### Identify rogue processes
+- process name (disguised to mimic legitimate processes)
+- process path (executed from illegitimate source)
+- suspicious ppid-pid (for example notepad.exe spawning cmd.exe)
 
-### Identify library loading
+### Identify library loading and handles
+- examine DLLs associated with the rogue process
 
-### Identify network connections
+### Identify network artifacts
+- c2 beacons
+
+### Identify code injection
+- process following
+- unmapped sections of memory
+
+### Identify persistence
+- signs of rootkits
+
+### Dump suspicious processes and drivers
 
 ## Volatility
 

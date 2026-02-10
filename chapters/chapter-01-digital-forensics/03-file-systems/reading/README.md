@@ -110,28 +110,36 @@ _image source: ntfs.com_ <br />
 ### Structure
 ![APFS](../media/apfs.png) <br />
 _image source: Hansen, K.H., Toolan, F., Decoding the APFS file system, Digital Investigation (2017)_ <br />
+
 ## File carving
+- used to extract data from unallocated space on disk, in the absence of file system metadata
+- carving based on file structure (magic bytes, header, footer if it exists)
+- used when simple file recovery methods fail (files are corrupted, deleted, overwritten)
+- main challenge: time-consuming
+- tools:
+  - hex editors (hexedit, HxD, Bless, etc)
+  - scalpel
+  - foremost
+  - encase
+  - binwalk
 
-## Deleting a file
-In Unix file systems in EXT4: When a file is deleted, its directory entry is not changed. All that happens is the length of the previous record is extended to consume the space the entry of the deleted file.
-- Directory entry for deleted file unchanged
-- Previous directory entry “grows” to consume space
-- Result: See the file name and inode of deleted files!
-- Unfortunately, knowing the inode of the deleted file is not as helpful as it sounds. Starting with EXT3, the block pointers in the inode are zeroed on file deletion. So we can’t use this inode number to directly recover the file content.<br />
-In Windows file systems:
-
-## Timestamp tampering
-
-
-
-
-
-
+## Timestamp tampering (timestomping)
+- used by attackers to modify file MACB (modification, access, change, birth) metadata
+  - (M) Modify – Updated when the file contents are changed
+  - (A) Access – Updated when the file contents are accessed (usually via cli, accessing a file via GUI does not always update the access time)
+  - (C) Change – Metadata change time for the file i.e. file ownership change
+  - (B) Birth – Date the file was created. This is based on the operating system time and exists on EXT4
+- purpose: disruption of chronological timeline analysis
+- ex. Windows: check time differences between $STANDARD_INFORMATION and $FILE_NAME attributes and $LogFile
+  - `istat <disk_image> <inode_number>`
+  - parse $LogFile with `logfileparser`
+  - analyze any differences between timestamps to indicate tampering
+ 
 ## Summary
 - summary
 
 ## Drills
-### Challenge 1
+### Challenge 1 
 Description
 ### Challenge 2
 Description

@@ -25,6 +25,9 @@ Depending on the type of incident investigated (ransomware, insider threat, cryp
 ### Persistence
 - Registry (Run/RunOnce Keys, Windows Services, Winlogon, Scheduled Tasks)
 
+## Timeline analysis
+### Time normalization
+
 ## [bulk_extractor](https://github.com/simsong/bulk_extractor)
 - scans and extracts structured information (ex. emails, CCN, JPEGs, JSON snippets) without parsing file system structures
 ## [Autopsy](https://www.autopsy.com/download/)
@@ -33,8 +36,6 @@ Depending on the type of incident investigated (ransomware, insider threat, cryp
 - analyze artifacts (installed programs, metadata, recent documents, run programs, shellbags, web accounts, cookies, history)
 
 ![Autopsy](../media/autopsy.png)
-
-## Timeline building
 
 ## Summary
 - summary

@@ -3,7 +3,7 @@ All computer applications need to store and retrieve information. Magnetic disks
 1. Read block k.
 2. Write block k. <br />
 
-These are very inconvenient operations, especially on large systems used by many applications and multiple users. A few questions that arise:
+These are very inconvenient operations, especially on large systems used by multiple applications and users. A few questions that arise:
 1. How do you find information?
 2. How do you keep one user from reading another user’s data?
 3. How do you know which blocks are free? [1] <br />
@@ -41,17 +41,17 @@ Other Unix file systems include ZFS, ZFS, or BTRFS, but forensic support is stil
 ![ext](../media/ext.png) <br />
 _image and layers source: Hal Pomeranz' Linux Forensics_
 - **Physical Layer**: The physical drive or device and the partitions on it.
-  - Linux systems often use the old DOS Master Boot Record (MBR) style partitions with four “primary” partitions and chained “extended” (logical) partitions as necessary. GPT (GUID Partition Tables) is a newer disk partitioning scheme designed to overcome the limitations of MBR, and may be found on some Linux systems.
-  - Even though multiple partitions may exist on the same disk, the Unix operating system treats them as independent devices and performs file I/O via individual entries in the /dev directory— e,g., /dev/sdal, /dev/sda2. 
-- **File System Layer**: Contains all the config and management data associated with the file systems in each partition on the disk.
+  - Linux systems often use the old DOS Master Boot Record (MBR) style partitions with four “primary” partitions and chained “extended” (logical) partitions as necessary. GPT (GUID Partition Tables) is a newer disk partitioning scheme designed to overcome the limitations of MBR, and may be found on some Linux systems
+  - Even though multiple partitions may exist on the same disk, the Unix operating system treats them as independent devices and performs file I/O via individual entries in the /dev directory— e,g., /dev/sdal, /dev/sda2
+- **File System Layer**: Contains all the config and management data associated with the file systems in each partition on the disk
   - When a file system is created in a partition, a data structure is created at the beginning of the partition to define the attributes of the file system. This is called a **superblock**, and it contains:
     -  FS type/size, block size, number of blocks/inodes, etc.
     -  Modification time, last mounted on, clean/dirty status
     -  Pointer to inode for file system journal (EXT3 and above)
-- **File Name Layer** (AKA Human Interface Layer): responsible for mapping human readable file names to metadata addresses.
+- **File Name Layer** (AKA Human Interface Layer): responsible for mapping human readable file names to metadata addresses
   - **Directory files** associate _file names_ to index node (_inode_) numbers in the layer below
   - Directories give the file system its hierarchical structure
-- **Metadata Layer**: Contains inodes, the data structures responsible for definition and delineation of files.
+- **Metadata Layer**: Contains inodes, the data structures responsible for definition and delineation of files
     - Every file has an inode that contains:
       - File type
       - Access rights
@@ -60,7 +60,7 @@ _image and layers source: Hal Pomeranz' Linux Forensics_
       - Size
       - Pointers to data blocks
     - Inodes store everything about the file that you see in the output of "ls — l" except for the file name 
-- **Data Layer**: Stores actual file contents - referred to as blocks in Unix file systems (Windows file systems use the term _clusters_ instead).
+- **Data Layer**: Stores actual file contents - referred to as blocks in Unix file systems (Windows file systems use the term _clusters_ instead)
   - Blocks are composed of sectors (usually 8 in EXT)
     - sectors are the smallest addressable unit of file I/O (usually 512 bytes)
     - to improve performance, EXT normally performs reads/writes in 4K chunks called blocks (512 x 8 = 4096)
@@ -79,7 +79,7 @@ Formatting a volume with NTFS results in the creation of several system metadata
 ### Layout
 ![ntfs](../media/ntfs.png)<br />
 _image source: ntfs.com_
-- an NTFS volume starts with the Partition Boot Sector (**$Boot** metadata file), beginning at sector 0 and can be up to 16 sectors.<br />
+- an NTFS volume starts with the Partition Boot Sector (**$Boot** metadata file), beginning at sector 0 and can be up to 16 sectors<br />
 - $Boot describes NTFS volume information (bytes per sector, sectors per cluster, etc) and the location of the $MFT
 - $MFT is the main metadata file, each file in the NTFS volume is represented by a record in this table
 
@@ -98,10 +98,18 @@ Attackers commonly abuse Alternate Data Streams to [hide artifacts](https://atta
 - FAT is a series of simple Windows file systems (FAT12, FAT16 and FAT32), that use a file allocation table
 - a disk formatted with FAT is allocated in clusters, whose size is determined by the size of the volume
 - updating the FAT table is time consuming
-- usually found in older removable media (USB sticks, SD cards, etc).
+- usually found in older removable media (USB sticks, SD cards, etc)
+### Structure
+![FAT](../media/fat.png)<br />
+_image source: ntfs.com_ <br />
 
 ## APFS
-
+- default file system for macOS, iOS, tvOS and watchOS
+- structured in a container, which can contain one or multiple volumes (or volume groups)
+- a container is the primary object of storing data
+### Structure
+![APFS](../media/apfs.png) <br />
+_image source: Hansen, K.H., Toolan, F., Decoding the APFS file system, Digital Investigation (2017)_ <br />
 ## File carving
 
 ## Deleting a file
@@ -141,9 +149,10 @@ Description
 [+] [Understanding EXT4 (Part 5): Large Extents](https://web.archive.org/web/20220630125537/https://www.sans.org/blog/understanding-ext4-part-5-large-extents/)<br />
 [+] [Understanding EXT4 (Part 6): Directories](https://web.archive.org/web/20221003153121/https://www.sans.org/blog/understanding-ext4-part-6-directories/)<br />
 ### NTFS
-[+] [NTFS Overview](https://learn.microsoft.com/en-us/windows-server/storage/file-server/ntfs-overview)<br />
-[+] [NTFS](https://ntfs.com/ntfs_basics.htm)<br />
+[+] [NTFS overview](https://learn.microsoft.com/en-us/windows-server/storage/file-server/ntfs-overview)<br />
+[+] [Another NTFS overview](https://ntfs.com/ntfs_basics.htm)<br />
 ### FAT
-[+] [FAT](https://forensics.wiki/fat/)<br />
-[+] []()<br />
-[+] []()<br />
+[+] [FAT overview](https://forensics.wiki/fat/)<br />
+### APFS
+[+] [APFS structure](https://ntfs.com/apfs-structure.htm)<br />
+[+] [Sistemul de fisiere APFS](https://support.apple.com/ro-ro/guide/disk-utility/dsku19ed921c/mac)<br />

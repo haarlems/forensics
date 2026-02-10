@@ -56,7 +56,7 @@ Description
 
 ## Further reading
 [+] [Windows Registry Forensics](https://www.cybertriage.com/blog/windows-registry-forensics-cheat-sheet-2025/)<br />
-[+] []()<br />
+[+] [Windows Event IDs]([https://www.ultimatewindowssecurity.com/](https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/))<br />
 [+] []()<br />
 [+] []()<br />
 [+] []()<br />

@@ -40,6 +40,9 @@ IoCs (or eyeoks, depending on who you ask) represent evidence that an attacker h
 - suspicious login failures;
 - unauthorized changes to system configurations, and more.
 
+IoCs can be: 
+- atomic (IPs, domain names that tie back to an adversary C2 infrastructure)
+- computed (hashes)
 ## Diamond model
 
 ![Diamond model](../media/diamondmodel.png) <br />

@@ -5,20 +5,32 @@ Depending on the type of incident investigated (ransomware, insider threat, cryp
 - include anything that looks suspicious and rule out later
 
 ### [bulk_extractor](https://github.com/simsong/bulk_extractor)
-
+- scans and extracts structured information (ex. emails, CCN, JPEGs, JSON snippets) without parsing file system structures
 ## System activity artifacts
+- $MFT file
+- USN Journal, Windows Search Index
 
-### Identify execution
+### Evidence of execution
+- Prefetch files, SRUM
+- Registry (UserAssist, ShimCache / AppCompatCache, AmCache, RunMRU)
 
 ### Log analysis
 
 ## App & user activity artifacts
+- Registry (RecentDocs, OpenSaveMRU, ShellBags)
 
 ### Identify logins
 
 ### Command history
 
 ### Browser artifacts
+
+### Persistence
+Registry:
+- Run/RunOnce Keys
+- Windows Services
+- Winlogon
+- Scheduled Tasks
 
 ## Timeline building
 
@@ -34,3 +46,9 @@ Description
 Description
 
 ## Further reading
+[+] [Windows Registry Forensics](https://www.cybertriage.com/blog/windows-registry-forensics-cheat-sheet-2025/)<br />
+[+] []()<br />
+[+] []()<br />
+[+] []()<br />
+[+] []()<br />
+[+] []()<br />

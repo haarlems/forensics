@@ -15,23 +15,35 @@ Types of data on disk:
 - deleted files
 - unallocated space and slack space
 
+### Timeline analysis
+Timeline analysis serves in piecing the breadcrumbs together into a coherent record of the intrusion. Timelines are a guide to evidence, not evidence themselves.<br />
+Timestamps are ephemeral: we only see the last modified time, change time, admin users are allowed to change timestamps.
+- on Unix:
+  - collect raw timestamp data into a body file (ex. with `fls` from Sleuthkit)
+  - generate csv timeline with `mactime`
+  - visualize with Timeline Explorer from EZ Tools
+- on Windows:
+  - extract the $MFT table with `mftecmd.exe`
+  - visualize with Timeline Explorer from EZ Tools
+### Time normalization
+- make sure all timestamps are converted to UTC before analysis starts
+- multiple timezones in between physical or cloud investigated devices can slow analysis
+
 ### File system metadata
 - inodes on Unix
   - displays inode number, file type, permissions, owner uid/guid, file size, timestamps, block pointers but not the filename
-
-![](../media/inode.png)
-
 - $MFT file on Windows
   - displays FILE record header, $STANDARD_INFORMATION, $FILE_NAME, $DATA
 
 ![](../media/mft-te.png)
 
-### Evidence of past file presence
-- USN Journal, Windows Search Index
-
 ### Evidence of execution
-- Prefetch files, SRUM
-- Registry (UserAssist, ShimCache / AppCompatCache, AmCache, RunMRU)
+- auditdlogs, cron logs, shell history, systemd journal
+- Prefetch files, SRUM, Registry (UserAssist, ShimCache / AppCompatCache, AmCache, RunMRU)
+
+### Evidence of past file presence
+- auditd logs, shell history
+- USN Journal, Windows Search Index
 
 ### Log analysis
 - unix logs
@@ -57,6 +69,7 @@ Types of data on disk:
     - eventID 10 - process access (indicator of post-exploitation, credential dumping, process injection)
 
 ### App & user activity artifacts
+- authentication logs
 - Registry (RecentDocs, OpenSaveMRU, ShellBags)
 
 ### Command history
@@ -77,20 +90,6 @@ Types of data on disk:
 - service start-up scripts
 - account modification (new admin accounts, new ssh authorized_keys, enhanced sudo privileges uid 0)
 - Registry (Run/RunOnce Keys, Windows Services, Winlogon, Scheduled Tasks)
-
-## Timeline analysis
-Timeline analysis serves in piecing the breadcrumbs together into a coherent record of the intrusion. Timelines are a guide to evidence, not evidence themselves.<br />
-Timestamps are ephemeral: we only see the last modified time, change time, admin users are allowed to change timestamps.
-- on Unix:
-  - collect raw timestamp data into a body file (ex. with `fls` from Sleuthkit)
-  - generate csv timeline with `mactime`
-  - visualize with Timeline Explorer from EZ Tools
-- on Windows:
-  - extract the $MFT table with `mftecmd.exe`
-  - visualize with Timeline Explorer from EZ Tools
-### Time normalization
-- make sure all timestamps are converted to UTC before analysis starts
-- multiple timezones in between physical or cloud investigated devices can slow analysis
 
 ## [Autopsy](https://www.autopsy.com/download/)
 - start a case
@@ -115,8 +114,8 @@ Description
 
 ## Further reading
 [+] [Windows Registry Forensics](https://www.cybertriage.com/blog/windows-registry-forensics-cheat-sheet-2025/)<br />
-[+] [Windows Event IDs]([https://www.ultimatewindowssecurity.com/](https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/))<br />
-[+] [You don't know jack about bach history](https://www.youtube.com/watch?v=wv1xqOV2RyE)<br />
-[+] []()<br />
+[+] [Windows Event IDs](https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/) <br />
+[+] [Body file](https://wiki.sleuthkit.org/index.php?title=Body_file)<br />
+[+] [You don't know jack about bash history](https://www.youtube.com/watch?v=wv1xqOV2RyE)<br />
 [+] []()<br />
 [+] []()<br />

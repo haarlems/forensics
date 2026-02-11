@@ -16,8 +16,15 @@ Types of data on disk:
 - unallocated space and slack space
 
 ### File system metadata
-- inode table on Unix
+- inodes on Unix
+  - displays inode number, file type, permissions, owner uid/guid, file size, timestamps, block pointers but not the filename
+
+![](../media/inode.png)
+
 - $MFT file on Windows
+  - displays FILE record header, $STANDARD_INFORMATION, $FILE_NAME, $DATA
+
+![](../media/mft-te.png)
 
 ### Evidence of past file presence
 - USN Journal, Windows Search Index

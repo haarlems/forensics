@@ -50,7 +50,6 @@ Options:
 - capture memory
 
 ![ftk](../media/ftk.png) <br />
-*image source: FTK Imager*
 
 ### [EZ Tools](https://ericzimmerman.github.io/)
 - KAPE - Kroll Artifact Parser and Extractor

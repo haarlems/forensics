@@ -67,7 +67,9 @@ _image and layers source: Hal Pomeranz' Linux Forensics_
   - Blocks that make up a file are allocated consecutively when possible
   - Blocks are organized into Block Groups of 32K blocks
   - Each block group contains inodes and data blocks
-
+### Directory structure
+![](../media/unix-dir.png) <br />
+_image: Hal Pomeranz' Linux Forensics_
 ## NTFS
 New Technology File System (NTFS) is the default file system for modern Windows-based operating systems.<br />
 Formatting a volume with NTFS results in the creation of several system metadata files that store information about all files and folders on the NTFS volume:
@@ -85,7 +87,8 @@ _image source: ntfs.com_
 
 ![$MFT](../media/mft.png)<br />
 _image source: ntfs.com_
-
+### Directory structure
+![](../media/win-dir.png)
 ### Data streams
 NTFS supports multiple data streams:
 - a stream name identifies a new data attribute on the file
@@ -110,7 +113,8 @@ _image source: ntfs.com_ <br />
 ### Structure
 ![APFS](../media/apfs.png) <br />
 _image source: Hansen, K.H., Toolan, F., Decoding the APFS file system, Digital Investigation (2017)_ <br />
-
+### Directory structure
+![](../media/mac-dir.png)
 ## File carving
 - used to extract data from unallocated space on disk, in the absence of file system metadata
 - carving based on file structure (magic bytes, header, footer if it exists)

@@ -102,7 +102,11 @@ Timestamps are ephemeral: we only see the last modified time, change time, admin
 - scans and extracts structured information (ex. emails, CCN, JPEGs, JSON snippets) without parsing file system structures
 
 ## Summary
-- summary
+- high volume data, high potential for false positives
+- learn what normal looks like, look for outliers
+- convert all timestamps to UTC
+- seek evidence of execution, past file existence
+- analyze logs, user activity artifacts, persistence
 
 ## Drills
 ### Challenge 1

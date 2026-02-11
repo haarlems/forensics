@@ -31,7 +31,7 @@ Disk artifacts include:
 
 Memory artifacts include memory dumps.
 
-### UAC - [Unix-like Artifacts Collector](https://github.com/tclahr/uac)
+### [UAC - Unix-like Artifacts Collector](https://github.com/tclahr/uac)
 Live collection tool for Unix-like operating systems.<br />
 Usage: 
 ```
@@ -40,6 +40,8 @@ Usage:
 UAC comes with two basic pre-defined profiles:
 - "ir_triage" – captures important system artifacts needed for typical investigations
 - "full" – everything in "ir_triage" plus browser and other user application artifacts
+
+![uac](../media/uac.png)
 
 ### [FTK Imager](https://www.exterro.com/digital-forensics-software/ftk-imager)
 Live collection tool to capture disk and memory on Windows. It has a free version and multiple capabilities. <br />

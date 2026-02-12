@@ -21,3 +21,7 @@ Description
 Description
 
 ## Further reading
+[+] [Detecting DNS C2](https://www.activecountermeasures.com/malware-of-the-day-encrypted-dns-comparison-detecting-c2-when-you-cant-see-the-queries/)<br />
+[+] []()<br />
+[+] []()<br />
+[+] []()<br />

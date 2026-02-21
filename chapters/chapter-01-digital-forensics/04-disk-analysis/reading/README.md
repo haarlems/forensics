@@ -38,7 +38,7 @@ Timestamps are ephemeral: we only see the last modified time, change time, admin
 ![](../media/mft-te.png)
 
 ### Evidence of execution
-- auditdlogs, cron logs, shell history, systemd journal
+- auditd logs, cron logs, shell history, systemd journal
 - Prefetch files, SRUM, Registry (UserAssist, ShimCache / AppCompatCache, AmCache, RunMRU)
 
 ### Evidence of past file presence

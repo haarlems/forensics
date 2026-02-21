@@ -29,7 +29,6 @@ The main focus of memory analysis is finding malicious processes or executables 
 - examine DLLs associated with the rogue process
 - look for unfamiliar DLL names or paths (ex: Temp or AppData are non standard DLL locations)
 - look for DLLs with timestamps inconsistent with OS installation date
-- use `windows.memmap` volatility plugin to identify DLLs in memory but not on disk (DLL reflection)
 
 ### Identify network artifacts
 - connections to suspicious external hosts: Command and Control (C2) beacons
@@ -38,12 +37,14 @@ The main focus of memory analysis is finding malicious processes or executables 
 - check associated objects: DLLs, handles, reg keys
 
 ### Identify code injection
-- process following
-- unmapped sections of memory
+- DLL injection, reflection, process hollowing: `windows.memmap` volatility plugin to identify DLLs in memory but not on disk
+- remote thread creation: `windows.threads`
+- look for unmapped sections of memory
 
 ### Identify persistence
 - signs of rootkits
 - signs of malicious drivers
+- examine autostart keys
 
 ### Dump suspicious files from process memory
 - dump files from process memory space to investigate further

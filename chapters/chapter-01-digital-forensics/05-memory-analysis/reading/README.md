@@ -1,6 +1,8 @@
 # Memory analysis
-A wealth of evidence resides in the memory of the analyzed system, which can be used to correlate with other evidence, such as network or disk activity. <br />
-When the system is shutdown, the random access memory (RAM) data is lost.
+A wealth of evidence resides in the random access memory (RAM) of the analyzed system, which can be used to correlate with other evidence, such as network or disk activity. <br />
+When the system is shutdown, the memory data is lost.
+
+The memory capture used in this class: [download here](TODO)
 
 ## Memory artifacts
 - network connections
@@ -8,11 +10,14 @@ When the system is shutdown, the random access memory (RAM) data is lost.
 - running processes
   - each process has its own memory space and is tracked via process ids (PID)
 - loaded DLLs (Dynamic Link Libraries)
+- loaded drivers
 - handles
   - used by processes to interact with system resources (files, registry keys, etc.)
-- loaded drivers
 - command history
-- open registry keys 
+- open registry keys
+- credentials
+  - session tokens, plaintext app passwords, encryption keys
+
 ### Identify rogue processes
 
 - process name (disguised to mimic legitimate processes)

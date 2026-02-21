@@ -16,29 +16,29 @@ For those seeking more info on Incident Response, refer to the [NIST Special Pub
 
 ## Phases of the [digital forensic process](https://www.unodc.org/cld/en/education/tertiary/cybercrime/module-4/key-issues/standards-and-best-practices-for-digital-forensics.html)
 According to the standards and best practices for digital forensics published by [ISO](https://www.iso.org/home.html) (International Organization for Standardization) and [IEC](https://www.iec.ch/) (International Electrotechnical Commission) as ISO/IEC 27037 [3], the phases are:
-- identification;
-- collection;
-- acquisition;
-- preservation.<br />
+- identification
+- collection
+- acquisition
+- preservation<br />
 The following phases are part of the forensic process, though not included in the ISO/IEC standards:
-- analysis;
-- reporting.
+- analysis
+- reporting
 
 ## Evidence
 A key principle in forensics is **Locard's principle of exchange**, often summarized as "every contact leaves a trace". <br />
 It states that when a criminal comes in contact with an object, or a person, a cross-transfer of **evidence** occurs. <br />
 Main _**types of evidence**_ retrieved and analyzed:
-- disk (files, logs, command history, browser artifacts, etc.);
-- memory (process, linked libraries, network connections, etc.);
-- network capture.
+- disk (files, logs, command history, browser artifacts, etc.)
+- memory (process, linked libraries, network connections, etc.)
+- network (pcaps, netflow, zeek logs, etc.)
 
 ### Indicators of compromise
 IoCs (or eyeoks, depending on who you ask) represent evidence that an attacker has breached an entity’s network or endpoint. Indicators may be email based, network, host or behavioural. They may include:
-- unusual network traffic;
-- suspicious file hashes;
-- malicious IPs/domains;
-- suspicious login failures;
-- unauthorized changes to system configurations, and more.
+- unusual network traffic
+- suspicious file hashes
+- malicious IPs/domains
+- suspicious login failures
+- unauthorized changes to system configurations, and more
 
 IoCs can be: 
 - atomic (IPs, domain names that tie back to an adversary C2 infrastructure)
@@ -75,9 +75,9 @@ IoCs can be:
 
 ## Investigator's challenges
 **Digital forensic investigators** face challenges such as:
-- extracting data from damaged devices;
-- locating evidence among vast quantities of data;
-- ensuring that their methods capture data **reliably**, without altering it in any way.
+- extracting data from damaged devices
+- locating evidence among vast quantities of data
+- ensuring that their methods capture data **reliably**, without altering it in any way
 
 ## Chain of custody
 Preserving the *integrity* of the evidence (preventing alteration or deletion) is prioritized. <br />

@@ -27,6 +27,9 @@ The main focus of memory analysis is finding malicious processes or executables 
 
 ### Identify library loading and handles
 - examine DLLs associated with the rogue process
+- look for unfamiliar DLL names or paths (ex: Temp or AppData are non standard DLL locations)
+- look for DLLs with timestamps inconsistent with OS installation date
+- use `windows.memmap` volatility plugin to identify DLLs in memory but not on disk (DLL reflection)
 
 ### Identify network artifacts
 - connections to suspicious external hosts: Command and Control (C2) beacons
@@ -42,28 +45,58 @@ The main focus of memory analysis is finding malicious processes or executables 
 - signs of rootkits
 - signs of malicious drivers
 
-### Dump suspicious processes and drivers
+### Dump suspicious files from process memory
+- dump files from process memory space to investigate further
 
 ## Volatility
-Volatility and Volatility3 are open source memory forensics frameworks. 
+Volatility and Volatility3 are open source memory forensics frameworks. They can run on any common OS supporting Python.
 
 The difference between them lies in capability and usage:
-- `Volatility` or `Volatility2` is the original version, with multiple plugins and functionality
-- `Volatility3` is the newer version, with most of the functionality of 2 ported, but not all, yet
+- `Volatility` or `Volatility2` is the original version developed in python2, with multiple plugins and functionality
+- `Volatility3` is the newer version developed in python3, with most of the functionality of 2 ported, but not all, yet
 
 We will use Volatility3, and resort to Volatility2 only in case of missing functionality.
+
+`python3 vol.py -f memory.dmp windows.info` # display memory image information
+
+`python3 vol.py -f memory.dmp windows.psscan` # list all processes
+
+`python3 vol.py -f memory.dmp windows.pstree` # list process tree
+
+`python3 vol.py -f memory.dmp windows.netscan` # scan for network objects
+
+`python3 vol.py -f memory.dmp windows.dlllist --pid 1337` # list dlls loaded by PID
+
+`python3 vol.py -f memory.dmp windows.memmap` # list all memory mapped regions
+
+`python3 vol.py -f memory.dmp windows.handles --pid 1337` # list handles opened by PID
+
+`python3 vol.py -f memory.dmp windows.ldrmodules --pid 1337` # list modules
+
+`python3 vol.py -f memory.dmp windows.cmdline` # show command history
+
+`python3 vol.py -f memory.dmp windows.malfind` # scan for rogue activity
+
+`python3 vol.py -f memory.dmp windows.registry.hivelist` # list registry hives mapped in memory, based on OS structures
+
+`python3 vol.py -f memory.dmp windows.registry.hivescan` # scan raw memory for registry hives, based on hive signatures (can find hives not loaded in OS structures, or corrupted hives)
+
+`python3 vol.py -f memory.dmp windows.dumpfiles --pid 1337 -o ~/outputpid1337/` # extract files from process memory
+
 ### Memory scan with YARA
+`python3 vol.py -f memory.dmp windows.yarascan --yara-file=rule.yar`
 
 ## Strings
 Unix utility used to extract strings from memory. 
 
-`strings memory.dmp` # default for ASCII strings
+`strings memory.dmp | grep [pattern|regex]` # default for ASCII strings, grep a specific pattern or regex
 
 `strings memory.dmp -e l ` # for windows UTF-16LE strings
 - -e encoding
 - l for Windows Unicode UTF-16LE
 
 See `man strings` for other encoding options.
+
 ## Summary
 - summary
 ## Drills

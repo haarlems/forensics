@@ -2,7 +2,7 @@
 A wealth of evidence resides in the random access memory (RAM) of the analyzed system, which can be used to correlate with other evidence, such as network or disk activity. <br />
 When the system is shutdown, the memory data is lost.
 
-The memory capture used in this class: [download here](TODO)
+The memory image used in this class: [download here](TODO)
 
 ## Memory artifacts
 - network connections

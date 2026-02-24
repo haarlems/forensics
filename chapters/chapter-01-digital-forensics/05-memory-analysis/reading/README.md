@@ -138,11 +138,11 @@ Description
 
 ## Further reading
 [+] Digital Forensics and Incident Response, chapter 10. Analyzing System Memory, by Gerard Johansen<br />
-[+][SANS Memory Forensics Cheatsheet](https://www.sans.org/posters/memory-forensics)<br />
-[+][Volatility3](https://github.com/volatilityfoundation/volatility3)<br />
-[+][Volatility](https://github.com/volatilityfoundation/volatility)<br />
-[+][Volatility3 Symbols](https://github.com/Abyss-W4tcher/volatility3-symbols)<br />
-[+][Creating New Symbol Tables](https://volatility3.readthedocs.io/en/latest/symbol-tables.html#mac-or-linux-symbol-tables)<br />
-[+][]()<br />
-[+][]()<br />
-[+][]()<br />
+[+] [SANS Memory Forensics Cheatsheet](https://www.sans.org/posters/memory-forensics)<br />
+[+] [Volatility3](https://github.com/volatilityfoundation/volatility3)<br />
+[+] [Volatility](https://github.com/volatilityfoundation/volatility)<br />
+[+] [Volatility3 Symbols](https://github.com/Abyss-W4tcher/volatility3-symbols)<br />
+[+] [Creating New Symbol Tables](https://volatility3.readthedocs.io/en/latest/symbol-tables.html#mac-or-linux-symbol-tables)<br />
+[+] []()<br />
+[+] []()<br />
+[+] []()<br />

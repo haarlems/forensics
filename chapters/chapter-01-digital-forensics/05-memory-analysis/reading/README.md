@@ -58,6 +58,7 @@ The difference between them lies in capability and usage:
 
 We will use Volatility3, and resort to Volatility2 only in case of missing functionality.
 
+### General information
 `python3 vol.py -f memory.dmp windows.info` # display memory image information
 
 `python3 vol.py -f unix.dmp banners` # attempt to identify unix kernel version details 
@@ -65,6 +66,7 @@ We will use Volatility3, and resort to Volatility2 only in case of missing funct
 - collection of [symbol](https://github.com/Abyss-W4tcher/volatility3-symbols) tables
 - if you cannot find an appropriate symbol table for your kernel version, you can also [create one](https://volatility3.readthedocs.io/en/latest/symbol-tables.html#mac-or-linux-symbol-tables) manually
 
+### Process information
 `python3 vol.py -f memory.dmp windows.psscan` # list all processes
 
 `python3 vol.py -f unix.dmp linux.pslist.PsList` # list all processes
@@ -73,28 +75,39 @@ We will use Volatility3, and resort to Volatility2 only in case of missing funct
 
 `python3 vol.py -f unix.dmp linux.pstree.PsTree` # list process tree
 
-`python3 vol.py -f memory.dmp windows.netscan` # scan for network objects
+`python3 vol.py -f unix.dmp linux.psaux.PsAux` # list processes with command line args
 
 `python3 vol.py -f memory.dmp windows.dlllist --pid 1337` # list dlls loaded by PID
+
+`python3 vol.py -f unix.dmp linux.lsof.Lsof` # list open files per process
 
 `python3 vol.py -f memory.dmp windows.memmap` # list all memory mapped regions
 
 `python3 vol.py -f memory.dmp windows.handles --pid 1337` # list handles opened by PID
 
-`python3 vol.py -f memory.dmp windows.ldrmodules --pid 1337` # list modules
+### Network information
+`python3 vol.py -f memory.dmp windows.netscan` # scan for network objects
 
+`python3 vol.py -f unix.dmp linux.netfilter.Netfilter` # inspect netfilter hooks
+
+### Command history
 `python3 vol.py -f memory.dmp windows.cmdline` # show command history
 
 `python3 vol.py -f unix.dmp linux.bash.Bash` # show command history
 
+### Malfind
 `python3 vol.py -f memory.dmp windows.malfind` # scan for rogue activity
 
+`python3 vol.py -f unix.dmp linux.malfind.Malfind` # scan for suspicious memory regions
+
+### Scan for specific objects
 `python3 vol.py -f memory.dmp windows.registry.hivelist` # list registry hives mapped in memory, based on OS structures
 
 `python3 vol.py -f memory.dmp windows.registry.hivescan` # scan raw memory for registry hives
 - based on hive signatures
 - can find hives not loaded in OS structures, or corrupted hives
 
+### Extract files
 `python3 vol.py -f memory.dmp windows.dumpfiles --pid 1337 -o ~/outputpid1337/` # extract files from process memory
 
 ### Memory scan with YARA

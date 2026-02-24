@@ -100,12 +100,12 @@ Commonly used algorithms:
 - md5
 
 ### Hash verification
-- sha256sum, shasum, md5sum<br />
+#### sha256sum, shasum, md5sum
 Usage:
 ```
 sha256sum <file.iso>
 ```
-- certutil, Get-FileHash<br />
+#### certutil, Get-FileHash
 Usage:
 ```
 certutil.exe -hashfile <file.iso> SHA1

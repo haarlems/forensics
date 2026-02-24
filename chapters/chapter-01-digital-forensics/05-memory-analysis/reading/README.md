@@ -60,9 +60,18 @@ We will use Volatility3, and resort to Volatility2 only in case of missing funct
 
 `python3 vol.py -f memory.dmp windows.info` # display memory image information
 
+`python3 vol.py -f unix.dmp banners` # attempt to identify unix kernel version details 
+- to analyze a Linux or macOS RAM capture with Volatility3 you must to use appropriate kernel debugging information
+- collection of [symbol](https://github.com/Abyss-W4tcher/volatility3-symbols) tables
+- if you cannot find an appropriate symbol table for your kernel version, you can also [create one](https://volatility3.readthedocs.io/en/latest/symbol-tables.html#mac-or-linux-symbol-tables) manually
+
 `python3 vol.py -f memory.dmp windows.psscan` # list all processes
 
+`python3 vol.py -f unix.dmp linux.pslist.PsList` # list all processes
+
 `python3 vol.py -f memory.dmp windows.pstree` # list process tree
+
+`python3 vol.py -f unix.dmp linux.pstree.PsTree` # list process tree
 
 `python3 vol.py -f memory.dmp windows.netscan` # scan for network objects
 
@@ -76,16 +85,22 @@ We will use Volatility3, and resort to Volatility2 only in case of missing funct
 
 `python3 vol.py -f memory.dmp windows.cmdline` # show command history
 
+`python3 vol.py -f unix.dmp linux.bash.Bash` # show command history
+
 `python3 vol.py -f memory.dmp windows.malfind` # scan for rogue activity
 
 `python3 vol.py -f memory.dmp windows.registry.hivelist` # list registry hives mapped in memory, based on OS structures
 
-`python3 vol.py -f memory.dmp windows.registry.hivescan` # scan raw memory for registry hives, based on hive signatures (can find hives not loaded in OS structures, or corrupted hives)
+`python3 vol.py -f memory.dmp windows.registry.hivescan` # scan raw memory for registry hives
+- based on hive signatures
+- can find hives not loaded in OS structures, or corrupted hives
 
 `python3 vol.py -f memory.dmp windows.dumpfiles --pid 1337 -o ~/outputpid1337/` # extract files from process memory
 
 ### Memory scan with YARA
 `python3 vol.py -f memory.dmp windows.yarascan --yara-file=rule.yar`
+
+`python3 vol.py -f unix.dmp linux.vmayarascan.VmaYaraScan --yara-file=rule.yar`
 
 ## Strings
 Unix utility used to extract strings from memory. 
@@ -113,8 +128,8 @@ Description
 [+][SANS Memory Forensics Cheatsheet](https://www.sans.org/posters/memory-forensics)<br />
 [+][Volatility3](https://github.com/volatilityfoundation/volatility3)<br />
 [+][Volatility](https://github.com/volatilityfoundation/volatility)<br />
-[+][]()<br />
-[+][]()<br />
+[+][Volatility3 Symbols](https://github.com/Abyss-W4tcher/volatility3-symbols)<br />
+[+][Creating New Symbol Tables](https://volatility3.readthedocs.io/en/latest/symbol-tables.html#mac-or-linux-symbol-tables)<br />
 [+][]()<br />
 [+][]()<br />
 [+][]()<br />

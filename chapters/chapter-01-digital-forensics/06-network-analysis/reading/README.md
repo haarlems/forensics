@@ -1,4 +1,13 @@
 # Network analysis
+Network analysis offers insight into the network activity of threat actors: the flow of traffic from a compromised host to a C2 (Command and Control) server.
+- the network is the great equalizer 
+- no malware escapes the need to communicate
+- no matter how much time it may lie dormant, all malware dropped on a host eventually calls home to a C2 server
+
+
+## Network evidence
+- network log files
+- network packet captures
 
 ## Network protocols
 ### TCP/UDP
@@ -6,6 +15,9 @@
 ### HTTP/HTTPS
 
 ## Identify C2 patterns
+- the act of checking in with the server for any commands is often referred to as **beaconing**
+- if no commands from the server, the client goes to sleep a set amount of time, called **sleep** time
+- sleep time can vary a set % called **jitter** (ex. sleep 10s with jitter 20% -> sleep can be anything between 8-12s)
 
 ## Identify data exfiltration
 

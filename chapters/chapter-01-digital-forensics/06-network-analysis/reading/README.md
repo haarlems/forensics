@@ -1,12 +1,11 @@
 # Network analysis
 Network analysis offers insight into the network activity of threat actors: the flow of traffic from a compromised host to a C2 (Command and Control) server.
 - the network is the great equalizer 
-- no malware escapes the need to communicate
-- no matter how much time it may lie dormant, all malware dropped on a host eventually calls home to a C2 server
-
+- most malware needs to communicate (except some wipers or air-gapped purposed malware)
+- no matter how much time it may lie dormant, most malware dropped on a host eventually calls home to a C2 server
 
 ## Network evidence
-- network log files
+- network log files (internal logs from switches, routers, firewalls, proxies, WAFs)
 - network packet captures
 
 ## Network protocols

@@ -41,12 +41,14 @@ While the MITRE ATT&CK Matrix lists Reconnaissance and Resource Development firs
   - default accounts
   - credential stuffing from previous breach data
 - exploit public-facing application
-  - web apps, APIs
+  - web apps, APIs (see [OWASP Top 10](https://owasp.org/Top10/2025/))
   - SSH, exposed ESXi OpenSLP services, exposed VMware vCenter servers
 - external remote services
   - VPNs, Citrix
   - WinRM, VNC
   - Docker API, Kubernetes API server, kubelet, Kubernetes dashboard
+- trusted relationship
+  - third parties with delegated permissions
 - supply chain compromise
   - software dependencies
   - CI/CD pipeline components (ex. Github Actions)
@@ -79,3 +81,10 @@ Description
 
 ## Further reading
 [+] [MITRE ATT&CK Matrix](https://attack.mitre.org/)<br />
+[+] [OWASP Top 10](https://owasp.org/Top10/2025/)<br />
+[+] [Known Exploited Vulnerabilities](https://www.cisa.gov/known-exploited-vulnerabilities-catalog)<br />
+[+] []()<br />
+[+] []()<br />
+[+] []()<br />
+[+] []()<br />
+[+] []()<br />

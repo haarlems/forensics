@@ -20,6 +20,34 @@ Types of network evidence:
 - network traffic data
   - full packet captures, zeek logs, netflow data
 
+Logs can be reviewed manually, filtered, or correlated in a SIEM (Security Information and Event Management) platform. Given the amount of evidence, aggregating logs in a SIEM helps gain situational awareness faster. 
+
+Full packet captures are one of the best sources of evidence, but also one difficult to keep due to the storage cost. Depending on regulations or internal practices, enterprise environments may keep 1 month worth of rolling pcaps, paired with 3-6-12 months of zeek logs, for example. 
+
+Zeek logs keep the metadata of the traffic from the packet capture, discarding the content. A 1GB pcap may result in 200MB worth of zeek logs, depending on on the actual traffic:
+- conn.log
+  - one of the most important logs
+  - shows "connections" between a source and destination (including duration, bytes, state, service)
+  - helps identify scanning activity, beaconing patterns, data exfiltration volumes
+- dns.log
+  - generated if dns data seen
+  - shows dns queries and responses
+  - helps identify C2 domains or DNS used for C2
+- http.log
+  - generated if http/https seen
+  - shows http requests and responses (including methods, URLs, status codes, user agents)
+  - helps identify exploit delivery for initial access, or C2 beaconing over http
+- ssl.log
+  - generated if TLS seen
+  - shows TLS handshake metadata
+  - helps identify C2 encrypted beaconing over https, suspicious certificates
+- files.log
+  - not enabled by default
+  - contains files observed in traffic if unencrypted
+- weird.log
+  - contains protocol anomalies, malformed packets
+  - helps identify non-standard protocol abuse
+
 ## Network protocols
 During a breach, the same network protocols seen in normal network activity are abused by attackers.
 - TCP = connection-oriented transport protocol that ensures reliable delivery of data between hosts
@@ -29,8 +57,6 @@ During a breach, the same network protocols seen in normal network activity are 
 - TLS = protocol used to encrypt data to secure communications between clients and servers, operates over TCP
 - HTTP = protocol used to transfer web content between clients and servers, operating over TCP
 - HTTPS = encrypted version of HTTP using TLS (Transport Layer Security)
-
-## Identify initial access
 
 ## Identify C2 patterns
 - the act of a compromised system (client) checking in with the server for any commands is often referred to as **beaconing**
@@ -46,8 +72,18 @@ Protocols used for C2 communication:
 
 With an additional layer of abstraction, C2s can also be achieved via applications, like the Google suite (Calendar, Drive, etc.), Discord, Velociraptor and many others, but they are outside the scope of this class. 
 
-## Identify data exfiltration
+## Identify initial access
+- identify connections to exposed services (VPN, SSH, RDP, HTTP/HTTPS)
+- DNS requests to unusual domains
+- connections not preceded by a DNS query, regular users rarely ever access a resource directly by IP
+- unusual inbound connections, high volume of failed logins
+- unexpected protocol versions or sequence anomalies
 
+## Identify data exfiltration
+- large volumes of bytes seen outbound to suspicious destinations in zeek logs or packet captures
+- outbound HTTP/S POST requests with large payloads or to unusual URLs
+- unusual FTP/FTP usage
+- unauthorized cloud storage uploads
 
 ## Summary
 - summary
@@ -60,7 +96,11 @@ Description
 Description
 
 ## Further reading
-[+] [Detecting DNS C2](https://www.activecountermeasures.com/malware-of-the-day-encrypted-dns-comparison-detecting-c2-when-you-cant-see-the-queries/)<br />
+[+] [Open source SIEM - Wazuh](https://github.com/wazuh/wazuh)<br />
+[+] [Zeek](https://github.com/zeek/zeek)<br />
 [+] [A Network Threat Hunter’s Guide to DNS Records](https://www.activecountermeasures.com/a-network-threat-hunters-guide-to-dns-records/)<br />
+[+] [Detecting DNS C2](https://www.activecountermeasures.com/malware-of-the-day-encrypted-dns-comparison-detecting-c2-when-you-cant-see-the-queries/)<br />
+[+] []()<br />
+[+] []()<br />
 [+] []()<br />
 [+] []()<br />

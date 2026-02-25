@@ -61,7 +61,20 @@ Extract unique URI-User-Agent<br />
     - `Resolve Physical Address` labels the first 3 bytes of the MAC for the OUI name (vmware, intel)
     - `Resolve Network Address` does reverse lookups on IPs, dangerous if attacker is authoritative
     - `Resolve Transport Address` labels traffic over tcp/udp port 80 as HTTP, though traffic itself may not be HTTP
-- 3 panels
+
+The 3 panels on the main window:
+- red = packet list pane
+  - displays a summary of each packet captured
+  - the packet you select here will be displayed in the other 2 panes
+- yellow = packet details pane
+  - displays the packet selected in the packet list pane in more detail
+- blue = packet bytes pane
+  - displays the data from the packet selected in the packet list pane
+  - highlights the field selected in the packet details pane
+
+![wireshark](../media/wireshark.png) <br />
+*image source: Wireshark*
+
 ## Zeek
 Zeek logs keep the metadata of the traffic from the packet capture, discarding the content. A 1GB pcap may result in 200MB worth of zeek logs, depending on on the actual traffic:
 - conn.log

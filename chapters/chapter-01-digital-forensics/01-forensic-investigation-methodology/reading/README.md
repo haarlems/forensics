@@ -1,7 +1,9 @@
 # Forensic investigation methodology
-[Digital forensics](https://www.nist.gov/digital-evidence) is the field of forensic science concerned with ***retrieving, storing and analyzing*** data that can be useful in investigations. <br />
+[Digital forensics](https://www.nist.gov/digital-evidence) is the field of forensic science concerned with ***retrieving, storing and analyzing*** data that can be useful in investigations. The main goal is to identify the **root cause** of an incident. <br />
 This includes information retrieved from computers, mobile phones, IoT devices, motor vehicles, drones, satellites or the cloud. 
 <br />
+
+
 ## A 10 step investigation methodology
 The general approach of this methodology is the analysis of digital evidence to prove or disprove a hypothesis. [1]
 ![Methodology](../media/fim.png)<br />

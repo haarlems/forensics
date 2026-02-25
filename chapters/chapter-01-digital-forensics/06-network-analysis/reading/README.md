@@ -62,7 +62,7 @@ Extract unique URI-User-Agent<br />
     - `Resolve Network Address` does reverse lookups on IPs, dangerous if attacker is authoritative
     - `Resolve Transport Address` labels traffic over tcp/udp port 80 as HTTP, though traffic itself may not be HTTP
 
-The 3 panels on the main window:
+The 3 panels on the [main window](file:///C:/Program%20Files/Wireshark/Wireshark%20User's%20Guide/ChUseMainWindowSection.html):
 - red = packet list pane
   - displays a summary of each packet captured
   - the packet you select here will be displayed in the other 2 panes

@@ -1,5 +1,5 @@
 # Network analysis
-Network analysis offers insight into the network activity of threat actors: the flow of traffic from a compromised host to a C2 (Command and Control) server.
+Network analysis offers insight into the network activity of threat actors: the flow of traffic from a compromised host to a C2 (Command and Control) server. The main challenge is sifting through vast amounts of logs.
 - the network is the great equalizer 
 - most malware needs to communicate (except some wipers or air-gapped purposed malware)
 - no matter how much time it may lie dormant, it eventually calls home to a C2 server
@@ -36,6 +36,7 @@ During a breach, the same network protocols seen in normal network activity are 
 - the act of a compromised system (client) checking in with the server for any commands is often referred to as **beaconing**
 - if no commands received from the server, the client goes to sleep a set amount of time, called **sleep** time
 - sleep time can vary a set % called **jitter** (ex. sleep 10s with jitter 20% -> sleep can be anything between 8-12s)
+- beaconing creates regular traffic patterns that can be identified when looking at behaviour over a time range (ex. 24h)
 
 Protocols used for C2 communication:
 - HTTP/HTTPS = the most common, blends in with normal traffic that flows in an enterprise environment

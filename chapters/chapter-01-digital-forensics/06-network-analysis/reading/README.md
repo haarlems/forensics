@@ -37,9 +37,15 @@ During a breach, the same network protocols seen in normal network activity are 
 ## Tcpdump, Tshark and Wireshark
 Extract all packets with either src or dest 192.168.1.111 and src or dest port 443<br />
 `tcpdump -nnr evidence.pcap host 192.168.1.111 and port 443 -w evidence-https-192.168.1.111.pcap`<br />
+`-nn` no hostname resolution, no port resolution (sometimes another protocol than HTTPS passes through port 443)<br />
+`-r` read from a pcap file (not live traffic)<br />
+`-w` write to file<br />
 
 Extract unique URIs<br />
 `tshark -nnr evidence-https-192.168.1.111.pcap -Y 'http and http.user_agent' -T fields -E separator='|' -e 'ip.src' -e 'http.request.uri' | sort | uniq -c | wc -l`<br />
+`-Y` display dilter to use<br />
+`-T` changes the output format to specific fields only<br />
+`-e` exact fields to display<br />
 
 Extract unique User-Agent fields<br />
 `tshark -nnr evidence-https-192.168.1.111.pcap -Y 'http and http.user_agent' -T fields -e 'http.user_agent' | uniq -c`<br />
@@ -76,17 +82,17 @@ Zeek logs keep the metadata of the traffic from the packet capture, discarding t
 
 Run zeek: <br />
 `zeek -Cr evidence.pcap`<br />
--C to disable checksum verification (depending on where the packet capture is performed)<br />
--r to read from a pcap file and output the logs generated
+`-C` to disable checksum verification (depending on where the packet capture is performed)<br />
+`-r` to read from a pcap file and output the logs generated
 
 Check logs: <br />
 `cat conn.log | less -S`<br />
 `cat dns.log | less -S`<br />
--S to not wrap long lines in less<br />
+`-S` to not wrap long lines in less<br />
 
 Check http logs for specific information:<br />
 `cat http.log | zeek-cut id.orig_h id.resp_h method host uri status_code referrer user_agent | less -S`<br />
--zeek-cut to extract the specific fields we are interested in<br />
+`zeek-cut` to extract the specific fields we are interested in<br />
 
 Extract data from logs (JSON) with jq:<br />
 `jq '[."id.orig_h",."id.resp_h",."query",."qtype_name"]' dns.log`<br />

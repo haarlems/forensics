@@ -74,7 +74,6 @@ sudo tcpdump -i eth0 # Capture all traffic on interface eth0
 GUI packet-capture and inspection tool, allows analysis in a graphical interface, with shortcomings when it comes to large file sizes (it must load the entire .pcap file in memory). <br />
 
 ![wireshark](../media/wireshark.png) <br />
-*image source: Wireshark*
 
 ### [Arkime](https://github.com/arkime/arkime)
 Arkime is an open-source network analysis and packet capture system that allows large-scale operations. Can be deployed on multiple systems and handle tens of GB/sec. 3 main components:

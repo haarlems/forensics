@@ -1,5 +1,5 @@
 # Network analysis
-Network analysis offers insight into the network activity of threat actors: the flow of traffic from a compromised host to a C2 (Command and Control) server. The main challenge is sifting through vast amounts of logs.
+Network analysis offers insight into the network activity of threat actors: initial access, the flow of traffic from a compromised host to a C2 (Command and Control) server, exfiltration. The main challenge is sifting through vast amounts of logs.
 - the network is the great equalizer 
 - most malware needs to communicate (except some wipers or air-gapped purposed malware)
 - no matter how much time it may lie dormant, it eventually calls home to a C2 server

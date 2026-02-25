@@ -1,7 +1,8 @@
-# Investigation: lateral movement & persistence
+# Investigation: persistence & privesc
 
 ## Summary
 - summary
+
 ## Drills
 ### Challenge 1
 Description
@@ -11,3 +12,7 @@ Description
 Description
 
 ## Further reading
+[+] []()<br />
+[+] []()<br />
+[+] []()<br />
+[+] []()<br />

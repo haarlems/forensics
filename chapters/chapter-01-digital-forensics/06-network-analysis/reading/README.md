@@ -24,6 +24,30 @@ Logs can be reviewed manually, filtered, or correlated in a SIEM (Security Infor
 
 Full packet captures are one of the best sources of evidence, but also one difficult to keep due to the storage cost. Depending on regulations or internal practices, enterprise environments may keep 1 month worth of rolling pcaps, paired with 3-6-12 months of zeek logs, for example. 
 
+## Network protocols
+During a breach, the same network protocols seen in normal network activity are abused by attackers.
+- TCP = connection-oriented transport protocol that ensures reliable delivery of data between hosts
+- UDP = connectionless transport protocol that sends packets without ensuring reliable delivery or order
+- ICMP = protocol used for network troubleshooting, used by utilities like `ping` or `tracert`
+- DNS = protocol that resolves domain names into IP addresses, operating over UDP or TCP
+- TLS = protocol used to encrypt data to secure communications between clients and servers, operates over TCP
+- HTTP = protocol used to transfer web content between clients and servers, operating over TCP
+- HTTPS = encrypted version of HTTP using TLS (Transport Layer Security)
+
+## Tcpdump, Tshark and Wireshark
+Extract all packets with either src or dest 192.168.1.111 and src or dest port 443<br />
+`tcpdump -nnr evidence.pcap host 192.168.1.111 and port 443 -w evidence-https-192.168.1.111.pcap`<br />
+
+Extract unique URIs<br />
+`tshark -nnr evidence-https-192.168.1.111.pcap -Y 'http and http.user_agent' -T fields -E separator='|' -e 'ip.src' -e 'http.request.uri' | sort | uniq -c | wc -l`<br />
+
+Extract unique User-Agent fields<br />
+`tshark -nnr evidence-https-192.168.1.111.pcap -Y 'http and http.user_agent' -T fields -e 'http.user_agent' | uniq -c`<br />
+
+Extract unique URI-User-Agent<br />
+`tshark -nnr evidence-https-192.168.1.111.pcap -Y 'http and http.user_agent' -T fields -E separator='|' -e 'http.request.uri' -e 'ip.src' -e 'http.host' | sort | uniq -c | wc -l`<br />
+
+## Zeek
 Zeek logs keep the metadata of the traffic from the packet capture, discarding the content. A 1GB pcap may result in 200MB worth of zeek logs, depending on on the actual traffic:
 - conn.log
   - one of the most important logs
@@ -48,15 +72,22 @@ Zeek logs keep the metadata of the traffic from the packet capture, discarding t
   - contains protocol anomalies, malformed packets
   - helps identify non-standard protocol abuse
 
-## Network protocols
-During a breach, the same network protocols seen in normal network activity are abused by attackers.
-- TCP = connection-oriented transport protocol that ensures reliable delivery of data between hosts
-- UDP = connectionless transport protocol that sends packets without ensuring reliable delivery or order
-- ICMP = protocol used for network troubleshooting, used by utilities like `ping` or `tracert`
-- DNS = protocol that resolves domain names into IP addresses, operating over UDP or TCP
-- TLS = protocol used to encrypt data to secure communications between clients and servers, operates over TCP
-- HTTP = protocol used to transfer web content between clients and servers, operating over TCP
-- HTTPS = encrypted version of HTTP using TLS (Transport Layer Security)
+Run zeek: <br />
+`zeek -Cr evidence.pcap`<br />
+-C to disable checksum verification (depending on where the packet capture is performed)<br />
+-r to read from a pcap file and output the logs generated
+
+Check logs: <br />
+`cat conn.log | less -S`<br />
+`cat dns.log | less -S`<br />
+-S to not wrap long lines in less<br />
+
+Check http logs for specific information:<br />
+`cat http.log | zeek-cut id.orig_h id.resp_h method host uri status_code referrer user_agent | less -S`<br />
+-zeek-cut to extract the specific fields we are interested in<br />
+
+Extract data from logs (JSON) with jq:<br />
+`jq '[."id.orig_h",."id.resp_h",."query",."qtype_name"]' dns.log`<br />
 
 ## Identify C2 patterns
 - the act of a compromised system (client) checking in with the server for any commands is often referred to as **beaconing**
@@ -78,6 +109,8 @@ With an additional layer of abstraction, C2s can also be achieved via applicatio
 - connections not preceded by a DNS query, regular users rarely ever access a resource directly by IP
 - unusual inbound connections, high volume of failed logins
 - unexpected protocol versions or sequence anomalies
+- http status manipulation where 4xx errors still deliver payloads
+  - `cat http.log | zeek-cut method host uri user_agent status_code response_body_len` 
 
 ## Identify data exfiltration
 - large volumes of bytes seen outbound to suspicious destinations in zeek logs or packet captures

@@ -11,15 +11,18 @@
 ## Timeline
 
 ## Kill chain analysis
+
+### Initial access
+### Evidence of execution
+### Internal discovery
+### Persistence
+### Lateral movement
+### Defense evasion
+### Credential harvesting
+### C2
+### Exfiltration
+
 ### Diamond model
-#### Initial access
-#### Evidence of execution
-#### Internal discovery
-#### Persistence
-#### Lateral movement
-#### Credential harvesting
-#### C2
-#### Exfiltration
 
 ## Reporting
 ### Executive summary

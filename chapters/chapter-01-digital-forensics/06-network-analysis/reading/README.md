@@ -4,6 +4,9 @@ Network analysis offers insight into the network activity of threat actors: init
 - most malware needs to communicate (except some wipers or air-gapped purposed malware)
 - no matter how much time it may lie dormant, it eventually calls home to a C2 server
 
+The packet captures used in this class:
+- [2026-02-03 (TUESDAY): GULOADER FOR AGENTTESLA STYLE MALWARE WITH FTP DATA EXFILTRATION](https://www.malware-traffic-analysis.net/2026/02/03/index.html)
+
 ## Network evidence
 Network traffic should be captured before, during and post compromise. The rolling retention of network evidence at key points in the network architecture is recommended. 
 
@@ -129,6 +132,11 @@ Extract data from logs (JSON) with jq:<br />
   - `rita show-exploded-dns investigation`
 - ranked list of unique user agent strings
   - `rita show-useragents`
+
+## Arkime 
+- to examine large network packet captures
+- organized by sessions
+
 
 ## Identify C2 patterns
 - the act of a compromised system (client) checking in with the server for any commands is often referred to as **beaconing**

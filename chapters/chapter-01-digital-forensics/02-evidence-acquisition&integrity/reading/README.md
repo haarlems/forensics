@@ -71,7 +71,18 @@ Usage:
 sudo tcpdump -i eth0 # Capture all traffic on interface eth0
 ```
 ### [Wireshark](https://www.wireshark.org/download.html)
-GUI packet-capture and inspection tool, allows analysis in a graphical interface, with shortcomings when it comes to large file sizes (it must load the entire .pcap file in memory). <br />
+GUI packet-capture and inspection tool, allows analysis in a graphical interface, with shortcomings when it comes to large file sizes (it must load the entire .pcap file in memory). 
+
+The 3 panels on the main window:
+- red = packet list pane
+  - displays a summary of each packet captured
+  - the packet you select here will be displayed in the other 2 panes
+- yellow = packet details pane
+  - displays the packet selected in the packet list pane in more detail
+- blue = packet bytes pane
+  - displays the data from the packet selected in the packet list pane
+  - highlights the field selected in the packet details pane
+
 ![wireshark](../media/wireshark.png) <br />
 *image source: Wireshark*
 

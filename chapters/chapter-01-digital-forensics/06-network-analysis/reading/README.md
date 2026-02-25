@@ -54,7 +54,14 @@ Extract unique URI-User-Agent<br />
 `tshark -nnr evidence-https-192.168.1.111.pcap -Y 'http and http.user_agent' -T fields -E separator='|' -e 'http.request.uri' -e 'ip.src' -e 'http.host' | sort | uniq -c | wc -l`<br />
 
 ### Wireshark
-
+- first thing to do: change View > Time display format > UTC date and time of day
+  - the default is seconds since beginning of capture (microsecond precision)
+- second thing to do: View > Name Resolution > make sure Nothing is checked
+  - disable all resolution, it can be spoofed
+    - `Resolve Physical Address` labels the first 3 bytes of the MAC for the OUI name (vmware, intel)
+    - `Resolve Network Address` does reverse lookups on IPs, dangerous if attacker is authoritative
+    - `Resolve Transport Address` labels traffic over tcp/udp port 80 as HTTP, though traffic itself may not be HTTP
+- 3 panels
 ## Zeek
 Zeek logs keep the metadata of the traffic from the packet capture, discarding the content. A 1GB pcap may result in 200MB worth of zeek logs, depending on on the actual traffic:
 - conn.log

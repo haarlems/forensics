@@ -116,6 +116,20 @@ Check http logs for specific information:<br />
 Extract data from logs (JSON) with jq:<br />
 `jq '[."id.orig_h",."id.resp_h",."query",."qtype_name"]' dns.log`<br />
 
+## Real Intelligence Threat Analytics (RITA)
+- command line tool that analyzes network behaviour
+- can process large 24h packet captures
+- takes in zeek logs, imports them into a database (we chose to name it investigation)
+  - `rita import *.log investigation`
+- flags beaconing patterns, long connections, 
+  - `rita show-beacons investigation`
+- identify, list and sort connections with unusually high durations
+  - `rita show-long-connections investigation`
+- unusually high unique subdomain queries
+  - `rita show-exploded-dns investigation`
+- ranked list of unique user agent strings
+  - `rita show-useragents`
+
 ## Identify C2 patterns
 - the act of a compromised system (client) checking in with the server for any commands is often referred to as **beaconing**
 - if no commands received from the server, the client goes to sleep a set amount of time, called **sleep** time
@@ -164,6 +178,7 @@ Description
 [+] [Open source SIEM - Wazuh](https://github.com/wazuh/wazuh)<br />
 [+] [Wireshark - The Main window](https://www.wireshark.org/docs/wsug_html_chunked/ChUseMainWindowSection.html)<br />
 [+] [Zeek](https://github.com/zeek/zeek)<br />
+[+] [RITA](https://github.com/activecm/rita)<br />
 [+] [A Network Threat Hunter’s Guide to DNS Records](https://www.activecountermeasures.com/a-network-threat-hunters-guide-to-dns-records/)<br />
 [+] [Detecting DNS C2](https://www.activecountermeasures.com/malware-of-the-day-encrypted-dns-comparison-detecting-c2-when-you-cant-see-the-queries/)<br />
 [+] []()<br />

@@ -47,6 +47,8 @@ Extract unique User-Agent fields<br />
 Extract unique URI-User-Agent<br />
 `tshark -nnr evidence-https-192.168.1.111.pcap -Y 'http and http.user_agent' -T fields -E separator='|' -e 'http.request.uri' -e 'ip.src' -e 'http.host' | sort | uniq -c | wc -l`<br />
 
+### Wireshark
+
 ## Zeek
 Zeek logs keep the metadata of the traffic from the packet capture, discarding the content. A 1GB pcap may result in 200MB worth of zeek logs, depending on on the actual traffic:
 - conn.log
@@ -119,7 +121,12 @@ With an additional layer of abstraction, C2s can also be achieved via applicatio
 - unauthorized cloud storage uploads
 
 ## Summary
-- summary
+- when properly configured network logs record all communication
+- evidence: full packet captures, zeek logs, internal appliance logs
+- protocols: tcp, udp, icmp, dns, tls, http/s
+- tcpdump, tshark, wireshark, zeek help investigate further
+- look for data exfil, c2 and initial access
+
 ## Drills
 ### Challenge 1
 Description

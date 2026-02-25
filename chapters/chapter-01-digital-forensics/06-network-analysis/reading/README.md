@@ -73,7 +73,6 @@ The 3 panels on the main window:
   - highlights the field selected in the packet details pane
 
 ![wireshark](../media/wireshark.png) <br />
-*image source: Wireshark*
 
 ## Zeek
 Zeek logs keep the metadata of the traffic from the packet capture, discarding the content. A 1GB pcap may result in 200MB worth of zeek logs, depending on on the actual traffic:

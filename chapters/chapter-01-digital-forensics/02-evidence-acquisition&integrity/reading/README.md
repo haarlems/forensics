@@ -2,20 +2,21 @@
 Digital forensics is concerned with "analyzing digital evidence in a manner that is legally acceptable in any legal proceedings”, thus evidence integrity is key. [1]<br /> 
 After an incident has been identified and scoped, next comes the evidence collection phase.<br /> 
 Collected evidence must:
-- be relevant and of consequence to proving or disproving a hypothesis;
-- have its integrity preserved.
+- be relevant and of consequence to proving or disproving a hypothesis
+- have its integrity preserved
+- be thoroughly documented
 
 ## Evidence volatility
 Evidence collection should be prioritized based on evidence volatility.<br />
 According to the IETF [RFC 3227 - Guidelines for Evidence Collection and Archiving](https://www.ietf.org/rfc/rfc3227.txt), when collecting evidence you should proceed from the volatile to the less volatile. <br />
-Here is an example order of volatility for a typical system.
--  registers, cache;
--  routing table, arp cache, process table, kernel statistics, memory;
--  temporary file systems;
--  disk;
--  remote logging and monitoring data that is relevant to the system in question;
--  physical configuration, network topology;
--  archival media.<br />
+Here is an example order of volatility for a typical system:
+-  registers, cache
+-  routing table, arp cache, process table, kernel statistics, memory
+-  temporary file systems
+-  disk
+-  remote logging and monitoring data that is relevant to the system in question
+-  physical configuration, network topology
+-  archival media
 
 For example, if network logs roll over a 24h period, they should be acquired as soon as possible at the debut of the investigation, and then assess if they are required.
 

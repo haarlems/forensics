@@ -62,7 +62,7 @@ Extract unique URI-User-Agent<br />
     - `Resolve Network Address` does reverse lookups on IPs, dangerous if attacker is authoritative
     - `Resolve Transport Address` labels traffic over tcp/udp port 80 as HTTP, though traffic itself may not be HTTP
 
-The 3 panels on the [main window](file:///C:/Program%20Files/Wireshark/Wireshark%20User's%20Guide/ChUseMainWindowSection.html):
+The 3 panels on the [main window](https://www.wireshark.org/docs/wsug_html_chunked/ChUseMainWindowSection.html):
 - red = packet list pane
   - displays a summary of each packet captured
   - the packet you select here will be displayed in the other 2 panes
@@ -162,10 +162,10 @@ Description
 
 ## Further reading
 [+] [Open source SIEM - Wazuh](https://github.com/wazuh/wazuh)<br />
+[+] [Wireshark - The Main window](https://www.wireshark.org/docs/wsug_html_chunked/ChUseMainWindowSection.html)<br />
 [+] [Zeek](https://github.com/zeek/zeek)<br />
 [+] [A Network Threat Hunter’s Guide to DNS Records](https://www.activecountermeasures.com/a-network-threat-hunters-guide-to-dns-records/)<br />
 [+] [Detecting DNS C2](https://www.activecountermeasures.com/malware-of-the-day-encrypted-dns-comparison-detecting-c2-when-you-cant-see-the-queries/)<br />
-[+] []()<br />
 [+] []()<br />
 [+] []()<br />
 [+] []()<br />

@@ -21,7 +21,7 @@ The most frequently asked questions of the forensic investigator:
   - was lateral movement observed?
   - were logs deleted or tampered with?
 - who is responsible?
-  - known threat actor, ransomware gangs, nation-state activity, hacktivism?
+  - known [threat actor](https://attack.mitre.org/groups/)? ransomware gangs, nation-state activity, hacktivism?
   - insider involvement?
 - what must be done immediately?
   - should credentials be reset?
@@ -81,6 +81,7 @@ Description
 
 ## Further reading
 [+] [MITRE ATT&CK Matrix](https://attack.mitre.org/)<br />
+[+] [Threat actor groups](https://attack.mitre.org/groups/)<br />
 [+] [OWASP Top 10](https://owasp.org/Top10/2025/)<br />
 [+] [Known Exploited Vulnerabilities](https://www.cisa.gov/known-exploited-vulnerabilities-catalog)<br />
 [+] []()<br />

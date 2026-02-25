@@ -1,4 +1,4 @@
-# Investigation: timelines
+# Investigation: lateral movement, defense evasion & credential access
 
 ## Building initial timelines
 

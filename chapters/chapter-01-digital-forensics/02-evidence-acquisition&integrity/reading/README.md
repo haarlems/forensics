@@ -1,5 +1,5 @@
 # Evidence acquisition & integrity
-Digital forensics is concerned with "analyzing digital evidence in a manner that is legally acceptable in any legal proceedings”, thus evidence integrity is key. [1]<br /> 
+Digital forensics is concerned with "_analyzing digital evidence in a manner that is legally acceptable in any legal proceedings_", thus evidence integrity is key. [1]<br /> 
 After an incident has been identified and scoped, next comes the evidence collection phase.<br /> 
 Collected evidence must:
 - be relevant and of consequence to proving or disproving a hypothesis
@@ -113,11 +113,19 @@ certutil.exe -hashfile <file.iso> SHA1
 Get-FileHash <file.iso> -Algorithm MD5
 ```
 
+## Time normalization
+- time zones may differ on evidence sources in the investigation
+- normalize to UTC for correlation
+- keep conversion logs
+- never overwrite original evidence
+
 ## Summary
 - evidence must maintain integrity
 - prioritize by volatility
-- acquire data from hosts or network devices
+- acquire data from hosts and network devices
 - verify integrity
+- normalize time to UTC
+
 ## Drills
 ### Challenge 1
 Description
@@ -137,3 +145,4 @@ Description
 [+] [Wireshark](https://www.wireshark.org/download.html)<br />
 [+] [Velociraptor](https://github.com/Velocidex/velociraptor)<br />
 [+] [Artifact collection matrix](https://github.com/swisscom/ArtifactCollectionMatrix)<br />
+[+] [Date and Time on the Internet: Timestamps](https://datatracker.ietf.org/doc/html/rfc3339)<br />

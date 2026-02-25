@@ -10,6 +10,12 @@
 
 ## Timeline
 
+### Building initial timelines
+
+### Building a master timeline
+
+### EZ Tools - Timeline Explorer
+
 ## Kill chain analysis
 
 ### Initial access
@@ -37,3 +43,7 @@
 Description
 
 ## Further reading
+[+] []()<br />
+[+] []()<br />
+[+] []()<br />
+[+] []()<br />

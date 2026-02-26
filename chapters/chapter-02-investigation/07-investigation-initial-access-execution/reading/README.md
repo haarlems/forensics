@@ -54,7 +54,6 @@ While the MITRE ATT&CK Matrix lists Reconnaissance and Resource Development firs
   - CI/CD pipeline components (ex. Github Actions)
 - others
 
-
 ## Execution
 - user execution
   - social engineering to execute malicious code or open a malicious document or link
@@ -67,11 +66,21 @@ While the MITRE ATT&CK Matrix lists Reconnaissance and Resource Development firs
 
 ### Known Exploited Vulnerabilities
 
-### 
+## Investigate case "Breaking Dawn"
+Disk evidence: [TODO]()<br />
+Memory evidence: [TODO]()<br />
+
+First, we check the memory dump:
+- list processes and process tree
+
+Next, the disk image:
+- analyze $MFT starting from the breadcrumbs found in memory
+- analyze logs (process creation EID 1, process access EID 10)
 
 ## Summary
-- summary
-## Drills
+- initial access frequently phishing, stolen credentials to exposed remote services
+- execution frequently user execution via social engineering
+
 ### Challenge 1
 Description
 ### Challenge 2

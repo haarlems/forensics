@@ -37,6 +37,19 @@ _NOTE: while the MITRE ATT&CK Matrix lists Reconnaissance and Resource Developme
 ## Initial access vectors
 - [phishing](https://attack.mitre.org/techniques/T1566/) - the most common
   - targeted or non-targeted
+  - possible artifacts in memory:
+    - suspicious child processes of `outlook.exe`, `chrome.exe`, `winword.exe`, `excel.exe`
+    - office spawning `powershell.exe`, `cmd.exe`, `rundll32.exe`, `mshta.exe`, `wscript.exe`
+  - possible artifacts on disk:
+    - malicious attachments in user writable locations like Downloads, or AppData, or Temp
+    - browser history for phishing URL
+    - web cache (cached phishing page)
+    - evidence of file access in $MFT
+  - possible artifacts in network captures:
+    - `SMTP` session with suspicious or spoofed sender, lookalike or newly registered domain
+    - `DNS` query to phishing domain
+    - `TLS` handshake to phishing server
+    - `HTTP` GET, POST if credentials submitted
 - [valid accounts](https://attack.mitre.org/techniques/T1078/)
   - attackers don't break in, they log in
   - default accounts

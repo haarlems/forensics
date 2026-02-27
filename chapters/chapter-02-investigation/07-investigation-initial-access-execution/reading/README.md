@@ -79,6 +79,7 @@ The [KEV](https://www.cisa.gov/known-exploited-vulnerabilities-catalog) database
 ## Investigate case "Breaking Dawn"
 Disk evidence: [TODO]()<br />
 Memory evidence: [TODO]()<br />
+Network evidence: [TODO]()<br />
 
 - possible artifacts in memory:
   - suspicious child processes of `outlook.exe`, `chrome.exe`, `winword.exe`, `excel.exe`

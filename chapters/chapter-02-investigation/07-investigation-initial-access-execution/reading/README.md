@@ -34,37 +34,46 @@ While the MITRE ATT&CK Matrix lists Reconnaissance and Resource Development firs
 ![MITRE](../media/mitre.png)
 
 ## Initial access vectors
-- phishing - the most common
+- [phishing](https://attack.mitre.org/techniques/T1566/) - the most common
   - targeted or non-targeted
-- valid accounts
+- [valid accounts](https://attack.mitre.org/techniques/T1078/)
   - attackers don't break in, they log in
   - default accounts
   - credential stuffing from previous breach data
-- exploit public-facing application
+- [exploit public-facing application](https://attack.mitre.org/techniques/T1190/)
   - web apps, APIs (see [OWASP Top 10](https://owasp.org/Top10/2025/))
   - SSH, exposed ESXi OpenSLP services, exposed VMware vCenter servers
-- external remote services
+- [external remote services](https://attack.mitre.org/techniques/T1133/)
   - VPNs, Citrix
   - WinRM, VNC
   - Docker API, Kubernetes API server, kubelet, Kubernetes dashboard
-- trusted relationship
+- [trusted relationship](https://attack.mitre.org/techniques/T1199/)
   - third parties with delegated permissions
-- supply chain compromise
+- [supply chain compromise](https://attack.mitre.org/techniques/T1195/)
   - software dependencies
   - CI/CD pipeline components (ex. Github Actions)
-- others
+- and others
 
 ## Execution
-- user execution
+- [exploitation for client execution](https://attack.mitre.org/techniques/T1203/)
+  - exploit software vulnerabilities in client applications
+  - browser-based, office-applications, 3rd party applications (ex. Adobe Reader)
+- [user execution](https://attack.mitre.org/techniques/T1204/)
   - social engineering to execute malicious code or open a malicious document or link
   - enabling remote access tools (RAT)
   - running malicious javascript in the browser that steals session cookies
-- command and scripting interpreter
+- [command and scripting interpreter](https://attack.mitre.org/techniques/T1059/)
   - cli interfaces (unix shells, powershell, cmd), python, visual basic, javascript
   - used to execute initial access payloads
-- others
+- and others
 
 ### Known Exploited Vulnerabilities
+The [KEV](https://www.cisa.gov/known-exploited-vulnerabilities-catalog) database is a list of CVEs that are confirmed to be exploited in the wild.<br />
+- helps narrow down initial access hypotheses: phishing, credential abuse or _exploitation of a vulnerability_?
+- vulnerabilities in: edge devices, web apps, email servers, app frameworks
+- cross-reference exposed services against KEV CVEs
+  - _ex. if the victim has exposed Atlassian servers, worth checking if any new KEVs_
+- search for exploitation artifacts tied to specific CVEs
 
 ## Investigate case "Breaking Dawn"
 Disk evidence: [TODO]()<br />

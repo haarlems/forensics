@@ -34,7 +34,7 @@ However, if the user that clicked the malicious file is privileged, or the explo
 - process injection
 
 ## Investigate case 
-Disk evidence: [TODO]()<br /> * most persistence is disk based
+Disk evidence: [TODO]() * most persistence is disk based <br /> 
 Memory evidence: [TODO]()<br />
 
 - possible artifacts in memory:

@@ -7,8 +7,31 @@ In order to successfully establish a persistence mechanism, elevated privileges 
 However, if the user that clicked the malicious file is privileged, or the exploited app or service is already running as root, administrator, or another privileged service user, there is no need for privilege escalation.
 
 ## Persistence
+- boot or logon autostart execution / initialization scripts
+  -  new [registry run keys / startup folder](https://attack.mitre.org/techniques/T1547/001/)
+  -  loadable kernel modules (LKMs)
+  -  logon scripts, RC scripts
+- scheduled tasks / jobs
+- account creation
+- account manipulation
+  - additional credentials, roles or groups
+  - new ssh authorized keys
+  - new device registrations (ex. for MFA)
+- create or modify system process
+- event triggered execution
+  - WMI subscriptions, COM hijacking, accessibility features, app shimming
+  - shell configs, traps
+- external remote services (ex. VPNs)
 
 ## Privilege Escalation
+- abuse elevation control mechanism
+  - setuid, setgid
+  - bypass UAC
+- access token manipulation
+  - token impersonation / theft
+  - ppid spoofing
+- exploitation (ex. BYOVD)
+- process injection
 
 ## Investigate case 
 Disk evidence: [TODO]()<br /> * most persistence is disk based

@@ -6,7 +6,7 @@ Early triage can offer indication of the type of incident investigated (ransomwa
 - analyze system and user activity artifacts, including logs
 - narrow down to timeframe of suspicious activity
 
-The disk image used in this class: [download here](TODO)
+The disk image used in this class: [TODO](TODO)
 
 ## Looking for evil
 Attackers leave breadcrumbs everywhere: program installation, execution, file modification, user account usage.<br />

@@ -1,5 +1,5 @@
 # Investigation: persistence & privesc
-Some of the questions we are answering in this case are quire straightforward:
+Some of the questions we are answering in the case of persistence and privilege escalation are quite straightforward:
 - what did the attacker do?
 - were backdoors or persistence mechanisms installed?
 

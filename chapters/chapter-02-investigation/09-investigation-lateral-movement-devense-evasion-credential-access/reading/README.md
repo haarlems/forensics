@@ -12,10 +12,10 @@ Some of the questions we are answering:
 
 ## Lateral Movement
 - remote services
- - RDP, SSH, SMB, WinRM
- - via valid accounts or via service exploitation
+  - RDP, SSH, SMB, WinRM
+  - via valid accounts or via service exploitation
 - alternate authentication material
- - pass the hash (PTH), pass the ticket (PTT)
+  - pass the hash (PTH), pass the ticket (PTT)
 - internal phishing
 - lateral tool transfer
   - admin shares, RDP
@@ -23,26 +23,26 @@ Some of the questions we are answering:
 
 ## Defense Evasion
 - impair defenses
- - disable logging, EDR
- - disable or modify firewall
- - downgrade attacks
+  - disable logging, EDR
+  - disable or modify firewall
+  - downgrade attacks
 - indicator removal
- - clear logs, cmd history
- - timestomping
- - delete files
+  - clear logs, cmd history
+  - timestomping
+  - delete files
 - hide artifacts
- - users, files, directories, file systems, virtual machines
- - file path exclusions
+  - users, files, directories, file systems, virtual machines
+  - file path exclusions
 
 ## Credential Access
 - OS credential dumping
- - LSASS, SAM, NTDS, DCSync
- - `/etc/passwd` and `/etc/shadow`
+  - LSASS, SAM, NTDS, DCSync
+  - `/etc/passwd` and `/etc/shadow`
 - bruteforce
- - password guessing
- - password cracking
- - password spraying
- - credential stuffing
+  - password guessing
+  - password cracking
+  - password spraying
+  - credential stuffing
 - steal or forge certificates (AD CS)
 - steal or forge Kerberos tickets
   - golden ticket, silver ticket

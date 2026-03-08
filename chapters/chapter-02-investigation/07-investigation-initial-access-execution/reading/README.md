@@ -1,6 +1,6 @@
 # Investigation: initial access & execution
 Here are the most frequently asked questions of the forensic investigator.<br />
-In this chapter we will focus on answering the questions related to Initial Access and Execution.<br />
+
 - what happened?
   - what type of incident this is (ransomware, data exfil, insider threat, etc.) 
 - when did the breach first occur?
@@ -30,6 +30,9 @@ In this chapter we will focus on answering the questions related to Initial Acce
   - should law enforcement or regulators be notified?
   - should Incident Response plans be triggered?
 
+In this chapter we will focus on answering the questions related to Initial Access and Execution.<br />
+
+## ATT&CK Matrix
 ![MITRE](../media/mitre.png)
 
 _NOTE: while the MITRE ATT&CK Matrix lists Reconnaissance and Resource Development first, this class will focus on Initial Access and Execution._

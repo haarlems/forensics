@@ -38,11 +38,18 @@ Some of the questions we are answering:
 - OS credential dumping
  - LSASS, SAM, NTDS, DCSync
  - `/etc/passwd` and `/etc/shadow`
+- bruteforce
+ - password guessing
+ - password cracking
+ - password spraying
+ - credential stuffing
 - steal or forge certificates (AD CS)
 - steal or forge Kerberos tickets
   - golden ticket, silver ticket
   - kerberoasting, asrep roasting
-- unsecured credentials (ex. in files, chats, shell history, web browsers)
+- unsecured credentials
+  - in files, chats, shell history
+  - in credential managers, web browsers
 - network sniffing (ex. LLMNR poisoning)
 - keylogging
 

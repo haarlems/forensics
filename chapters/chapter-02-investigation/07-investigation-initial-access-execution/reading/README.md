@@ -35,7 +35,7 @@ In this chapter we will focus on answering the questions related to Initial Acce
 ## ATT&CK Matrix
 ![MITRE](../media/mitre.png)
 
-_NOTE: while the MITRE ATT&CK Matrix lists Reconnaissance and Resource Development first, this class will focus on Initial Access and Execution._
+_NOTE: the MITRE ATT&CK Matrix is to be taken as a mere frame of reference._
 
 ## Initial access vectors
 - [phishing](https://attack.mitre.org/techniques/T1566/) - the most common

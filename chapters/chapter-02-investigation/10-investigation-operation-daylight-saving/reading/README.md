@@ -1,4 +1,7 @@
 # Investigation: Operation Daylight Saving
+Disk evidence: [TODO]()<br />
+Memory evidence: [TODO]()<br />
+Network evidence: [TODO]()<br />
 
 ## Identification and scoping
 

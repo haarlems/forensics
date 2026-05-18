@@ -53,6 +53,15 @@ Some of the questions we are answering:
 - network sniffing (ex. LLMNR poisoning)
 - keylogging
 
+## Investigate case
+Disk evidence: [TODO]() <br />
+Memory evidence: [TODO]() <br />
+
+- possible artifacts in memory:
+  - todo
+- possible artifacts on disk:
+  - todo
+
 
 ## Summary
 - summary

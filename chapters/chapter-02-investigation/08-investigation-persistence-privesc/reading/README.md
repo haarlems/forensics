@@ -46,7 +46,7 @@ Disk evidence: [TODO]() *<br />
 Memory evidence: [TODO]()<br />
 **persistence is disk based, though evidence may also be seen in memory* <br />
 
-- possible artifacts in memory:
+- possible memory artifacts:
   - WMI persistence: unusual child processes of `wmiprvse.exe`
   - Registry Run keys: `Run` or `RunOnce` loaded in `HKLM` or `HKCU`
   - Scheduled tasks:
@@ -54,7 +54,7 @@ Memory evidence: [TODO]()<br />
     - user or system-wide cron jobs in `/var/spool/cron/` or `/etc/crontab` or `/etc/cron.d/`
     - other utilities such as `fcron`, `anacron`, `tsp`, `at`, `batch` may be used for one-time or recurring jobs
   - suspicious dll loaded into `explorer.exe`, `svchost.exe`, `winlogon.exe`, `userinit.exe`
-- possible artifacts on disk:
+- possible disk artifacts:
   - Scheduled tasks: in `C:\Windows\System32\Tasks` 
   - Registry Run keys: `Run` or `RunOnce` loaded in `HKLM` or `HKCU`
     - `HKLM\Software\Microsoft\Windows\CurrentVersion\Run`

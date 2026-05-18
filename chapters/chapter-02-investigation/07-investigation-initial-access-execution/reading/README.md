@@ -84,10 +84,10 @@ Disk evidence: [TODO]()<br />
 Memory evidence: [TODO]()<br />
 Network evidence: [TODO]()<br />
 
-- possible artifacts in memory:
+- possible memory artifacts:
   - suspicious child processes of `outlook.exe`, `chrome.exe`, `winword.exe`, `excel.exe`
   - office spawning `powershell.exe`, `cmd.exe`, `rundll32.exe`, `mshta.exe`, `wscript.exe`
-- possible artifacts on disk:
+- possible disk artifacts:
   - malicious attachments in user writable locations like Downloads, AppData, or Temp
   - browser history for phishing URL
   - web cache (cached phishing page), amcache, shimcache

@@ -54,14 +54,16 @@ Some of the questions we are answering:
 - keylogging
 
 ## Investigate case
-Disk evidence: [TODO]() <br />
-Memory evidence: [TODO]() <br />
+Disk evidence: [TODO]()<br />
+Memory evidence: [TODO]()<br />
+Network evidence: [TODO]()<br />
 
-- possible artifacts in memory:
+- possible memory artifacts:
   - todo
-- possible artifacts on disk:
+- possible disk artifacts:
   - todo
-
+- possible network artifacts:
+  - todo
 
 ## Summary
 - summary

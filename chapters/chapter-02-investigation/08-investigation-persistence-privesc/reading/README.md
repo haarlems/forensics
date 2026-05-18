@@ -57,17 +57,19 @@ Memory evidence: [TODO]()<br />
 - possible artifacts on disk:
   - Scheduled tasks: in `C:\Windows\System32\Tasks` 
   - Registry Run keys: `Run` or `RunOnce` loaded in `HKLM` or `HKCU`
-    - _HKLM\Software\Microsoft\Windows\CurrentVersion\Run_
-    - _HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce_
-    - _HKCU\Software\Microsoft\Windows\CurrentVersion\Run_
-    - _HKCU\Software\Microsoft\Windows\CurrentVersion\RunOnce_
+    - `HKLM\Software\Microsoft\Windows\CurrentVersion\Run`
+    - `HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce`
+    - `HKCU\Software\Microsoft\Windows\CurrentVersion\Run`
+    - `HKCU\Software\Microsoft\Windows\CurrentVersion\RunOnce`
   - Registry winlogon keys: `Winlogon\Userinit`, `Winlogon\Shell`, `Winlogon\Notify`
   - New service entry in `HKLM\SYSTEM\CurrentControlSet\Services`
   - Malicious startup files for all users and current user
     - `%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup`
     - `C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup`
+  - boot or logon initialization scripts in `/etc/init.d/`, `/etc/rc.local`, `/etc/update-motd.d`
+  - shell configs in [FILES](https://manpages.debian.org/stretch/bash/bash.1.en.html#FILES)
   - systemd services or timers in `/etc/systemd/system`,`/run/systemd/system` and others
-  - systemd generators
+    - systemd [generators](https://manpages.debian.org/testing/systemd/systemd.generator.7.en.html)
   - existing user account creation or legitimate account modification
     - `lastlog` or `/var/log/auth.log` may show unexpected logins
     - account tampering is not needed if an attacker gains access to private ssh keys or valid, cleartext credentials

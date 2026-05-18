@@ -93,7 +93,7 @@ Network evidence: [TODO]()<br />
   - web cache (cached phishing page), amcache, shimcache
   - evidence of file access in $MFT, prefetch files for `cmd.exe` or `powershell.exe`
   - Event ID 4688 A new process has been created from the Windows Security Log
-- possible artifacts in network captures:
+- possible network artifacts:
   - `SMTP` session with suspicious or spoofed sender, lookalike or newly registered domain
   - `DNS` query to phishing domain
   - `TLS` handshake to phishing server

@@ -143,7 +143,7 @@ sudo tcpdump -i eth0 port 80 -n
 # Read traffic from a file with no name or port resolution
 sudo tcpdump -nr file.pcap 
 ```
-![tcpdump](../media/tcpdump0.png)<br />
+![tcpdump](../media/tcpdump.png)<br />
 
 ### [Wireshark](https://www.wireshark.org/download.html)
 GUI packet-capture and inspection tool, allows analysis in a graphical interface, with shortcomings when it comes to large file sizes (it must load the entire .pcap file in memory). <br />

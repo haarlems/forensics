@@ -23,21 +23,20 @@ Commonly used algorithms:
 - sha1
 - md5
 
-#### sha256sum, shasum, md5sum
-Usage:
+#### sha256sum, md5sum
 ```
-sha256sum <file.iso>
+sha256sum <file>
+md5sum <file>
 ```
 #### certutil, Get-FileHash
-Usage:
 ```
-certutil.exe -hashfile <file.iso> SHA1
-Get-FileHash <file.iso> -Algorithm MD5
+certutil.exe -hashfile <file> SHA1
+Get-FileHash <file> -Algorithm MD5
 ```
 
 ## Evidence volatility
 Evidence collection should be prioritized based on evidence volatility.<br />
-According to the IETF [RFC 3227 - Guidelines for Evidence Collection and Archiving](https://www.ietf.org/rfc/rfc3227.txt), when collecting evidence you should proceed from the volatile to the less volatile. <br />
+According to the IETF [RFC 3227 - Guidelines for Evidence Collection and Archiving](https://www.ietf.org/rfc/rfc3227.txt), when collecting evidence you should proceed from the volatile to the less volatile.<br />
 Here is an example order of volatility for a typical system:
 -  registers, cache
 -  routing table, arp cache, process table, kernel statistics, memory
@@ -51,15 +50,52 @@ For example, if network logs roll over a 24h period, they should be acquired as 
 
 ## Evidence acquisition - Host-based
 From the hosts we usually collect disk and memory artifacts (_network captures can also be performed on a single host, but they are usually performed at the edge of a network perimeter_). <br />
-Disk artifacts include:
-- information about file system metadata (ex. $MFT file on windows)
-- evidence of execution (ex. Prefetch files, SRUM)
-- evidence of past file presence (ex. USN Journal, Windows Search Index)
-- evidence of network communication (ex. BITS Database, packet capture)
-- evidence of access (ex. shellbags)
-- browser artifacts (ex. credentials, cookies, browsing history, etc)
+Disk artifacts may include:
+- **information about file system metadata**
+  - linux: inode table, ext4 journal
+  - windows: $MFT file
+- **evidence of execution**
+  - linux: syslog, systemd journal logs, `.bash_history`, `.zsh_history`
+  - windows: Prefetch files, SRUM
+- **evidence of past file presence**
+  - linux: ext4 journal
+  - windows: USN Journal, Windows Search Index
+- **evidence of network communication**
+  - linux: `/var/log/ufw.log`, `/var/log/auth.log`
+  - windows: BITS Database
+- **evidence of access**
+  - linux: `.bash_history`, `/var/log/auth.log`,
+  - windows: shellbags
+- **browser artifacts**
+  - cross platform: credentials, cookies, browsing history
+  - stored in profile directories for Firefox, Chrome, etc
 
-Memory artifacts include memory dumps.
+Memory artifacts may include:
+- process information
+- network information
+- loaded libraries and drivers
+- handles
+- command history
+- credentials, etc
+
+### Disk imaging formats
+A forensic disk image is a bit-for-bit copy of a storage device, including unallocated space, deleted files, and file system metadata.<br />
+The format affects tool compatibility, storage, and what metadata is preserved.
+
+Common formats:
+- **[raw (dd)](https://forensics.wiki/raw_image_format/)**: uncompressed copy with no metadata
+  - readable by almost every forensic tool
+  - no built-in hash verification or case metadata
+  - file size equals the source disk size
+- **[E01](https://blog.ecapuano.com/p/mounting-e01-forensic-images-in-linux)**: proprietary format, commonly used
+  - supports compression, built-in hash verification, and embedded case metadata
+  - splits into manageable segments
+  - supported by Autopsy, FTK, and other tools
+- **[AFF (Advanced Forensic Format)](https://forensics.wiki/aff/)**: open-source alternative to E01 with similar metadata and compression capabilities
+  - less common today
+
+In practice, `E01` is used for most investigations for the integrity verification, compression, and metadata.<br />
+`Raw (dd)` is used when interoperability is the priority.
 
 ### [UAC - Unix-like Artifacts Collector](https://github.com/tclahr/uac)
 Live collection tool for Unix-like operating systems.<br />
@@ -132,8 +168,7 @@ Typical deployment: <br />
 ## Summary
 - evidence must maintain integrity
 - prioritize by volatility
-- acquire data from hosts and network devices
-- verify integrity
+- acquire data from hosts and network devices, local or remote
 - normalize time to UTC
 
 ## Drills
@@ -147,6 +182,7 @@ Description
 ## References & further reading
 [1] ISACA Whitepaper - [Overview of Digital Forensics](https://www.isaca.org/resources/white-papers/overview-of-digital-forensics)<br />
 [+] IETF [RFC 3227 - Guidelines for Evidence Collection and Archiving](https://www.ietf.org/rfc/rfc3227.txt)<br />
+[+] [Disk image formats](https://forensics.wiki/disk_images/)<br />
 [+] Hal Pomeranz's [Linux Forensics](https://archive.org/details/HalLinuxForensics)<br />
 [+] UAC - [Unix-like Artifacts Collector](https://github.com/tclahr/uac)<br />
 [+] [FTK Imager](https://www.exterro.com/digital-forensics-software/ftk-imager)<br />

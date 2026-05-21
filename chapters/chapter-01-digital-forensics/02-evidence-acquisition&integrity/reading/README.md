@@ -97,7 +97,7 @@ Common formats:
 In practice, `E01` is used for most investigations for the integrity verification, compression, and metadata.<br />
 `Raw (dd)` is used when interoperability is the priority.
 
-### [UAC - Unix-like Artifacts Collector](https://github.com/tclahr/uac)
+### [UAC](https://github.com/tclahr/uac) - Unix-like Artifacts Collector
 Live collection tool for Unix-like operating systems.<br />
 Usage: 
 ```
@@ -130,11 +130,21 @@ Options:
 
 ## Evidence acquisition - Network
 ### [tcpdump](https://www.tcpdump.org/)
-Command line packet-capture and inspection tool, with powerful filtering capabilities. <br />
+Command line packet-capture and inspection tool, with powerful filtering capabilities.<br />
+Used to capture traffic on a host during an investigation, or quickly inspecting a pcap without a GUI.<br />
 Usage:
 ```
-sudo tcpdump -i eth0 # Capture all traffic on interface eth0
+# Capture all traffic on interface eth0
+sudo tcpdump -i eth0
+# Capture all traffic on interface eth0 on port 80
+sudo tcpdump -i eth0 port 80
+# Capture all traffic on interface eth0 on port 80 with no name or port resolution
+sudo tcpdump -i eth0 port 80 -n
+# Read traffic from a file with no name or port resolution
+sudo tcpdump -nr file.pcap 
 ```
+![tcpdump](../media/tcpdump0.png)<br />
+
 ### [Wireshark](https://www.wireshark.org/download.html)
 GUI packet-capture and inspection tool, allows analysis in a graphical interface, with shortcomings when it comes to large file sizes (it must load the entire .pcap file in memory). <br />
 

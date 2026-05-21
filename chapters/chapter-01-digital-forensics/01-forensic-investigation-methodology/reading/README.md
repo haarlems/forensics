@@ -47,9 +47,34 @@ IoCs can be:
 - atomic (IPs, domain names that tie back to an adversary C2 infrastructure)
 - computed (hashes)
 ## Diamond model
+The Diamond Model is a framework for the analysis of intrusions. It states:
 
-![Diamond model](../media/diamondmodel.png) <br />
+> *"For every intrusion event, there exists an adversary taking a step toward an
+> intended goal by using a capability over infrastructure against a victim."*
+
+
+![Diamond model](../media/diamondmodel.png)<br />
 *image source: Digital Forensics and Incident Response by Gerard Johansen, originally published in the [The Diamond Model of Intrusion Analysis](https://www.researchgate.net/publication/379381999_The_Diamond_Model_of_Intrusion_Analysis) by Sergio Caltagirone, Andrew Pendergast, Cristopher Betz*
+
+The four components are:
+
+### Adversary
+The threat actor behind the intrusion: an individual, group, or organization seeking to compromise a system or network to further their goals.
+
+### Capability
+The tools, techniques, and procedures (TTPs) the adversary uses to carry out the attack.<br />
+This includes malware, exploits, scripts, and living-off-the-land techniques.
+
+### Infrastructure
+The physical and virtual resources the adversary uses to deliver their capability to the victim.<br />
+This includes C2 servers, domains, IP addresses, compromised third-party systems, and communication channels such as RDP or VPN.
+
+### Victim
+The target of the intrusion: an organization, network, system, or individual.
+
+The model shows the **relationships** between components.<br />
+Knowing one component allows investigators to pivot: a known IP (infrastructure) can reveal other victims; a malware hash (capability) can surface related campaigns; a victim profile can predict future targets.<br />
+The cases below show the model in practice.
 
 ## Case examples
 [Cat's Got Your Files: Lynx Ransomware](https://thedfirreport.com/2025/11/17/cats-got-your-files-lynx-ransomware/)
@@ -93,7 +118,7 @@ Example [chain of custody form](https://www.oreilly.com/library/view/implementin
 ## Summary
 - digital forensics includes retrieving, storing and analyzing data
 - DFIR includes incident response, out of scope for this track
-- phases: identify, collect, analyze, report, preserve
+- phases: identify, collect, acquire, preserve, analyze, report
 - evidence sources: disk, memory, network
 - DFIR case reports provide examples
 - investigator's challenges: extraction, finding evidence in large amounts of data, reliability

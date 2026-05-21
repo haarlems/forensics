@@ -6,6 +6,35 @@ Collected evidence must:
 - have its integrity preserved
 - be thoroughly documented
 
+## Preserving integrity
+### Write blockers
+The forensic workstation doing the acquisition must not write anything back to the source disk.<br />
+Even a simple OS action like updating a file's last-accessed timestamp is enough to alter evidence and call its integrity into question.
+
+A **write-blocker** sits between the source device and the forensic workstation, intercepting any write commands and preventing them from reaching the disk while allowing read commands through normally. Write-blockers come in two forms:
+- **Hardware**: a dedicated physical device that connects between the source disk and the forensic workstation
+- **Software**: a driver or OS-level tool that blocks writes at the OS level
+
+### Hash verification
+It is recommended that a unique hash value per each file collected is calculated.<br/>
+A hash is a numeric value of a fixed length that uniquely identifies data, computed based on a chosen algorithm.<br />
+Commonly used algorithms:
+- sha256
+- sha1
+- md5
+
+#### sha256sum, shasum, md5sum
+Usage:
+```
+sha256sum <file.iso>
+```
+#### certutil, Get-FileHash
+Usage:
+```
+certutil.exe -hashfile <file.iso> SHA1
+Get-FileHash <file.iso> -Algorithm MD5
+```
+
 ## Evidence volatility
 Evidence collection should be prioritized based on evidence volatility.<br />
 According to the IETF [RFC 3227 - Guidelines for Evidence Collection and Archiving](https://www.ietf.org/rfc/rfc3227.txt), when collecting evidence you should proceed from the volatile to the less volatile. <br />
@@ -82,6 +111,7 @@ Arkime is an open-source network analysis and packet capture system that allows 
 - opensearch / elasticsearch
 
 The GUI for exploring network data includes the Sessions page overview, listing individual sessions that can be expanded to view metadata and packet details.
+
 ![Arkime](../media/arkime.png)<br />
 _image source: [arkime](https://github.com/arkime/arkimeweb/blob/main/assets/sessions.png)_
 
@@ -92,26 +122,6 @@ Typical deployment: <br />
 ![velociraptor](../media/velociraptor.png) <br />
 *image source: docs.velociraptor.app*
 
-## Preserving integrity
-It is recommended that a unique hash value per each file collected is calculated.<br/>
-A hash is a numeric value of a fixed length that uniquely identifies data, computed based on a chosen algorithm.<br />
-Commonly used algorithms:
-- sha256
-- sha1
-- md5
-
-### Hash verification
-#### sha256sum, shasum, md5sum
-Usage:
-```
-sha256sum <file.iso>
-```
-#### certutil, Get-FileHash
-Usage:
-```
-certutil.exe -hashfile <file.iso> SHA1
-Get-FileHash <file.iso> -Algorithm MD5
-```
 
 ## Time normalization
 - time zones may differ on evidence sources in the investigation
@@ -146,3 +156,4 @@ Description
 [+] [Velociraptor](https://github.com/Velocidex/velociraptor)<br />
 [+] [Artifact collection matrix](https://github.com/swisscom/ArtifactCollectionMatrix)<br />
 [+] [Date and Time on the Internet: Timestamps](https://datatracker.ietf.org/doc/html/rfc3339)<br />
+[+] [A study of Forensic Imaging in the Absence of Write-Blockers](https://commons.erau.edu/cgi/viewcontent.cgi%3Farticle%3D1027%26context%3Ddb-security-studies&ved=2ahUKEwjl4YPEjMqUAxUcSvEDHW3QKO04ChAWegQIFhAB&usg=AOvVaw1c_U3hrxOQxFcrMIbGENSC)<br />

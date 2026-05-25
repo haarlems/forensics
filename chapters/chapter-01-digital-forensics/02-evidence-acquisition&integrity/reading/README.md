@@ -1,5 +1,5 @@
 # Evidence acquisition & integrity
-Digital forensics is concerned with "_analyzing digital evidence in a manner that is legally acceptable in any legal proceedings_", thus evidence integrity is key. [1]<br /> 
+Digital forensics is concerned with "_analyzing digital evidence in a manner that is legally acceptable in any legal proceedings_", thus [evidence integrity](https://www.isaca.org/resources/white-papers/overview-of-digital-forensics) is key.<br /> 
 After an incident has been identified and scoped, next comes the evidence collection phase.<br /> 
 Collected evidence must:
 - be relevant and of consequence to proving or disproving a hypothesis
@@ -190,7 +190,7 @@ Description
 Description
 
 ## References & further reading
-[1] ISACA Whitepaper - [Overview of Digital Forensics](https://www.isaca.org/resources/white-papers/overview-of-digital-forensics)<br />
+[+] ISACA Whitepaper - [Overview of Digital Forensics](https://www.isaca.org/resources/white-papers/overview-of-digital-forensics)<br />
 [+] IETF [RFC 3227 - Guidelines for Evidence Collection and Archiving](https://www.ietf.org/rfc/rfc3227.txt)<br />
 [+] [Disk image formats](https://forensics.wiki/disk_images/)<br />
 [+] Hal Pomeranz's [Linux Forensics](https://archive.org/details/HalLinuxForensics)<br />

@@ -177,9 +177,9 @@ Typical deployment: <br />
 
 ## Summary
 ![evidence-acquisition](../media/evidence-acquisition.png)
-- evidence must maintain integrity
-- prioritize by volatility
 - acquire data from hosts and network devices, local or remote
+- prioritize by volatility
+- preserve evidence integrity
 - normalize time to UTC
 
 ## Drills

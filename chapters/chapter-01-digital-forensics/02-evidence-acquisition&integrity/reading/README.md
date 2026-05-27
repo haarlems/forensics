@@ -176,6 +176,7 @@ Typical deployment: <br />
 - never overwrite original evidence
 
 ## Summary
+![evidence-acquisition](../media/evidence-acquisition.png)
 - evidence must maintain integrity
 - prioritize by volatility
 - acquire data from hosts and network devices, local or remote

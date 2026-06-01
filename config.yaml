@@ -7,40 +7,40 @@ build_dir: /build
 output_type: last
 output_dir: /output
 
-make_assets:
-  plugin: command
-  options:
-    command: make
-    locations:
-      - chapters/chapter-01-digital-forensics/01-forensic-investigation-methodology/slides
-      - chapters/chapter-01-digital-forensics/02-evidence-acquisition&integrity/slides
-      - chapters/chapter-01-digital-forensics/03-file-systems/slides
-      - chapters/chapter-01-digital-forensics/04-disk-analysis/slides
-      - chapters/chapter-01-digital-forensics/05-memory-analysis/slides
-      - chapters/chapter-01-digital-forensics/06-network-analysis/slides
-      - chapters/chapter-02-investigation/07-investigation-initial-access-execution/slides
-      - chapters/chapter-02-investigation/08-investigation-persistence-privesc/slides
-      - chapters/chapter-02-investigation/09-investigation-lateral-movement-devense-evasion-credential-access/slides
-      - chapters/chapter-02-investigation/10-investigation-operation-daylight-saving/slides
-    args:
-      - all
+# make_assets:
+#   plugin: command
+#   options:
+#     command: make
+#     locations:
+#       - chapters/chapter-01-digital-forensics/01-forensic-investigation-methodology/slides
+#       - chapters/chapter-01-digital-forensics/02-evidence-acquisition&integrity/slides
+#       - chapters/chapter-01-digital-forensics/03-file-systems/slides
+#       - chapters/chapter-01-digital-forensics/04-disk-analysis/slides
+#       - chapters/chapter-01-digital-forensics/05-memory-analysis/slides
+#       - chapters/chapter-01-digital-forensics/06-network-analysis/slides
+#       - chapters/chapter-02-investigation/07-investigation-initial-access-execution/slides
+#       - chapters/chapter-02-investigation/08-investigation-persistence-privesc/slides
+#       - chapters/chapter-02-investigation/09-investigation-lateral-movement-devense-evasion-credential-access/slides
+#       - chapters/chapter-02-investigation/10-investigation-operation-daylight-saving/slides
+#     args:
+#       - all
 
-embed_reveal:
-  plugin: reveal_embed
-  options:
-    target: docusaurus
-    extension: mdx
-    build:
-      ch01-forensic-investigation-methodology: ch01-forensic-investigation-methodology
-      ch01-evidence-acquisition-integrity: ch01-evidence-acquisition-integrity
-      ch01-file-systems: ch01-file-systems
-      ch01-disk-analysis: ch01-disk-analysis
-      ch01-memory-analysis: ch01-memory-analysis
-      ch01-network-analysis: ch01-network-analysis
-      ch02-initial-access-execution: ch02-initial-access-execution
-      ch02-persistence-privesc: ch02-persistence-privesc
-      ch02-lateral-movement-evasion-credential: ch02-lateral-movement-evasion-credential
-      ch02-operation-daylight-saving: ch02-operation-daylight-saving
+# embed_reveal:
+#   plugin: reveal_embed
+#   options:
+#     target: docusaurus
+#     extension: mdx
+#     build:
+#       ch01-forensic-investigation-methodology: ch01-forensic-investigation-methodology
+#       ch01-evidence-acquisition-integrity: ch01-evidence-acquisition-integrity
+#       ch01-file-systems: ch01-file-systems
+#       ch01-disk-analysis: ch01-disk-analysis
+#       ch01-memory-analysis: ch01-memory-analysis
+#       ch01-network-analysis: ch01-network-analysis
+#       ch02-initial-access-execution: ch02-initial-access-execution
+#       ch02-persistence-privesc: ch02-persistence-privesc
+#       ch02-lateral-movement-evasion-credential: ch02-lateral-movement-evasion-credential
+#       ch02-operation-daylight-saving: ch02-operation-daylight-saving
 
 docusaurus:
   plugin: docusaurus

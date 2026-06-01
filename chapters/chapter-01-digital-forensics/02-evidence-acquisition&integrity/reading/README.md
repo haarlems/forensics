@@ -11,7 +11,8 @@ Collected evidence must:
 The forensic workstation doing the acquisition must not write anything back to the source disk.<br />
 Even a simple OS action like updating a file's last-accessed timestamp is enough to alter evidence and call its integrity into question.
 
-A **write-blocker** sits between the source device and the forensic workstation, intercepting any write commands and preventing them from reaching the disk while allowing read commands through normally. Write-blockers come in two forms:
+A **write-blocker** sits between the source device and the forensic workstation, intercepting any write commands and preventing them from reaching the disk while allowing read commands through normally.<br />
+Write-blockers come in two forms:
 - **Hardware**: a dedicated physical device that connects between the source disk and the forensic workstation
 - **Software**: a driver or OS-level tool that blocks writes at the OS level
 
@@ -23,13 +24,10 @@ Commonly used algorithms:
 - sha1
 - md5
 
-#### sha256sum, md5sum
+#### Usage examples
 ```
 sha256sum <file>
 md5sum <file>
-```
-#### certutil, Get-FileHash
-```
 certutil.exe -hashfile <file> SHA1
 Get-FileHash <file> -Algorithm MD5
 ```
@@ -46,10 +44,11 @@ Here is an example order of volatility for a typical system:
 -  physical configuration, network topology
 -  archival media
 
-For example, if network logs roll over a 24h period, they should be acquired as soon as possible at the debut of the investigation, and then assess if they are required.
+For example, if network logs roll over a 24h period, they should be acquired at the debut of the investigation, and then assess if they are required.
 
 ## Evidence acquisition - Host-based
-From the hosts we usually collect disk and memory artifacts (_network captures can also be performed on a single host, but they are usually performed at the edge of a network perimeter_). <br />
+From the hosts we usually collect disk and memory artifacts.<br />
+_Network captures can also be performed on a single host, but they are usually performed at the edge of a network perimeter_.<br />
 Disk artifacts may include:
 - **information about file system metadata**
   - linux: inode table, ext4 journal
@@ -99,13 +98,14 @@ In practice, `E01` is used for most investigations for the integrity verificatio
 
 ### [UAC](https://github.com/tclahr/uac) - Unix-like Artifacts Collector
 Live collection tool for Unix-like operating systems.<br />
+UAC comes with two basic pre-defined profiles:
+- `ir_triage` captures important system artifacts needed for typical investigations
+- `full` everything in ir_triage plus browser and other user application artifacts
+
 Usage: 
 ```
 ./uac -p ir_triage /tmp # Collect all artifacts based on the ir_triage profile, and save the output file to /tmp.
 ```
-UAC comes with two basic pre-defined profiles:
-- "ir_triage" – captures important system artifacts needed for typical investigations
-- "full" – everything in "ir_triage" plus browser and other user application artifacts
 
 ![uac](../media/uac.png)
 
@@ -151,12 +151,14 @@ GUI packet-capture and inspection tool, allows analysis in a graphical interface
 ![wireshark](../media/wireshark.png) <br />
 
 ### [Arkime](https://github.com/arkime/arkime)
-Arkime is an open-source network analysis and packet capture system that allows large-scale operations. Can be deployed on multiple systems and handle tens of GB/sec. 3 main components:
+Arkime is an open-source network analysis and packet capture system that allows large-scale operations. 
+Can be deployed on multiple systems and handle tens of GB/sec. 
+3 main components:
 - capture
 - viewer
 - opensearch / elasticsearch
 
-The GUI for exploring network data includes the Sessions page overview, listing individual sessions that can be expanded to view metadata and packet details.
+The Viewer includes the Sessions page overview, listing individual sessions that can be expanded to view metadata and packet details.
 
 ![Arkime](../media/arkime.png)<br />
 _image source: [arkime](https://github.com/arkime/arkimeweb/blob/main/assets/sessions.png)_

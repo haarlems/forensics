@@ -1,6 +1,6 @@
 stages:
-  - make_assets
-  - embed_reveal
+  #- make_assets
+  #- embed_reveal
   - docusaurus
 
 build_dir: /build

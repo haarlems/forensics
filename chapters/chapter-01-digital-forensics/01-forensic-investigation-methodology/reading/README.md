@@ -22,7 +22,8 @@ According to the standards and best practices for digital forensics published by
 - identification
 - collection
 - acquisition
-- preservation<br />
+- preservation
+
 The following phases are part of the forensic process, though not included in the ISO/IEC standards:
 - analysis
 - reporting
@@ -54,7 +55,7 @@ The Diamond Model is a framework for the analysis of intrusions. It states:
 
 
 ![Diamond model](../media/diamondmodel.png)<br />
-*image source: Digital Forensics and Incident Response by Gerard Johansen, originally published in the [The Diamond Model of Intrusion Analysis](https://www.researchgate.net/publication/379381999_The_Diamond_Model_of_Intrusion_Analysis) by Sergio Caltagirone, Andrew Pendergast, Cristopher Betz*
+*[The Diamond Model of Intrusion Analysis](https://www.researchgate.net/publication/379381999_The_Diamond_Model_of_Intrusion_Analysis) by Sergio Caltagirone, Andrew Pendergast, Cristopher Betz*
 
 The four components are:
 

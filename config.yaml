@@ -57,7 +57,7 @@ docusaurus:
               subsections:
                 - Reading/: reading/
                 - Drills/: drills/
-                - Slides: /build/embed_reveal/ch01-forensic-investigation-methodology
+                # - Slides: /build/embed_reveal/ch01-forensic-investigation-methodology
 
           - Evidence Acquisition & Integrity:
               path: chapters/chapter-01-digital-forensics/02-evidence-acquisition&integrity/
@@ -66,7 +66,7 @@ docusaurus:
               subsections:
                 - Reading/:  reading/
                 - Drills/:   drills/
-                - Slides:    /build/embed_reveal/ch01-evidence-acquisition-integrity
+                # - Slides:    /build/embed_reveal/ch01-evidence-acquisition-integrity
 
           - File Systems:
               path: chapters/chapter-01-digital-forensics/03-file-systems/
@@ -75,7 +75,7 @@ docusaurus:
               subsections:
                 - Reading/:  reading/
                 - Drills/:   drills/
-                - Slides:    /build/embed_reveal/ch01-file-systems
+                # - Slides:    /build/embed_reveal/ch01-file-systems
 
           - Disk Analysis:
               path: chapters/chapter-01-digital-forensics/04-disk-analysis/
@@ -84,7 +84,7 @@ docusaurus:
               subsections:
                 - Reading/:  reading/
                 - Drills/:   drills/
-                - Slides:    /build/embed_reveal/ch01-disk-analysis
+                # - Slides:    /build/embed_reveal/ch01-disk-analysis
 
           - Memory Analysis:
               path: chapters/chapter-01-digital-forensics/05-memory-analysis/
@@ -93,7 +93,7 @@ docusaurus:
               subsections:
                 - Reading/:  reading/
                 - Drills/:   drills/
-                - Slides:    /build/embed_reveal/ch01-memory-analysis
+                # - Slides:    /build/embed_reveal/ch01-memory-analysis
 
           - Network Analysis:
               path: chapters/chapter-01-digital-forensics/06-network-analysis/
@@ -111,7 +111,7 @@ docusaurus:
               subsections:
                 - Reading/:  reading/
                 - Drills/:   drills/
-                - Slides:    /build/embed_reveal/ch02-initial-access-execution
+                # - Slides:    /build/embed_reveal/ch02-initial-access-execution
 
           - Persistence & Privilege Escalation:
               path: chapters/chapter-02-investigation/08-investigation-persistence-privesc/
@@ -120,7 +120,7 @@ docusaurus:
               subsections:
                 - Reading/:  reading/
                 - Drills/:   drills/
-                - Slides:    /build/embed_reveal/ch02-persistence-privesc
+                # - Slides:    /build/embed_reveal/ch02-persistence-privesc
 
           - Lateral Movement, Defense Evasion & Credential Access:
               path: chapters/chapter-02-investigation/09-investigation-lateral-movement-devense-evasion-credential-access/
@@ -129,7 +129,7 @@ docusaurus:
               subsections:
                 - Reading/:  reading/
                 - Drills/:   drills/
-                - Slides:    /build/embed_reveal/ch02-lateral-movement-evasion-credential
+                # - Slides:    /build/embed_reveal/ch02-lateral-movement-evasion-credential
 
           - Operation Daylight Saving:
               path: chapters/chapter-02-investigation/10-investigation-operation-daylight-saving/
@@ -138,7 +138,7 @@ docusaurus:
               subsections:
                 - Reading/:  reading/
                 - Drills/:   drills/
-                - Slides:    /build/embed_reveal/ch02-operation-daylight-saving
+                # - Slides:    /build/embed_reveal/ch02-operation-daylight-saving
     static_assets:
       - ch01-forensic-investigation-methodology: /build/make_assets/chapters/chapter-01-digital-forensics/01-forensic-investigation-methodology/slides/_site
       - ch01-evidence-acquisition-integrity: /build/make_assets/chapters/chapter-01-digital-forensics/02-evidence-acquisition&integrity/slides/_site

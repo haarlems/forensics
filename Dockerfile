@@ -1,4 +1,4 @@
-FROM ghcr.io/open-education-hub/openedu-builder:0.6.2
+FROM ghcr.io/open-education-hub/openedu-builder:0.5.1
 
 # Install tools.
 RUN apt-get update && \
@@ -7,8 +7,8 @@ RUN apt-get update && \
 # Install MarkdownPP using pip.
 RUN pip install MarkdownPP
 
-# Install node 20
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+# Install node LTS (16)
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
     apt-get update && \
     apt-get install -yqq nodejs
 
@@ -16,8 +16,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
 RUN npm install -g reveal-md
 
 # Install Docusaurus.
-# RUN npm install create-docusaurus@2.1.0
-RUN npm install create-docusaurus@2.4.3
+RUN npm install create-docusaurus@2.1.0
 
 WORKDIR /content
 

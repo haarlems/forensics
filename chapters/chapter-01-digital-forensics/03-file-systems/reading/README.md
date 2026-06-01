@@ -116,11 +116,25 @@ _image source: ntfs.com_ <br />
 _image source: Hansen, K.H., Toolan, F., Decoding the APFS file system, Digital Investigation (2017)_ <br />
 ### Directory structure
 ![](../media/mac-dir.png)
+
+## File system examination tools
+The Sleuth Kit (TSK) is a collection of command-line tools for examining disk images at the file system layer.
+### fsstat (file system layer)
+Displays file system metadata from the superblock: type, block size, inode count, and layout.
+### fls (file name layer)
+Lists file and directory names in a disk image, including deleted entries.
+### istat (metadata layer)
+Shows the inode record for a specific file: timestamps, permissions, owner, and block pointers.
+### icat (data layer)
+Extracts the contents of a file by inode number, even if deleted.<br />
+
+Used together, `fls` identifies deleted files by inode, `istat` confirms the inode is still allocated on disk, and `icat` recovers the contents.
+
 ## File carving
-- used to extract data from unallocated space on disk, in the absence of file system metadata
-- carving based on file structure (magic bytes, header, footer if it exists)
+- used to extract data from unallocated space on disk, in the absence of file system metadata (for example, when an inode has been deallocated in EXT4 or an $MFT record reused in NTFS)
+- carving is based on file structure (magic bytes, header, footer if it exists)
 - used when simple file recovery methods fail (files are corrupted, deleted, overwritten)
-- main challenge: time-consuming
+- main challenges: time-consuming on large disks, false positives that need manual review
 - tools:
   - hex editors (hexedit, HxD, Bless, etc)
   - scalpel
@@ -141,7 +155,14 @@ _image source: Hansen, K.H., Toolan, F., Decoding the APFS file system, Digital 
   - analyze any differences between timestamps to indicate tampering
  
 ## Summary
-- summary
+- a file system is the OS layer that maps human-readable names to raw disk blocks via inodes (EXT4) or MFT records (NTFS)
+- EXT4 is organized in five layers: physical, file system, file name, metadata, and data
+- NTFS stores per-file metadata in the $MFT, supports alternate data streams, commonly abused to hide payloads
+- FAT is simple and widely used on removable media
+- APFS is the default for Apple devices
+- deleted file recovery: use fls to find deallocated inodes, istat to confirm data blocks are intact, icat to extract content
+- file carving: recovers data from unallocated space when metadata is gone
+- timestomping manipulates MACB timestamps to make timeline analysis harder but it is still detectable
 
 ## Drills
 ### Challenge 1 

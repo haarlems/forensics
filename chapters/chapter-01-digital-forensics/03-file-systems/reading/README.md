@@ -22,8 +22,8 @@ A file is an abstraction, that gives a way to store data on the disk and read it
     - the _header_ starts with a so-called _magic number_, identifying the file type
     - after the header are the _text_ and _data_ of the program itself
     - these are loaded into memory and relocated using the _relocation bits_
-    - the _symbol table_ is used for debugging
-![Executable Sections](../media/exesections.png) <br />
+    - the _symbol table_ is used for debugging<br />
+![Executable Sections](../media/exesections.png)<br />
 _image source: Modern Operating Systems by Andrew Tanenbaum_
 ## Directories
 To keep track of files, file systems have directories, which are themselves files.

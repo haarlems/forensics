@@ -12,7 +12,16 @@ make_assets:
   options:
     command: make
     locations:
-      - chapters/template-chapter/template-topic/slides
+      - chapters/chapter-01-digital-forensics/01-forensic-investigation-methodology/slides
+      - chapters/chapter-01-digital-forensics/02-evidence-acquisition&integrity/slides
+      - chapters/chapter-01-digital-forensics/03-file-systems/slides
+      - chapters/chapter-01-digital-forensics/04-disk-analysis/slides
+      - chapters/chapter-01-digital-forensics/05-memory-analysis/slides
+      - chapters/chapter-01-digital-forensics/06-network-analysis/slides
+      - chapters/chapter-02-investigation/07-investigation-initial-access-execution/slides
+      - chapters/chapter-02-investigation/08-investigation-persistence-privesc/slides
+      - chapters/chapter-02-investigation/09-investigation-lateral-movement-devense-evasion-credential-access/slides
+      - chapters/chapter-02-investigation/10-investigation-operation-daylight-saving/slides
     args:
       - all
 
@@ -22,7 +31,16 @@ embed_reveal:
     target: docusaurus
     extension: mdx
     build:
-      template-chapter-template-topic: template-chapter-template-topic
+      ch01-forensic-investigation-methodology: ch01-forensic-investigation-methodology
+      ch01-evidence-acquisition-integrity: ch01-evidence-acquisition-integrity
+      ch01-file-systems: ch01-file-systems
+      ch01-disk-analysis: ch01-disk-analysis
+      ch01-memory-analysis: ch01-memory-analysis
+      ch01-network-analysis: ch01-network-analysis
+      ch02-initial-access-execution: ch02-initial-access-execution
+      ch02-persistence-privesc: ch02-persistence-privesc
+      ch02-lateral-movement-evasion-credential: ch02-lateral-movement-evasion-credential
+      ch02-operation-daylight-saving: ch02-operation-daylight-saving
 
 docusaurus:
   plugin: docusaurus
@@ -31,22 +49,107 @@ docusaurus:
     sidebar: js
     structure:
       - Introduction: chapters/landing-page/README.md
-      - Template Chapter:
-          - Template Topic:
-              path: chapters/template-chapter/template-topic/
+      - Chapter 1 - Digital Forensics:
+          - Forensic Investigation Methodology:
+              path: chapters/chapter-01-digital-forensics/01-forensic-investigation-methodology/
               extra:
                 - media/
               subsections:
                 - Reading/: reading/
                 - Drills/: drills/
-                - Guides/: guides/
-                - Slides: /build/embed_reveal/template-chapter-template-topic
-          - Yet Another Topic:
-              path: chapters/template-chapter/yet-another-topic/
+                - Slides: /build/embed_reveal/ch01-forensic-investigation-methodology
+
+          - Evidence Acquisition & Integrity:
+              path: chapters/chapter-01-digital-forensics/02-evidence-acquisition&integrity/
+              extra:
+                - media/
               subsections:
-                - Drills/: drills/
+                - Reading/:  reading/
+                - Drills/:   drills/
+                - Slides:    /build/embed_reveal/ch01-evidence-acquisition-integrity
+
+          - File Systems:
+              path: chapters/chapter-01-digital-forensics/03-file-systems/
+              extra:
+                - media/
+              subsections:
+                - Reading/:  reading/
+                - Drills/:   drills/
+                - Slides:    /build/embed_reveal/ch01-file-systems
+
+          - Disk Analysis:
+              path: chapters/chapter-01-digital-forensics/04-disk-analysis/
+              extra:
+                - media/
+              subsections:
+                - Reading/:  reading/
+                - Drills/:   drills/
+                - Slides:    /build/embed_reveal/ch01-disk-analysis
+
+          - Memory Analysis:
+              path: chapters/chapter-01-digital-forensics/05-memory-analysis/
+              extra:
+                - media/
+              subsections:
+                - Reading/:  reading/
+                - Drills/:   drills/
+                - Slides:    /build/embed_reveal/ch01-memory-analysis
+
+          - Network Analysis:
+              path: chapters/chapter-01-digital-forensics/06-network-analysis/
+              extra:
+                - media/
+              subsections:
+                - Reading/:  reading/
+                - Drills/:   drills/
+                - Slides:    /build/embed_reveal/ch01-network-analysis
+      - Chapter 2 - Investigation:
+          - Initial Access & Execution:
+              path: chapters/chapter-02-investigation/07-investigation-initial-access-execution/
+              extra:
+                - media/
+              subsections:
+                - Reading/:  reading/
+                - Drills/:   drills/
+                - Slides:    /build/embed_reveal/ch02-initial-access-execution
+
+          - Persistence & Privilege Escalation:
+              path: chapters/chapter-02-investigation/08-investigation-persistence-privesc/
+              extra:
+                - media/
+              subsections:
+                - Reading/:  reading/
+                - Drills/:   drills/
+                - Slides:    /build/embed_reveal/ch02-persistence-privesc
+
+          - Lateral Movement, Defense Evasion & Credential Access:
+              path: chapters/chapter-02-investigation/09-investigation-lateral-movement-devense-evasion-credential-access/
+              extra:
+                - media/
+              subsections:
+                - Reading/:  reading/
+                - Drills/:   drills/
+                - Slides:    /build/embed_reveal/ch02-lateral-movement-evasion-credential
+
+          - Operation Daylight Saving:
+              path: chapters/chapter-02-investigation/10-investigation-operation-daylight-saving/
+              extra:
+                - media/
+              subsections:
+                - Reading/:  reading/
+                - Drills/:   drills/
+                - Slides:    /build/embed_reveal/ch02-operation-daylight-saving
     static_assets:
-      - template-chapter-template-topic: /build/make_assets/chapters/template-chapter/template-topic/slides/_site
+      - ch01-forensic-investigation-methodology: /build/make_assets/chapters/chapter-01-digital-forensics/01-forensic-investigation-methodology/slides/_site
+      - ch01-evidence-acquisition-integrity: /build/make_assets/chapters/chapter-01-digital-forensics/02-evidence-acquisition&integrity/slides/_site
+      - ch01-file-systems: /build/make_assets/chapters/chapter-01-digital-forensics/03-file-systems/slides/_site
+      - ch01-disk-analysis: /build/make_assets/chapters/chapter-01-digital-forensics/04-disk-analysis/slides/_site
+      - ch01-memory-analysis: /build/make_assets/chapters/chapter-01-digital-forensics/05-memory-analysis/slides/_site
+      - ch01-network-analysis: /build/make_assets/chapters/chapter-01-digital-forensics/06-network-analysis/slides/_site
+      - ch02-initial-access-execution: /build/make_assets/chapters/chapter-02-investigation/07-investigation-initial-access-execution/slides/_site
+      - ch02-persistence-privesc: /build/make_assets/chapters/chapter-02-investigation/08-investigation-persistence-privesc/slides/_site
+      - ch02-lateral-movement-evasion-credential: /build/make_assets/chapters/chapter-02-investigation/09-investigation-lateral-movement-devense-evasion-credential-access/slides/_site
+      - ch02-operation-daylight-saving: /build/make_assets/chapters/chapter-02-investigation/10-investigation-operation-daylight-saving/slides/_site
     config_meta:
       title: forensics
       url: http://haarlems.github.io/
@@ -57,4 +160,4 @@ docusaurus:
       Main site: http://example.com
       OCW: http://example.com
       Facebook: http://example.com
-    copyright_string: Example Copyright
+    copyright_string: SSS

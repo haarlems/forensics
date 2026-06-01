@@ -102,7 +102,7 @@ docusaurus:
               subsections:
                 - Reading/:  reading/
                 - Drills/:   drills/
-                - Slides:    /build/embed_reveal/ch01-network-analysis
+                # - Slides:    /build/embed_reveal/ch01-network-analysis
       - Chapter 2 - Investigation:
           - Initial Access & Execution:
               path: chapters/chapter-02-investigation/07-investigation-initial-access-execution/

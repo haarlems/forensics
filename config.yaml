@@ -139,17 +139,17 @@ docusaurus:
                 - Reading/:  reading/
                 - Drills/:   drills/
                 # - Slides:    /build/embed_reveal/ch02-operation-daylight-saving
-    static_assets:
-      - ch01-forensic-investigation-methodology: /build/make_assets/chapters/chapter-01-digital-forensics/01-forensic-investigation-methodology/slides/_site
-      - ch01-evidence-acquisition-integrity: /build/make_assets/chapters/chapter-01-digital-forensics/02-evidence-acquisition&integrity/slides/_site
-      - ch01-file-systems: /build/make_assets/chapters/chapter-01-digital-forensics/03-file-systems/slides/_site
-      - ch01-disk-analysis: /build/make_assets/chapters/chapter-01-digital-forensics/04-disk-analysis/slides/_site
-      - ch01-memory-analysis: /build/make_assets/chapters/chapter-01-digital-forensics/05-memory-analysis/slides/_site
-      - ch01-network-analysis: /build/make_assets/chapters/chapter-01-digital-forensics/06-network-analysis/slides/_site
-      - ch02-initial-access-execution: /build/make_assets/chapters/chapter-02-investigation/07-investigation-initial-access-execution/slides/_site
-      - ch02-persistence-privesc: /build/make_assets/chapters/chapter-02-investigation/08-investigation-persistence-privesc/slides/_site
-      - ch02-lateral-movement-evasion-credential: /build/make_assets/chapters/chapter-02-investigation/09-investigation-lateral-movement-devense-evasion-credential-access/slides/_site
-      - ch02-operation-daylight-saving: /build/make_assets/chapters/chapter-02-investigation/10-investigation-operation-daylight-saving/slides/_site
+    # static_assets:
+    #   - ch01-forensic-investigation-methodology: /build/make_assets/chapters/chapter-01-digital-forensics/01-forensic-investigation-methodology/slides/_site
+    #   - ch01-evidence-acquisition-integrity: /build/make_assets/chapters/chapter-01-digital-forensics/02-evidence-acquisition&integrity/slides/_site
+    #   - ch01-file-systems: /build/make_assets/chapters/chapter-01-digital-forensics/03-file-systems/slides/_site
+    #   - ch01-disk-analysis: /build/make_assets/chapters/chapter-01-digital-forensics/04-disk-analysis/slides/_site
+    #   - ch01-memory-analysis: /build/make_assets/chapters/chapter-01-digital-forensics/05-memory-analysis/slides/_site
+    #   - ch01-network-analysis: /build/make_assets/chapters/chapter-01-digital-forensics/06-network-analysis/slides/_site
+    #   - ch02-initial-access-execution: /build/make_assets/chapters/chapter-02-investigation/07-investigation-initial-access-execution/slides/_site
+    #   - ch02-persistence-privesc: /build/make_assets/chapters/chapter-02-investigation/08-investigation-persistence-privesc/slides/_site
+    #   - ch02-lateral-movement-evasion-credential: /build/make_assets/chapters/chapter-02-investigation/09-investigation-lateral-movement-devense-evasion-credential-access/slides/_site
+    #   - ch02-operation-daylight-saving: /build/make_assets/chapters/chapter-02-investigation/10-investigation-operation-daylight-saving/slides/_site
     config_meta:
       title: forensics
       url: http://haarlems.github.io/

@@ -1,1 +1,1 @@
-../../../../common/slides/Makefile
+include ../../../../common/slides/Makefile

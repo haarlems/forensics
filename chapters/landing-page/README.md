@@ -4,9 +4,9 @@ slug: /
 
 # Introduction
 
-This is a landing page for the contents of this course.
+This is a landing page for the contents of the Forensics course.
 Here you will find all the documentation needed for this course.
-It is meant to be used by teachers, trainers, students and hobbyists who want to learn about topics on calculus and statistics.
+It is meant to be used by teachers, trainers, students and hobbyists who want to learn about topics on digital forensics.
 
 The course is structured in chapters, each with their own sections.
 See chapters in the sidebar or in the top-level menu.

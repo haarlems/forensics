@@ -7,8 +7,8 @@ RUN apt-get update && \
 # Install MarkdownPP using pip.
 RUN pip install MarkdownPP
 
-# Install node LTS (16)
-RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
+# Install node 20
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get update && \
     apt-get install -yqq nodejs
 

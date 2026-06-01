@@ -27,8 +27,8 @@ jobs:
           push: false
           load: true
           tags: oer-template/docusaurus:latest
-          cache-from: type=gha
-          cache-to: type=gha
+          # cache-from: type=gha
+          # cache-to: type=gha
 
       - name: Load image
         run: |

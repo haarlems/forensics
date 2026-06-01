@@ -1,1 +1,0 @@
-include ../../../../common/slides/Makefile

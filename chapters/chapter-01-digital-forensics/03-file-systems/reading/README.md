@@ -43,7 +43,7 @@ To keep track of files, file systems have directories, which are themselves file
 When the file system is organized as a directory tree, file names are specified by one of two methods:
 
 - **absolute path** names always start at the root directory and are unique
-  - In UNIX the components of the path are separated by /. In Windows the separator is \ .
+  - In UNIX the components of the path are separated by /, whilein Windows the separator is \ .
     - The same path name would be:
       - Windows \usr\sss\forensics
       - UNIX /usr/sss/forensics
@@ -64,22 +64,25 @@ _image and layers source: Hal Pomeranz' Linux Forensics_
   - Linux systems often use the old DOS Master Boot Record (MBR) style partitions with four “primary” partitions and chained “extended” (logical) partitions as necessary. GPT (GUID Partition Tables) is a newer disk partitioning scheme designed to overcome the limitations of MBR, and may be found on some Linux systems
   - Even though multiple partitions may exist on the same disk, the Unix operating system treats them as independent devices and performs file I/O via individual entries in the /dev directory— e,g., /dev/sdal, /dev/sda2
 - **File System Layer**: Contains all the config and management data associated with the file systems in each partition on the disk
-  - When a file system is created in a partition, a data structure is created at the beginning of the partition to define the attributes of the file system. This is called a **superblock**, and it contains:
+  - When a file system is created in a partition, a data structure is created at the beginning of the partition to define the attributes of the file system; this is called a **superblock**, and it contains:
     -  FS type/size, block size, number of blocks/inodes, etc.
     -  Modification time, last mounted on, clean/dirty status
     -  Pointer to inode for file system journal (EXT3 and above)
+
 - **File Name Layer** (AKA Human Interface Layer): responsible for mapping human readable file names to metadata addresses
   - **Directory files** associate _file names_ to index node (_inode_) numbers in the layer below
   - Directories give the file system its hierarchical structure
+
 - **Metadata Layer**: Contains inodes, the data structures responsible for definition and delineation of files
-    - Every file has an inode that contains:
-      - File type
-      - Access rights
-      - Owners
-      - Timestamps
-      - Size
-      - Pointers to data blocks
-    - Inodes store everything about the file that you see in the output of "ls — l" except for the file name 
+  - Every file has an inode that contains:
+    - File type
+    - Access rights
+    - Owners
+    - Timestamps
+    - Size
+    - Pointers to data blocks
+  - Inodes store everything about the file that you see in the output of "ls — l" except for the file name
+
 - **Data Layer**: Stores actual file contents - referred to as blocks in Unix file systems (Windows file systems use the term _clusters_ instead)
   - Blocks are composed of sectors (usually 8 in EXT)
     - sectors are the smallest addressable unit of file I/O (usually 512 bytes)
@@ -90,7 +93,7 @@ _image and layers source: Hal Pomeranz' Linux Forensics_
 
 ### Directory structure
 
-![](../media/unix-dir.png) <br />
+![Linux Forensics](../media/unix-dir.png) <br />
 _image: Hal Pomeranz' Linux Forensics_
 
 ## NTFS
@@ -106,14 +109,14 @@ Formatting a volume with NTFS results in the creation of several system metadata
 ### Layout
 
 ![ntfs](../media/ntfs.png)<br />
-_image source: ntfs.com_
+_image source: `ntfs.com`_
 
 - an NTFS volume starts with the Partition Boot Sector (**$Boot** metadata file), beginning at sector 0 and can be up to 16 sectors<br />
 - $Boot describes NTFS volume information (bytes per sector, sectors per cluster, etc) and the location of the $MFT
 - $MFT is the main metadata file, each file in the NTFS volume is represented by a record in this table
 
 ![$MFT](../media/mft.png)<br />
-_image source: ntfs.com_
+_image source: `ntfs.com`_
 
 ### Directory structure
 
@@ -140,7 +143,7 @@ Attackers commonly abuse Alternate Data Streams to [hide artifacts](https://atta
 ### Structure
 
 ![FAT](../media/fat.png)<br />
-_image source: ntfs.com_ <br />
+_image source: `ntfs.com`_ <br />
 
 ## APFS
 
@@ -151,11 +154,11 @@ _image source: ntfs.com_ <br />
 ### Structure
 
 ![APFS](../media/apfs.png) <br />
-_image source: Hansen, K.H., Toolan, F., Decoding the APFS file system, Digital Investigation (2017)_ <br />
+_image source: `Hansen, K.H., Toolan, F., Decoding the APFS file system, Digital Investigation (2017)`_ <br />
 
 ### Directory structure
 
-![](../media/mac-dir.png)
+![MAC directory structure](../media/mac-dir.png)
 
 ## File system examination tools
 

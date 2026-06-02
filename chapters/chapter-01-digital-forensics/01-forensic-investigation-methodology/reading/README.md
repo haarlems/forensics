@@ -1,8 +1,7 @@
 # Forensic investigation methodology
 
 [Digital forensics](https://www.nist.gov/digital-evidence) is the field of forensic science concerned with ***retrieving, storing and analyzing*** data that can be useful in investigations.  <br />
-This includes information retrieved from computers, mobile phones, IoT devices, motor vehicles, drones, satellites or the cloud. 
-<br />
+This includes information retrieved from computers, mobile phones, IoT devices, motor vehicles, drones, satellites or the cloud.<br />
 
 The main goal is to identify the **root cause** of an incident.
 
@@ -20,7 +19,7 @@ This track focuses on the Digital Forensics process.<br />
 For those seeking more info on Incident Response, refer to the [NIST Special Publication 800-61r3](https://csrc.nist.gov/pubs/sp/800/61/r3/final). [2]<br />
 
 ![DFIR](../media/dfir.png) <br />
-*image source: WIZ* 
+*image source: WIZ*
 
 ## Phases of the [digital forensic process](https://www.unodc.org/cld/en/education/tertiary/cybercrime/module-4/key-issues/standards-and-best-practices-for-digital-forensics.html)
 
@@ -40,7 +39,7 @@ The following phases are part of the forensic process, though not included in th
 
 A key principle in forensics is **Locard's principle of exchange**, often summarized as "every contact leaves a trace". <br />
 It states that when a criminal comes in contact with an object, or a person, a cross-transfer of **evidence** occurs. <br />
-Main _**types of evidence**_ retrieved and analyzed:
+Main ***types of evidence*** retrieved and analyzed:
 
 - disk (files, logs, command history, browser artifacts, etc.)
 - memory (process, linked libraries, network connections, etc.)
@@ -48,7 +47,8 @@ Main _**types of evidence**_ retrieved and analyzed:
 
 ### Indicators of compromise
 
-IoCs (or eyeoks, depending on who you ask) represent evidence that an attacker has breached an entity’s network or endpoint. Indicators may be email based, network, host or behavioural. They may include:
+IoCs (or eyeoks, depending on who you ask) represent evidence that an attacker has breached an entity’s network or endpoint. Indicators may be email based, network, host or behavioural.
+They may include:
 
 - unusual network traffic
 - suspicious file hashes
@@ -56,7 +56,7 @@ IoCs (or eyeoks, depending on who you ask) represent evidence that an attacker h
 - suspicious login failures
 - unauthorized changes to system configurations, and more
 
-IoCs can be: 
+IoCs can be:
 
 - atomic (IPs, domain names that tie back to an adversary C2 infrastructure)
 - computed (hashes)
@@ -68,7 +68,6 @@ It states:
 
 > *"For every intrusion event, there exists an adversary taking a step toward an
 > intended goal by using a capability over infrastructure against a victim."*
-
 
 ![Diamond model](../media/diamondmodel.png)<br />
 *[The Diamond Model of Intrusion Analysis](https://www.researchgate.net/publication/379381999_The_Diamond_Model_of_Intrusion_Analysis) by Sergio Caltagirone, Andrew Pendergast, Cristopher Betz*
@@ -94,7 +93,7 @@ This includes C2 servers, domains, IP addresses, compromised third-party systems
 The target of the intrusion: an organization, network, system, or individual.
 
 The model shows the **relationships** between components.<br />
-Knowing one component allows investigators to pivot: a known IP (infrastructure) can reveal other victims; a malware hash (capability) can surface related campaigns; a victim profile can predict future targets.<br />
+Knowing one component allows investigators to pivot: a known IP (infrastructure) can reveal other victims, a malware hash (capability) can surface related campaigns, a victim profile can predict future targets.<br />
 The cases below show the model in practice.
 
 ## Case examples
@@ -104,7 +103,7 @@ The cases below show the model in practice.
 - initial access: RDP with compromised credentials to internet-exposed system
 - internal recon: enumerate virtual infrastructure and file shares using standard windows utilities and [netscan](https://www.softperfect.com/products/networkscanner/), then [NetExec](https://github.com/Pennyw0rth/NetExec)
 - lateral movement: to Domain Controller via separate compromised domain account (likely obtained from initial access broker)
-- persistence: create new accounts via [dsa.msc](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage-user-accounts-in-windows-server), install AnyDesk client 
+- persistence: create new accounts via [dsa.msc](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage-user-accounts-in-windows-server), install AnyDesk client
 - privilege escalation: add new accounts to privileged groups
 - exfil: sensitive files from network shares, 7z compressed via temporary file service [temp.sh](http://temp.sh)
 - c2: RDP, AnyDesk (installed but not used)
@@ -115,14 +114,14 @@ The cases below show the model in practice.
 
 [From a Single Click: How Lunar Spider Enabled a Near Two-Month Intrusion](https://thedfirreport.com/2025/09/29/from-a-single-click-how-lunar-spider-enabled-a-near-two-month-intrusion/)
 
-- initial access: javascript file disguised as tax form, downloads and executes Brute Ratel via MSI installer
+- initial access: JavaScript file disguised as tax form, downloads and executes Brute Ratel via MSI installer
 - internal recon: standard windows utilities, ADFind, rustscan, powerview
 - lateral movement: PsExec, custom tool using Zerologon (CVE-2020-1472), RDP
 - persistence: registry Run key named Update executing Brute Ratel badger, custom .NET backdoor via scheduled task, setup an additional C2 channel
-- privilege escalation: Windows’ Secondary Logon service to enable runas with admin credentials found in unattend.xml file, UAC bypass via Cobalt Strike [uac-token-duplication](https://hstechdocs.helpsystems.com/manuals/cobaltstrike/current/userguide/content/topics/post-exploitation_privilege-escalation.htm)
+- privilege escalation: Windows’ Secondary Logon service to enable runas with admin credentials found in `unattend.xml` file, UAC bypass via Cobalt Strike [uac-token-duplication](https://hstechdocs.helpsystems.com/manuals/cobaltstrike/current/userguide/content/topics/post-exploitation_privilege-escalation.htm)
 - exfil: Rclone, FTP
-- c2: Latrodectus/BackConnect VNC, Brute Ratel, lsassa.exe .NET malware, metasploit, Cobalt Strike
-- credential harvesting: lsass, Latrodectus stealer module extracted from Outlook by querying registry keys, unattend.xml file, [.ps1 file](https://github.com/sadshade/veeam-creds) targeting backup software Veeam<br />
+- c2: Latrodectus/BackConnect VNC, Brute Ratel, `lsassa.exe` `.NET` malware, metasploit, Cobalt Strike
+- credential harvesting: lsass, Latrodectus stealer module extracted from Outlook by querying registry keys, `unattend.xml` file, [.ps1 file](https://github.com/sadshade/veeam-creds) targeting backup software Veeam<br />
 
 ![Diamond model](../media/diamond01lunar.png)
 *image source: the DFIR Report*
@@ -154,7 +153,6 @@ Example [chain of custody form](https://www.oreilly.com/library/view/implementin
 - DFIR case reports provide examples
 - investigator's challenges: extraction, finding evidence in large amounts of data, reliability
 - chain of custody is a priority
-
 
 ## Drills
 

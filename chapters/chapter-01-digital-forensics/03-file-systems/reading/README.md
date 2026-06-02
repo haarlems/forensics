@@ -81,7 +81,7 @@ _image and layers source: Hal Pomeranz' Linux Forensics_
     - Timestamps
     - Size
     - Pointers to data blocks
-  - Inodes store everything about the file that you see in the output of "ls — l" except for the filename
+  - Inodes store everything about the file that you see in the output of "ls -l" except for the filename
 
 - **Data Layer**: Stores actual file contents - referred to as blocks in Unix file systems (Windows file systems use the term _clusters_ instead)
   - Blocks are composed of sectors (usually 8 in EXT)

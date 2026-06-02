@@ -45,9 +45,10 @@ When the file system is organized as a directory tree, filenames are specified b
 - **absolute path** names always start at the root directory and are unique
   - in UNIX the components of the path are separated by / (forward slash), in Windows the separator is \ (backslash).
     - the same path name would be:
-      - Windows `\usr\sss\forensics`
       - UNIX `/usr/sss/forensics`
-- **relative path** names, used in conjunction with the concept of the current working directory
+      - Windows `\usr\sss\forensics`
+
+- **relative path** names, relative to the current working directory
 
 ## EXT4
 
@@ -61,7 +62,7 @@ Other Unix file systems include ZFS, or BTRFS, but forensic support is still lim
 _image and layers source: Hal Pomeranz' Linux Forensics_
 
 - **Physical Layer**: The physical drive or device and the partitions on it.
-  - linux systems often use the old DOS Master Boot Record (MBR) style partitions with four “primary” partitions and chained “extended” (logical) partitions as necessary. GPT (GUID Partition Tables) is a newer disk partitioning scheme designed to overcome the limitations of MBR, and may be found on some Linux systems
+  - linux systems often use the old DOS Master Boot Record (MBR) style partitions with four "primary" partitions and chained "extended" (logical) partitions as necessary. GPT (GUID Partition Tables) is a newer disk partitioning scheme designed to overcome the limitations of MBR, and may be found on some Linux systems
   - even though multiple partitions may exist on the same disk, the Unix operating system treats them as independent devices and performs file I/O via individual entries in the `/dev` directory (`/dev/sda1`, `/dev/sda2`)
 - **File System Layer**: Contains all the config and management data associated with the file systems in each partition on the disk
   - when a file system is created in a partition, a data structure is created at the beginning of the partition to define the attributes of the file system; this is called a **superblock**, and it contains:
@@ -196,12 +197,22 @@ Used together, `fls` identifies deleted files by inode, `istat` confirms the ino
 - carving is based on file structure (magic bytes, header, footer if it exists)
 - used when simple file recovery methods fail (files are corrupted, deleted, overwritten)
 - main challenges: time-consuming on large disks, false positives that need manual review
-- tools:
-  - hex editors (hexedit, HxD, Bless, etc)
-  - scalpel
-  - foremost
-  - encase
-  - binwalk
+
+  
+### Tools
+
+**Foremost** carves files based on header/footer signatures defined in a config file.<br />
+`foremost -t zip,pdf -i disk.img -o ./output/`
+
+**Scalpel** is similar to foremost but faster, uses a config file (`/etc/scalpel/scalpel.conf`) where file types can be enabled by uncommenting them.<br />
+`scalpel disk.img -o ./output/`
+
+**Binwalk** is useful for finding embedded files and compressed data in binary blobs.<br />
+`binwalk -e image.bin`
+
+Hex editors can be useful for manual carving (**hexedit**, **HxD**, **Bless**, etc).<br />
+
+**Encase** is a forensic suite of tools that includes carving capabilities.<br />
 
 ## Timestamp tampering (timestomping)
 

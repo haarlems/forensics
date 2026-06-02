@@ -126,7 +126,7 @@ Usage:
 
 ### [FTK Imager](https://www.exterro.com/digital-forensics-software/ftk-imager)
 
-Live collection tool to capture disk and memory on Windows. 
+Live collection tool to capture disk and memory on Windows.
 It has a free version and multiple capabilities. <br />
 Options:
 

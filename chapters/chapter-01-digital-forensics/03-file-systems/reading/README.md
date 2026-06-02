@@ -6,7 +6,7 @@ But solid-state drives have become popular as they offer fast random access.
 
 Think of a disk as a sequence of fixed-size blocks supporting two operations:
 
-a. Read block k.
+a. Read block k.<br />
 b. Write block k.<br />
 
 These are very inconvenient operations, especially on large systems used by multiple applications and users.

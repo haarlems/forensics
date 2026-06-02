@@ -1,6 +1,10 @@
 # Disk Analysis
+
 After data has been extracted and measures taken to maintain integrity, we focus on initial event analysis. <br />
-Early triage can offer indication of the type of incident investigated (ransomware, insider threat, cryptojacking, etc.), based on which we look for obvious IoCs. At this stage:
+Early triage can offer indication of the type of incident investigated (ransomware, insider threat, cryptojacking, etc.), based on which we look for obvious IoCs. 
+
+At this stage:
+
 - high potential for false positives
 - include anything that looks suspicious and rule out later
 - analyze system and user activity artifacts, including logs
@@ -9,17 +13,22 @@ Early triage can offer indication of the type of incident investigated (ransomwa
 The disk image used in this class: [TODO](TODO)
 
 ## Looking for evil
+
 Attackers leave breadcrumbs everywhere: program installation, execution, file modification, user account usage.<br />
-Investigators are looking for anything out of the ordinary. This implies taking time to learn what normal looks like.<br />
+Investigators are looking for anything out of the ordinary. <br />
+This implies taking time to learn what normal looks like.<br />
 Types of data on disk:
+
 - file system metadata
 - allocated files 
 - deleted files
 - unallocated space and slack space
 
 ### Timeline analysis
+
 Timeline analysis serves in piecing the breadcrumbs together into a coherent record of the intrusion. Timelines are a guide to evidence, not evidence themselves.<br />
 Timestamps are ephemeral: we only see the last modified time, change time, admin users are allowed to change timestamps.
+
 - on Unix:
   - collect raw timestamp data into a body file (ex. with `fls` from Sleuthkit)
   - generate csv timeline with `mactime`
@@ -27,27 +36,33 @@ Timestamps are ephemeral: we only see the last modified time, change time, admin
 - on Windows:
   - extract the $MFT table with `mftecmd.exe`
   - visualize with Timeline Explorer from EZ Tools
+
 ### Time normalization
+
 - make sure all timestamps are converted to UTC before analysis starts
 - multiple timezones in between physical or cloud investigated devices can slow analysis
 
 ### File system metadata
+
 - inodes on Unix
   - displays inode number, file type, permissions, owner uid/guid, file size, timestamps, block pointers but not the filename
 - $MFT file on Windows
   - displays FILE record header, $STANDARD_INFORMATION, $FILE_NAME, $DATA
 
-![](../media/mft-te.png)
+![mft](../media/mft-te.png)
 
 ### Evidence of execution
+
 - auditd logs, cron logs, shell history, systemd journal
 - Prefetch files, SRUM, Registry (UserAssist, ShimCache / AppCompatCache, AmCache, RunMRU)
 
 ### Evidence of past file presence
+
 - auditd logs, shell history
 - USN Journal, Windows Search Index
 
 ### Log analysis
+
 - unix logs
   - found under /var/log by convention, but can be placed anywhere
   - usually simple text files (easy for attackers to edit or remove)
@@ -71,22 +86,26 @@ Timestamps are ephemeral: we only see the last modified time, change time, admin
     - eventID 10 - process access (indicator of post-exploitation, credential dumping, process injection)
 
 ### App & user activity artifacts
+
 - authentication logs
 - Registry (RecentDocs, OpenSaveMRU, ShellBags)
 
 ### Command history
+
 - bash_history - standard Unix shell command history
   - simple text file, can be easily deleted, more info [here](https://www.youtube.com/watch?v=wv1xqOV2RyE)
 - cmd history
 - powershell history
 
 ### Browser artifacts
+
 - browsing history, search, cookies, credentials, bookmarks, autofill
   - Firefox or Chromium on Unix
   - Chrome or Firefox on Windows
   - Safari on macOS
 
 ### Persistence
+
 - rootkits (Loadable Kernel Modules)
 - scheduled tasks
 - service start-up scripts
@@ -94,6 +113,7 @@ Timestamps are ephemeral: we only see the last modified time, change time, admin
 - Registry (Run/RunOnce Keys, Windows Services, Winlogon, Scheduled Tasks)
 
 ## [Autopsy](https://www.autopsy.com/download/)
+
 - start a case
 - select data source (evidence already acquired)
 - analyze artifacts (installed programs, metadata, recent documents, run programs, shellbags, web accounts, cookies, history)
@@ -101,9 +121,11 @@ Timestamps are ephemeral: we only see the last modified time, change time, admin
 ![Autopsy](../media/autopsy.png)
 
 ## [bulk_extractor](https://github.com/simsong/bulk_extractor)
+
 - scans and extracts structured information (ex. emails, CCN, JPEGs, JSON snippets) without parsing file system structures
 
 ## Summary
+
 - high volume data, high potential for false positives
 - learn what normal looks like, look for outliers
 - convert all timestamps to UTC
@@ -111,14 +133,21 @@ Timestamps are ephemeral: we only see the last modified time, change time, admin
 - analyze logs, user activity artifacts, persistence
 
 ## Drills
+
 ### Challenge 1
+
 Description
+
 ### Challenge 2
+
 Description
+
 ### Challenge 3
+
 Description
 
 ## Further reading
+
 [+] [Windows Registry Forensics](https://www.cybertriage.com/blog/windows-registry-forensics-cheat-sheet-2025/)<br />
 [+] [Windows Event IDs](https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/) <br />
 [+] [Body file](https://wiki.sleuthkit.org/index.php?title=Body_file)<br />

@@ -1,4 +1,5 @@
 # File Systems
+
 All computer applications need to store and retrieve information. Magnetic disks have been used for years for this long-term storage. But solid-state drives have become popular as they offer fast random access. Think of a disk as a sequence of fixed-size blocks supporting two operations:
 1. Read block k.
 2. Write block k. <br />

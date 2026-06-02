@@ -1,11 +1,16 @@
 # File Systems
 
-All computer applications need to store and retrieve information. Magnetic disks have been used for years for this long-term storage. But solid-state drives have become popular as they offer fast random access. Think of a disk as a sequence of fixed-size blocks supporting two operations:
+All computer applications need to store and retrieve information.
+Magnetic disks have been used for years for this long-term storage.
+But solid-state drives have become popular as they offer fast random access.
+
+Think of a disk as a sequence of fixed-size blocks supporting two operations:
 
 1. Read block k.
 2. Write block k. <br />
 
-These are very inconvenient operations, especially on large systems used by multiple applications and users. A few questions that arise:
+These are very inconvenient operations, especially on large systems used by multiple applications and users.
+A few questions that arise:
 
 1. How do you find information?
 2. How do you keep one user from reading another user’s data?
@@ -17,6 +22,7 @@ The part of the operating system dealing with files is the **file system**.
 
 ## Files
 A file is an abstraction, that gives a way to store data on the disk and read it, shielding the user from the details data storage. <br />
+
 - files may have extensions
   - in Unix like systems, extensions are just conventions, not enforced by the OS
   - in Windows systems, extensions are assigned meaning
@@ -26,12 +32,14 @@ A file is an abstraction, that gives a way to store data on the disk and read it
     - after the header are the _text_ and _data_ of the program itself
     - these are loaded into memory and relocated using the _relocation bits_
     - the _symbol table_ is used for debugging<br />
+
 ![Executable Sections](../media/exesections.png)<br />
 _image source: Modern Operating Systems by Andrew Tanenbaum_
 
 ## Directories
 To keep track of files, file systems have directories, which are themselves files.
 When the file system is organized as a directory tree, file names are specified by one of two methods:
+
   - **absolute path** names always start at the root directory and are unique
     - In UNIX the components of the path are separated by /. In Windows the separator is \ .
       - The same path name would be:
@@ -46,6 +54,7 @@ Other Unix file systems include ZFS, ZFS, or BTRFS, but forensic support is stil
 ### Layers
 ![ext](../media/ext.png) <br />
 _image and layers source: Hal Pomeranz' Linux Forensics_
+
 - **Physical Layer**: The physical drive or device and the partitions on it.
   - Linux systems often use the old DOS Master Boot Record (MBR) style partitions with four “primary” partitions and chained “extended” (logical) partitions as necessary. GPT (GUID Partition Tables) is a newer disk partitioning scheme designed to overcome the limitations of MBR, and may be found on some Linux systems
   - Even though multiple partitions may exist on the same disk, the Unix operating system treats them as independent devices and performs file I/O via individual entries in the /dev directory— e,g., /dev/sdal, /dev/sda2
@@ -81,6 +90,7 @@ _image: Hal Pomeranz' Linux Forensics_
 ## NTFS
 New Technology File System (NTFS) is the default file system for modern Windows-based operating systems.<br />
 Formatting a volume with NTFS results in the creation of several system metadata files that store information about all files and folders on the NTFS volume:
+
 - **$MFT** — Master File Table
 - **$Bitmap**
 - **$LogFile**
@@ -89,6 +99,7 @@ Formatting a volume with NTFS results in the creation of several system metadata
 ### Layout
 ![ntfs](../media/ntfs.png)<br />
 _image source: ntfs.com_
+
 - an NTFS volume starts with the Partition Boot Sector (**$Boot** metadata file), beginning at sector 0 and can be up to 16 sectors<br />
 - $Boot describes NTFS volume information (bytes per sector, sectors per cluster, etc) and the location of the $MFT
 - $MFT is the main metadata file, each file in the NTFS volume is represented by a record in this table
@@ -101,13 +112,16 @@ _image source: ntfs.com_
 
 ### Data streams
 NTFS supports multiple data streams:
+
 - a stream name identifies a new data attribute on the file
 - a handle can be opened to each data stream
 
 Example: `file.dat:stream2` <br />
+
 Attackers commonly abuse Alternate Data Streams to [hide artifacts](https://attack.mitre.org/techniques/T1564/004/), like data or payloads, in file metadata instead of file data.
 
 ## FAT
+
 - FAT is a series of simple Windows file systems (FAT12, FAT16 and FAT32), that use a file allocation table
 - a disk formatted with FAT is allocated in clusters, whose size is determined by the size of the volume
 - updating the FAT table is time consuming
@@ -147,6 +161,7 @@ Extracts the contents of a file by inode number, even if deleted.<br />
 Used together, `fls` identifies deleted files by inode, `istat` confirms the inode is still allocated on disk, and `icat` recovers the contents.
 
 ## File carving
+
 - used to extract data from unallocated space on disk, in the absence of file system metadata (for example, when an inode has been deallocated in EXT4 or an $MFT record reused in NTFS)
 - carving is based on file structure (magic bytes, header, footer if it exists)
 - used when simple file recovery methods fail (files are corrupted, deleted, overwritten)
@@ -159,6 +174,7 @@ Used together, `fls` identifies deleted files by inode, `istat` confirms the ino
   - binwalk
 
 ## Timestamp tampering (timestomping)
+
 - used by attackers to modify file MACB (modification, access, change, birth) metadata
   - (M) Modify – Updated when the file contents are changed
   - (A) Access – Updated when the file contents are accessed (usually via cli, accessing a file via GUI does not always update the access time)
@@ -171,6 +187,7 @@ Used together, `fls` identifies deleted files by inode, `istat` confirms the ino
   - analyze any differences between timestamps to indicate tampering
  
 ## Summary
+
 - a file system is the OS layer that maps human-readable names to raw disk blocks via inodes (EXT4) or MFT records (NTFS)
 - EXT4 is organized in five layers: physical, file system, file name, metadata, and data
 - NTFS stores per-file metadata in the $MFT, supports alternate data streams, commonly abused to hide payloads

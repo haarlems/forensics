@@ -6,8 +6,8 @@ But solid-state drives have become popular as they offer fast random access.
 
 Think of a disk as a sequence of fixed-size blocks supporting two operations:
 
-a. Read block k.<br />
-b. Write block k.<br />
+a) Read block k.<br />
+b) Write block k.<br />
 
 These are very inconvenient operations, especially on large systems used by multiple applications and users.
 A few questions that arise:
@@ -40,7 +40,7 @@ _image source: Modern Operating Systems by Andrew Tanenbaum_
 ## Directories
 
 To keep track of files, file systems have directories, which are themselves files.
-When the file system is organized as a directory tree, file names are specified by one of two methods:
+When the file system is organized as a directory tree, filenames are specified by one of two methods:
 
 - **absolute path** names always start at the root directory and are unique
   - In UNIX the components of the path are separated by /, whilein Windows the separator is \ .
@@ -65,12 +65,12 @@ _image and layers source: Hal Pomeranz' Linux Forensics_
   - Even though multiple partitions may exist on the same disk, the Unix operating system treats them as independent devices and performs file I/O via individual entries in the /dev directory— e,g., /dev/sdal, /dev/sda2
 - **File System Layer**: Contains all the config and management data associated with the file systems in each partition on the disk
   - When a file system is created in a partition, a data structure is created at the beginning of the partition to define the attributes of the file system; this is called a **superblock**, and it contains:
-    -  FS type/size, block size, number of blocks/inodes, etc.
-    -  Modification time, last mounted on, clean/dirty status
-    -  Pointer to inode for file system journal (EXT3 and above)
+    - FS type/size, block size, number of blocks/inodes, etc.
+    - Modification time, last mounted on, clean/dirty status
+    - Pointer to inode for file system journal (EXT3 and above)
 
-- **File Name Layer** (AKA Human Interface Layer): responsible for mapping human readable file names to metadata addresses
-  - **Directory files** associate _file names_ to index node (_inode_) numbers in the layer below
+- **Filename Layer** (AKA Human Interface Layer): responsible for mapping human readable filenames to metadata addresses
+  - **Directory files** associate _filenames_ to index node (_inode_) numbers in the layer below
   - Directories give the file system its hierarchical structure
 
 - **Metadata Layer**: Contains inodes, the data structures responsible for definition and delineation of files
@@ -81,7 +81,7 @@ _image and layers source: Hal Pomeranz' Linux Forensics_
     - Timestamps
     - Size
     - Pointers to data blocks
-  - Inodes store everything about the file that you see in the output of "ls — l" except for the file name
+  - Inodes store everything about the file that you see in the output of "ls — l" except for the filename
 
 - **Data Layer**: Stores actual file contents - referred to as blocks in Unix file systems (Windows file systems use the term _clusters_ instead)
   - Blocks are composed of sectors (usually 8 in EXT)
@@ -154,7 +154,7 @@ _image source: `ntfs.com`_ <br />
 ### Structure
 
 ![APFS](../media/apfs.png) <br />
-_image source: `Hansen, K.H., Toolan, F., Decoding the APFS file system, Digital Investigation (2017)`_ <br />
+_image source: `Hansen, K. H., Toolan, F., Decoding the APFS file system, Digital Investigation (2017)`_ <br />
 
 ### Directory structure
 
@@ -168,7 +168,7 @@ The Sleuth Kit (TSK) is a collection of command-line tools for examining disk im
 
 Displays file system metadata from the superblock: type, block size, inode count, and layout.
 
-### fls (file name layer)
+### fls (filename layer)
 
 Lists file and directory names in a disk image, including deleted entries.
 
@@ -211,7 +211,7 @@ Used together, `fls` identifies deleted files by inode, `istat` confirms the ino
 ## Summary
 
 - a file system is the OS layer that maps human-readable names to raw disk blocks via inodes (EXT4) or MFT records (NTFS)
-- EXT4 is organized in five layers: physical, file system, file name, metadata, and data
+- EXT4 is organized in five layers: physical, file system, filename, metadata, and data
 - NTFS stores per-file metadata in the $MFT, supports alternate data streams, commonly abused to hide payloads
 - FAT is simple and widely used on removable media
 - APFS is the default for Apple devices

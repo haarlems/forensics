@@ -53,7 +53,7 @@ When the file system is organized as a directory tree, filenames are specified b
 
 The newest version of an old Unix file system.<br />
 Similar flavors include FFS (BSD) and UFS (Solaris).<br />
-Other Unix file systems include ZFS, ZFS, or BTRFS, but forensic support is still limited for them.<br />
+Other Unix file systems include ZFS, or BTRFS, but forensic support is still limited for them.<br />
 
 ### Layers
 

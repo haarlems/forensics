@@ -6,15 +6,15 @@ But solid-state drives have become popular as they offer fast random access.
 
 Think of a disk as a sequence of fixed-size blocks supporting two operations:
 
-1. Read block k.
-2. Write block k.<br />
+a. Read block k.
+b. Write block k.<br />
 
 These are very inconvenient operations, especially on large systems used by multiple applications and users.
 A few questions that arise:
 
-1. How do you find information?
-2. How do you keep one user from reading another user’s data?
-3. How do you know which blocks are free? [1] <br />
+- How do you find information?
+- How do you keep one user from reading another user’s data?
+- How do you know which blocks are free? [1] <br />
 
 Enter: **the file**. <br />
 <br />
@@ -120,7 +120,7 @@ _image source: `ntfs.com`_
 
 ### Directory structure
 
-![](../media/win-dir.png)
+![Windows Directory structure](../media/win-dir.png)
 
 ### Data streams
 
@@ -207,7 +207,7 @@ Used together, `fls` identifies deleted files by inode, `istat` confirms the ino
   - `istat <disk_image> <inode_number>`
   - parse $LogFile with `logfileparser`
   - analyze any differences between timestamps to indicate tampering
- 
+
 ## Summary
 
 - a file system is the OS layer that maps human-readable names to raw disk blocks via inodes (EXT4) or MFT records (NTFS)
@@ -220,28 +220,43 @@ Used together, `fls` identifies deleted files by inode, `istat` confirms the ino
 - timestomping manipulates MACB timestamps to make timeline analysis harder but it is still detectable
 
 ## Drills
-### Challenge 1 
+
+### Challenge 1
+
 Description
+
 ### Challenge 2
+
 Description
+
 ### Challenge 3
+
 Description
 
 ## Further reading
+
 [1] Modern Operating Systems by Andrew Tanenbaum, chapter 4 File Systems <br />
 [+] [Linux Forensics by Hal Pomeranz](https://archive.org/details/HalLinuxForensics/)<br />
+
 ### EXT4
+
 [+] [Understanding EXT4 (Part 1): Extents](https://web.archive.org/web/20210618013020/https://www.sans.org/blog/understanding-ext4-part-1-extents/)<br />
 [+] [Understanding EXT4 (Part 2): Timestamps](https://web.archive.org/web/20231203210836/https://www.sans.org/blog/understanding-ext4-part-2-timestamps/)<br />
 [+] [Understanding EXT4 (Part 3): Extent Trees](https://web.archive.org/web/20221015052801/https://www.sans.org/blog/understanding-ext4-part-3-extent-trees/)<br />
 [+] [Understanding EXT4 (Part 4): Demolition Derby](https://web.archive.org/web/20221002010854/https://www.sans.org/blog/understanding-ext4-part-4-demolition-derby/)<br />
 [+] [Understanding EXT4 (Part 5): Large Extents](https://web.archive.org/web/20220630125537/https://www.sans.org/blog/understanding-ext4-part-5-large-extents/)<br />
 [+] [Understanding EXT4 (Part 6): Directories](https://web.archive.org/web/20221003153121/https://www.sans.org/blog/understanding-ext4-part-6-directories/)<br />
+
 ### NTFS
+
 [+] [NTFS overview](https://learn.microsoft.com/en-us/windows-server/storage/file-server/ntfs-overview)<br />
 [+] [Another NTFS overview](https://ntfs.com/ntfs_basics.htm)<br />
+
 ### FAT
+
 [+] [FAT overview](https://forensics.wiki/fat/)<br />
+
 ### APFS
+
 [+] [APFS structure](https://ntfs.com/apfs-structure.htm)<br />
 [+] [Sistemul de fisiere APFS](https://support.apple.com/ro-ro/guide/disk-utility/dsku19ed921c/mac)<br />

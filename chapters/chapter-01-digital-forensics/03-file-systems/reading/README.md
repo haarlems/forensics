@@ -1,10 +1,12 @@
 # File Systems
 
 All computer applications need to store and retrieve information. Magnetic disks have been used for years for this long-term storage. But solid-state drives have become popular as they offer fast random access. Think of a disk as a sequence of fixed-size blocks supporting two operations:
+
 1. Read block k.
 2. Write block k. <br />
 
 These are very inconvenient operations, especially on large systems used by multiple applications and users. A few questions that arise:
+
 1. How do you find information?
 2. How do you keep one user from reading another user’s data?
 3. How do you know which blocks are free? [1] <br />
@@ -26,6 +28,7 @@ A file is an abstraction, that gives a way to store data on the disk and read it
     - the _symbol table_ is used for debugging<br />
 ![Executable Sections](../media/exesections.png)<br />
 _image source: Modern Operating Systems by Andrew Tanenbaum_
+
 ## Directories
 To keep track of files, file systems have directories, which are themselves files.
 When the file system is organized as a directory tree, file names are specified by one of two methods:
@@ -39,6 +42,7 @@ When the file system is organized as a directory tree, file names are specified 
 ## EXT4
 The newest version of an old Unix file system. Similar flavors include FFS (BSD) and UFS (Solaris). <br />
 Other Unix file systems include ZFS, ZFS, or BTRFS, but forensic support is still limited for them. <br />
+
 ### Layers
 ![ext](../media/ext.png) <br />
 _image and layers source: Hal Pomeranz' Linux Forensics_
@@ -69,9 +73,11 @@ _image and layers source: Hal Pomeranz' Linux Forensics_
   - Blocks that make up a file are allocated consecutively when possible
   - Blocks are organized into Block Groups of 32K blocks
   - Each block group contains inodes and data blocks
+
 ### Directory structure
 ![](../media/unix-dir.png) <br />
 _image: Hal Pomeranz' Linux Forensics_
+
 ## NTFS
 New Technology File System (NTFS) is the default file system for modern Windows-based operating systems.<br />
 Formatting a volume with NTFS results in the creation of several system metadata files that store information about all files and folders on the NTFS volume:
@@ -89,8 +95,10 @@ _image source: ntfs.com_
 
 ![$MFT](../media/mft.png)<br />
 _image source: ntfs.com_
+
 ### Directory structure
 ![](../media/win-dir.png)
+
 ### Data streams
 NTFS supports multiple data streams:
 - a stream name identifies a new data attribute on the file
@@ -104,6 +112,7 @@ Attackers commonly abuse Alternate Data Streams to [hide artifacts](https://atta
 - a disk formatted with FAT is allocated in clusters, whose size is determined by the size of the volume
 - updating the FAT table is time consuming
 - usually found in older removable media (USB sticks, SD cards, etc)
+
 ### Structure
 ![FAT](../media/fat.png)<br />
 _image source: ntfs.com_ <br />
@@ -112,20 +121,26 @@ _image source: ntfs.com_ <br />
 - default file system for macOS, iOS, tvOS and watchOS
 - structured in a container, which can contain one or multiple volumes (or volume groups)
 - a container is the primary object of storing data
+
 ### Structure
 ![APFS](../media/apfs.png) <br />
 _image source: Hansen, K.H., Toolan, F., Decoding the APFS file system, Digital Investigation (2017)_ <br />
+
 ### Directory structure
 ![](../media/mac-dir.png)
 
 ## File system examination tools
 The Sleuth Kit (TSK) is a collection of command-line tools for examining disk images at the file system layer.
+
 ### fsstat (file system layer)
 Displays file system metadata from the superblock: type, block size, inode count, and layout.
+
 ### fls (file name layer)
 Lists file and directory names in a disk image, including deleted entries.
+
 ### istat (metadata layer)
 Shows the inode record for a specific file: timestamps, permissions, owner, and block pointers.
+
 ### icat (data layer)
 Extracts the contents of a file by inode number, even if deleted.<br />
 

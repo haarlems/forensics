@@ -43,10 +43,10 @@ To keep track of files, file systems have directories, which are themselves file
 When the file system is organized as a directory tree, filenames are specified by one of two methods:
 
 - **absolute path** names always start at the root directory and are unique
-  - In UNIX the components of the path are separated by /, whilein Windows the separator is \ .
-    - The same path name would be:
-      - Windows \usr\sss\forensics
-      - UNIX /usr/sss/forensics
+  - in UNIX the components of the path are separated by / (forward slash), in Windows the separator is \ (backslash).
+    - the same path name would be:
+      - Windows `\usr\sss\forensics`
+      - UNIX `/usr/sss/forensics`
 - **relative path** names, used in conjunction with the concept of the current working directory
 
 ## EXT4
@@ -61,35 +61,35 @@ Other Unix file systems include ZFS, or BTRFS, but forensic support is still lim
 _image and layers source: Hal Pomeranz' Linux Forensics_
 
 - **Physical Layer**: The physical drive or device and the partitions on it.
-  - Linux systems often use the old DOS Master Boot Record (MBR) style partitions with four “primary” partitions and chained “extended” (logical) partitions as necessary. GPT (GUID Partition Tables) is a newer disk partitioning scheme designed to overcome the limitations of MBR, and may be found on some Linux systems
-  - Even though multiple partitions may exist on the same disk, the Unix operating system treats them as independent devices and performs file I/O via individual entries in the `/dev` directory (`/dev/sda1`, `/dev/sda2`)
+  - linux systems often use the old DOS Master Boot Record (MBR) style partitions with four “primary” partitions and chained “extended” (logical) partitions as necessary. GPT (GUID Partition Tables) is a newer disk partitioning scheme designed to overcome the limitations of MBR, and may be found on some Linux systems
+  - even though multiple partitions may exist on the same disk, the Unix operating system treats them as independent devices and performs file I/O via individual entries in the `/dev` directory (`/dev/sda1`, `/dev/sda2`)
 - **File System Layer**: Contains all the config and management data associated with the file systems in each partition on the disk
-  - When a file system is created in a partition, a data structure is created at the beginning of the partition to define the attributes of the file system; this is called a **superblock**, and it contains:
-    - FS type/size, block size, number of blocks/inodes, etc.
-    - Modification time, last mounted on, clean/dirty status
-    - Pointer to inode for file system journal (EXT3 and above)
+  - when a file system is created in a partition, a data structure is created at the beginning of the partition to define the attributes of the file system; this is called a **superblock**, and it contains:
+    - file system type/size, block size, number of blocks/inodes, etc.
+    - modification time, last mounted on, clean/dirty status
+    - pointer to inode for file system journal
 
 - **Filename Layer** (AKA Human Interface Layer): responsible for mapping human readable filenames to metadata addresses
-  - **Directory files** associate _filenames_ to index node (_inode_) numbers in the layer below
-  - Directories give the file system its hierarchical structure
+  - **directory files** associate _filenames_ to index node (_inode_) numbers in the layer below
+  - directories give the file system its hierarchical structure
 
 - **Metadata Layer**: Contains inodes, the data structures responsible for definition and delineation of files
-  - Every file has an inode that contains:
-    - File type
-    - Access rights
-    - Owners
-    - Timestamps
-    - Size
-    - Pointers to data blocks
-  - Inodes store everything about the file that you see in the output of "ls -l" except for the filename
+  - every file has an inode that contains:
+    - file type
+    - access rights
+    - owners
+    - timestamps
+    - size
+    - pointers to data blocks
+  - inodes store everything about the file that you see in the output of `ls -l` except the filename
 
-- **Data Layer**: Stores actual file contents - referred to as blocks in Unix file systems (Windows file systems use the term _clusters_ instead)
-  - Blocks are composed of sectors (usually 8 in EXT)
+- **Data Layer**: stores actual file contents, referred to as blocks in Unix file systems (Windows file systems use the term _clusters_ instead)
+  - blocks are composed of sectors (usually 8 in EXT)
     - sectors are the smallest addressable unit of file I/O (usually 512 bytes)
     - to improve performance, EXT normally performs reads/writes in 4K chunks called blocks (512 x 8 = 4096)
-  - Blocks that make up a file are allocated consecutively when possible
-  - Blocks are organized into Block Groups of 32K blocks
-  - Each block group contains inodes and data blocks
+  - blocks that make up a file are allocated consecutively when possible
+  - blocks are organized into Block Groups of 32K blocks
+  - each block group contains inodes and data blocks
 
 ### Directory structure
 
@@ -101,7 +101,7 @@ _image: Hal Pomeranz' Linux Forensics_
 New Technology File System (NTFS) is the default file system for modern Windows-based operating systems.<br />
 Formatting a volume with NTFS results in the creation of several system metadata files that store information about all files and folders on the NTFS volume:
 
-- **$MFT** — Master File Table
+- **$MFT** (Master File Table)
 - **$Bitmap**
 - **$LogFile**
 - and others.
@@ -112,8 +112,8 @@ Formatting a volume with NTFS results in the creation of several system metadata
 _image source: `ntfs.com`_
 
 - an NTFS volume starts with the Partition Boot Sector (**$Boot** metadata file), beginning at sector 0 and can be up to 16 sectors<br />
-- $Boot describes NTFS volume information (bytes per sector, sectors per cluster, etc) and the location of the $MFT
-- $MFT is the main metadata file, each file in the NTFS volume is represented by a record in this table
+- `$Boot` describes NTFS volume information (bytes per sector, sectors per cluster, etc) and the location of the $MFT
+- `$MFT` is the main metadata file, each file in the NTFS volume is represented by a record in this table
 
 ![$MFT](../media/mft.png)<br />
 _image source: `ntfs.com`_
@@ -211,7 +211,7 @@ Used together, `fls` identifies deleted files by inode, `istat` confirms the ino
   - (C) Change – Metadata change time for the file i.e. file ownership change
   - (B) Birth – Date the file was created. This is based on the operating system time and exists on EXT4
 - purpose: disruption of chronological timeline analysis
-- ex. Windows: check time differences between $STANDARD_INFORMATION and $FILE_NAME attributes and $LogFile
+- example Windows: check time differences between $STANDARD_INFORMATION and $FILE_NAME attributes and $LogFile
   - `istat <disk_image> <inode_number>`
   - parse $LogFile with `logfileparser`
   - analyze any differences between timestamps to indicate tampering

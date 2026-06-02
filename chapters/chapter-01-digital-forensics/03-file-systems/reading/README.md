@@ -62,7 +62,7 @@ _image and layers source: Hal Pomeranz' Linux Forensics_
 
 - **Physical Layer**: The physical drive or device and the partitions on it.
   - Linux systems often use the old DOS Master Boot Record (MBR) style partitions with four “primary” partitions and chained “extended” (logical) partitions as necessary. GPT (GUID Partition Tables) is a newer disk partitioning scheme designed to overcome the limitations of MBR, and may be found on some Linux systems
-  - Even though multiple partitions may exist on the same disk, the Unix operating system treats them as independent devices and performs file I/O via individual entries in the /dev directory— e,g., /dev/sda1, /dev/sda2
+  - Even though multiple partitions may exist on the same disk, the Unix operating system treats them as independent devices and performs file I/O via individual entries in the `/dev` directory (`/dev/sda1`, `/dev/sda2`)
 - **File System Layer**: Contains all the config and management data associated with the file systems in each partition on the disk
   - When a file system is created in a partition, a data structure is created at the beginning of the partition to define the attributes of the file system; this is called a **superblock**, and it contains:
     - FS type/size, block size, number of blocks/inodes, etc.

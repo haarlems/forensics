@@ -37,8 +37,8 @@ The following phases are part of the forensic process, though not included in th
 
 ## Evidence
 
-A key principle in forensics is **Locard's principle of exchange**, often summarized as "every contact leaves a trace". <br />
-It states that when a criminal comes in contact with an object, or a person, a cross-transfer of **evidence** occurs. <br />
+A key principle in forensics is **Locard's principle of exchange**, often summarized as "every contact leaves a trace".<br />
+It states that when a criminal comes in contact with an object, or a person, a cross-transfer of **evidence** occurs.<br />
 Main ***types of evidence*** retrieved and analyzed:
 
 - disk (files, logs, command history, browser artifacts, etc.)
@@ -47,7 +47,8 @@ Main ***types of evidence*** retrieved and analyzed:
 
 ### Indicators of compromise
 
-IoCs (or eyeoks, depending on who you ask) represent evidence that an attacker has breached an entity’s network or endpoint. Indicators may be email based, network, host or behavioural.
+IoCs (or eyeoks, depending on who you ask) represent evidence that an attacker has breached an entity’s network or endpoint.<br />
+Indicators may be email based, network, host or behavioural.
 They may include:
 
 - unusual network traffic

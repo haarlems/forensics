@@ -33,7 +33,7 @@ Commonly used algorithms:
 
 #### Usage examples
 
-```
+``` sh/cmd/PowerShell
 sha256sum <file>
 md5sum <file>
 certutil.exe -hashfile <file> SHA1
@@ -114,20 +114,20 @@ In practice, `E01` is used for most investigations for the integrity verificatio
 ### [UAC](https://github.com/tclahr/uac) - Unix-like Artifacts Collector
 
 Live collection tool for Unix-like operating systems.<br />
-UAC comes with two basic pre-defined profiles:
+UAC comes with two basic predefined profiles:
 
 - `ir_triage` captures important system artifacts needed for typical investigations
 - `full` everything in ir_triage plus browser and other user application artifacts
 
-Usage: 
-```
-./uac -p ir_triage /tmp # Collect all artifacts based on the ir_triage profile, and save the output file to /tmp.
-```
+Usage:
+`./uac -p ir_triage /tmp # Collect all artifacts based on the ir_triage profile, and save the output file to /tmp.`
 
 ![uac](../media/uac.png)
 
 ### [FTK Imager](https://www.exterro.com/digital-forensics-software/ftk-imager)
-Live collection tool to capture disk and memory on Windows. It has a free version and multiple capabilities. <br />
+
+Live collection tool to capture disk and memory on Windows. 
+It has a free version and multiple capabilities. <br />
 Options:
 
 - create disk image
@@ -145,16 +145,17 @@ Options:
 - JLECmd (jumplist parser)
 
 ![ez](../media/ez.png) <br />
-*image source: ericzimmerman.github.io*
+_image source: `ericzimmerman.github.io`_
 
 ## Evidence acquisition - Network
 
 ### [tcpdump](https://www.tcpdump.org/)
 
-Command line packet-capture and inspection tool, with powerful filtering capabilities.<br />
+Command-line packet-capture and inspection tool, with powerful filtering capabilities.<br />
 Used to capture traffic on a host during an investigation, or quickly inspecting a pcap without a GUI.<br />
 Usage:
-```
+
+``` bash
 # Capture all traffic on interface eth0
 sudo tcpdump -i eth0
 # Capture all traffic on interface eth0 on port 80
@@ -164,6 +165,7 @@ sudo tcpdump -i eth0 port 80 -n
 # Read traffic from a file with no name or port resolution
 sudo tcpdump -nr file.pcap 
 ```
+
 ![tcpdump](../media/tcpdump.png)<br />
 
 ### [Wireshark](https://www.wireshark.org/download.html)
@@ -174,9 +176,10 @@ GUI packet-capture and inspection tool, allows analysis in a graphical interface
 
 ### [Arkime](https://github.com/arkime/arkime)
 
-Arkime is an open-source network analysis and packet capture system that allows large-scale operations. 
-Can be deployed on multiple systems and handle tens of GB/sec. 
+Arkime is an open-source network analysis and packet capture system that allows large-scale operations.
+Can be deployed on multiple systems and handle tens of GB/sec.
 3 main components:
+
 - capture
 - viewer
 - opensearch / elasticsearch
@@ -193,8 +196,7 @@ _image source: [arkime](https://github.com/arkime/arkimeweb/blob/main/assets/ses
 Tool for collecting host based state information remotely via agents deployed on hosts. <br />
 Typical deployment: <br />
 ![velociraptor](../media/velociraptor.png) <br />
-*image source: docs.velociraptor.app*
-
+_image source: `docs.velociraptor.app`_
 
 ## Time normalization
 
@@ -206,6 +208,7 @@ Typical deployment: <br />
 ## Summary
 
 ![evidence-acquisition](../media/evidence-acquisition.png)
+
 - acquire data from hosts and network devices, local or remote
 - prioritize by volatility
 - preserve evidence integrity
@@ -238,5 +241,5 @@ Description
 [+] [Wireshark](https://www.wireshark.org/download.html)<br />
 [+] [Velociraptor](https://github.com/Velocidex/velociraptor)<br />
 [+] [Artifact collection matrix](https://github.com/swisscom/ArtifactCollectionMatrix)<br />
-[+] [Date and Time on the Internet: Timestamps](https://datatracker.ietf.org/doc/html/rfc3339)<br />
+[+] [Date and Time on the internet: Timestamps](https://datatracker.ietf.org/doc/html/rfc3339)<br />
 [+] [A study of Forensic Imaging in the Absence of Write-Blockers](https://commons.erau.edu/cgi/viewcontent.cgi%3Farticle%3D1027%26context%3Ddb-security-studies&ved=2ahUKEwjl4YPEjMqUAxUcSvEDHW3QKO04ChAWegQIFhAB&usg=AOvVaw1c_U3hrxOQxFcrMIbGENSC)<br />

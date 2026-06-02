@@ -168,17 +168,25 @@ The Sleuth Kit (TSK) is a collection of command-line tools for examining disk im
 
 Displays file system metadata from the superblock: type, block size, inode count, and layout.
 
+![fsstat](../media/fsstat.png)
+
 ### fls (filename layer)
 
 Lists file and directory names in a disk image, including deleted entries.
+
+![fls](../media/fls.png)
 
 ### istat (metadata layer)
 
 Shows the inode record for a specific file: timestamps, permissions, owner, and block pointers.
 
+![istat](../media/istat.png)
+
 ### icat (data layer)
 
 Extracts the contents of a file by inode number, even if deleted.<br />
+
+![icat](../media/icat.png)
 
 Used together, `fls` identifies deleted files by inode, `istat` confirms the inode is still allocated on disk, and `icat` recovers the contents.
 

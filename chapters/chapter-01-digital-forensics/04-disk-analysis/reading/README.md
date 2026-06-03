@@ -1,7 +1,7 @@
 # Disk Analysis
 
 After data has been extracted and measures taken to maintain integrity, we focus on initial event analysis. <br />
-Early triage can offer indication of the type of incident investigated (ransomware, insider threat, cryptojacking, etc.), based on which we look for obvious IoCs. 
+Early triage can offer indication of the type of incident investigated (ransomware, insider threat, cryptojacking, etc), based on which we look for obvious IoCs.
 
 At this stage:
 
@@ -20,13 +20,14 @@ This implies taking time to learn what normal looks like.<br />
 Types of data on disk:
 
 - file system metadata
-- allocated files 
+- allocated files
 - deleted files
 - unallocated space and slack space
 
 ### Timeline analysis
 
-Timeline analysis serves in piecing the breadcrumbs together into a coherent record of the intrusion. Timelines are a guide to evidence, not evidence themselves.<br />
+Timeline analysis serves in piecing the breadcrumbs together into a coherent record of the intrusion.<br />
+Timelines are a guide to evidence, not evidence themselves.<br />
 Timestamps are ephemeral: we only see the last modified time, change time, admin users are allowed to change timestamps.
 
 - on Unix:
@@ -53,7 +54,7 @@ Timestamps are ephemeral: we only see the last modified time, change time, admin
 
 ### Evidence of execution
 
-- auditd logs, cron logs, shell history, systemd journal
+- auditd logs, `cron` logs, shell history, systemd journal
 - Prefetch files, SRUM, Registry (UserAssist, ShimCache / AppCompatCache, AmCache, RunMRU)
 
 ### Evidence of past file presence
@@ -109,7 +110,7 @@ Timestamps are ephemeral: we only see the last modified time, change time, admin
 - rootkits (Loadable Kernel Modules)
 - scheduled tasks
 - service start-up scripts
-- account modification (new admin accounts, new ssh authorized_keys, enhanced sudo privileges uid 0)
+- account modification (new admin accounts, new ssh authorized_keys, enhanced `sudo` privileges uid 0)
 - Registry (Run/RunOnce Keys, Windows Services, Winlogon, Scheduled Tasks)
 
 ## [Autopsy](https://www.autopsy.com/download/)

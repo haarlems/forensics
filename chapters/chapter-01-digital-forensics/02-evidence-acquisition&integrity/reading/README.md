@@ -146,6 +146,7 @@ Options:
 - Registry Explorer (parser and viewer, fixes dirty hives)
 - AppCompatCacheParser (shimcache, amcache parser)
 - JLECmd (jumplist parser)
+- [LECmd](https://binaryforay.blogspot.com/2016/02/introducing-lecmd.html) (LNK Explorer parser, shortcut files)
 
 ![ez](../media/ez.png) <br />
 _image source: `ericzimmerman.github.io`_

@@ -146,7 +146,7 @@ Options:
 - Registry Explorer (parser and viewer, fixes dirty hives)
 - AppCompatCacheParser (shimcache, amcache parser)
 - JLECmd (jumplist parser)
-- [LECmd](https://binaryforay.blogspot.com/2016/02/introducing-lecmd.html) (LNK Explorer parser, shortcut files)
+- [LECmd](https://github.com/EricZimmerman/LECmd) (parser for shortcut files)
 
 ![ez](../media/ez.png) <br />
 _image source: `ericzimmerman.github.io`_
@@ -247,3 +247,4 @@ Description
 [+] [Artifact collection matrix](https://github.com/swisscom/ArtifactCollectionMatrix)<br />
 [+] [Date and Time on the internet: Timestamps](https://datatracker.ietf.org/doc/html/rfc3339)<br />
 [+] [A study of Forensic Imaging in the Absence of Write-Blockers](https://commons.erau.edu/cgi/viewcontent.cgi%3Farticle%3D1027%26context%3Ddb-security-studies&ved=2ahUKEwjl4YPEjMqUAxUcSvEDHW3QKO04ChAWegQIFhAB&usg=AOvVaw1c_U3hrxOQxFcrMIbGENSC)<br />
+[+] [Introducing LECmd](https://binaryforay.blogspot.com/2016/02/introducing-lecmd.html)<br />

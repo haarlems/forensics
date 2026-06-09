@@ -12,7 +12,7 @@ The main focus of memory analysis is finding malicious processes or executables 
 - network connections
   - IP and port source and destination, state of the connection, protocols
 - running processes
-  - each process has its own memory space and is tracked via process ids (PID)
+  - each process has its own memory space and is tracked via process IDs (PID)
 - loaded DLLs (Dynamic Link Libraries)
 - loaded drivers
 - handles
@@ -59,7 +59,8 @@ The main focus of memory analysis is finding malicious processes or executables 
 
 ## Volatility
 
-Volatility and Volatility3 are open source memory forensics frameworks. They can run on any common OS supporting Python.
+Volatility and Volatility3 are open source memory forensics frameworks.
+They can run on any common OS supporting Python.
 
 The difference between them lies in capability and usage:
 
@@ -88,7 +89,7 @@ We will use Volatility3, and resort to Volatility2 only in case of missing funct
 
 `python3 vol.py -f unix.dmp linux.pstree.PsTree` # list process tree
 
-`python3 vol.py -f unix.dmp linux.psaux.PsAux` # list processes with command line args
+`python3 vol.py -f unix.dmp linux.psaux.PsAux` # list processes with command-line args
 
 `python3 vol.py -f memory.dmp windows.dlllist --pid 1337` # list dlls loaded by PID
 
@@ -137,11 +138,12 @@ We will use Volatility3, and resort to Volatility2 only in case of missing funct
 
 ## Strings
 
-Unix utility used to extract strings from memory. 
+Unix utility used to extract strings from memory.
 
-`strings memory.dmp | grep [pattern|regex]` # default for ASCII strings, grep a specific pattern or regex
+`strings memory.dmp | grep [pattern|regular expression]` # default for ASCII strings, grep a specific pattern or regex
 
-`strings memory.dmp -e l ` # for windows UTF-16LE strings
+`strings memory.dmp -e l` # for windows UTF-16LE strings
+
 - -e encoding
 - l for Windows Unicode UTF-16LE
 

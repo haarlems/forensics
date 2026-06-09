@@ -153,5 +153,3 @@ Description
 [+] [Windows Event IDs](https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/) <br />
 [+] [Body file](https://wiki.sleuthkit.org/index.php?title=Body_file)<br />
 [+] [You don't know jack about bash history](https://www.youtube.com/watch?v=wv1xqOV2RyE)<br />
-[+] []()<br />
-[+] []()<br />

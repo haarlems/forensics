@@ -1,6 +1,7 @@
 # Investigation: persistence & privesc
 
 Some of the questions we are answering in the case of persistence and privilege escalation are quite straightforward:
+
 - what did the attacker do?
 - were **backdoors** or **persistence mechanisms** installed?
 
@@ -18,9 +19,9 @@ However, if the user that clicked the malicious file is privileged, or the explo
 ## Persistence
 
 - boot or logon autostart execution / initialization scripts
-  -  new [registry run keys / startup folder](https://attack.mitre.org/techniques/T1547/001/)
-  -  loadable kernel modules (LKMs)
-  -  logon scripts, RC scripts
+  - new [registry run keys / startup folder](https://attack.mitre.org/techniques/T1547/001/)
+  - loadable kernel modules (LKMs)
+  - logon scripts, RC scripts
 - scheduled tasks / jobs
 - account creation
 - account manipulation
@@ -44,7 +45,7 @@ However, if the user that clicked the malicious file is privileged, or the explo
 - exploitation (ex. BYOVD)
 - process injection
 
-## Investigate case 
+## Investigate case
 
 Disk evidence: [TODO](todo) *<br />
 Memory evidence: [TODO](todo)<br />
@@ -55,7 +56,7 @@ Memory evidence: [TODO](todo)<br />
   - Registry Run keys: `Run` or `RunOnce` loaded in `HKLM` or `HKCU`
   - Scheduled tasks:
     - unusual child of `taskeng.exe` or `svchost.exe`
-    - user or system-wide cron jobs in `/var/spool/cron/` or `/etc/crontab` or `/etc/cron.d/`
+    - user or system-wide `cron` jobs in `/var/spool/cron/` or `/etc/crontab` or `/etc/cron.d/`
     - other utilities such as `fcron`, `anacron`, `tsp`, `at`, `batch` may be used for one-time or recurring jobs
   - suspicious dll loaded into `explorer.exe`, `svchost.exe`, `winlogon.exe`, `userinit.exe`
 - possible disk artifacts:

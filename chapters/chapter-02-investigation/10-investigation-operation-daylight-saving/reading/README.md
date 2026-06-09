@@ -1,7 +1,7 @@
 # Investigation: Operation Daylight Saving
-Disk evidence: [TODO]()<br />
-Memory evidence: [TODO]()<br />
-Network evidence: [TODO]()<br />
+Disk evidence: [TODO](todo)<br />
+Memory evidence: [TODO](todo)<br />
+Network evidence: [TODO](todo)<br />
 
 ## Identification and scoping
 
@@ -22,31 +22,42 @@ Network evidence: [TODO]()<br />
 ## Kill chain analysis
 
 ### Initial access
+
 ### Evidence of execution
+
 ### Internal discovery
+
 ### Persistence
+
 ### Lateral movement
+
 ### Defense evasion
+
 ### Credential harvesting
+
 ### C2
+
 ### Exfiltration
 
 ### Diamond model
 
 ## Reporting
+
 ### Executive summary
+
 ### IOCs
+
 ### MITRE ATT&CK
 
 ## Summary
+
 - summary
 
 ## Drills
+
 ### Challenge 1 - Operation Daylight Saving
+
 Description
 
 ## Further reading
-[+] []()<br />
-[+] []()<br />
-[+] []()<br />
-[+] []()<br />
+[+] [todo](todo)<br />

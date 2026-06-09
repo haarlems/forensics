@@ -11,11 +11,13 @@ Here are the most frequently asked questions of the forensic investigator.<br />
 - how did the attackers get in?
   - initial access (phishing, web app exploit, exposed login portal, etc.)
   - known vulnerabilities exploited?
-  - were credentials stolen or bruteforced? MFA bypassed?
+  - were credentials stolen or bruteforced?
+  - was MFA bypassed?
 - what systems are affected?
   - which endpoints, server, cloud resources are compromised?
   - are backups impacted?
-  - are domain controllers affected? did the attacked gain administrative or domain-level access?
+  - are domain controllers affected?
+    - did the attacked gain administrative or domain-level access?
   - what data is at risk?
 - what did the attacker do?
   - was data accessed, exfiltrated, or altered?
@@ -58,7 +60,7 @@ _NOTE: the MITRE ATT&CK Matrix is to be taken as a mere frame of reference._
   - third parties with delegated permissions
 - [supply chain compromise](https://attack.mitre.org/techniques/T1195/)
   - software dependencies
-  - CI/CD pipeline components (ex. Github Actions)
+  - CI/CD pipeline components (ex. GitHub Actions)
 - and others
 
 ## Execution
@@ -66,13 +68,13 @@ _NOTE: the MITRE ATT&CK Matrix is to be taken as a mere frame of reference._
 - [user execution](https://attack.mitre.org/techniques/T1204/)
   - social engineering to execute malicious code or open a malicious document or link
   - enabling remote access tools (RAT)
-  - running malicious javascript in the browser that steals session cookies
+  - running malicious JavaScript in the browser that steals session cookies
 - [command and scripting interpreter](https://attack.mitre.org/techniques/T1059/)
-  - cli interfaces (unix shells, powershell, cmd), python, visual basic, javascript
+  - cli interfaces (unix shells, powershell, cmd), python, visual basic, JavaScript
   - used to execute initial access payloads
 - [exploitation for client execution](https://attack.mitre.org/techniques/T1203/)
   - exploit software vulnerabilities in client applications
-  - browser-based, office-applications, 3rd party applications (ex. Adobe Reader)
+  - browser-based, office-applications, third-party applications (ex. Adobe Reader)
 - and others
 
 ### Known Exploited Vulnerabilities
@@ -87,9 +89,9 @@ The [KEV](https://www.cisa.gov/known-exploited-vulnerabilities-catalog) database
 
 ## Investigate case "Breaking Dawn"
 
-Disk evidence: [TODO]()<br />
-Memory evidence: [TODO]()<br />
-Network evidence: [TODO]()<br />
+Disk evidence: [TODO](todo)<br />
+Memory evidence: [TODO](todo)<br />
+Network evidence: [TODO](todo)<br />
 
 - possible memory artifacts:
   - suspicious child processes of `outlook.exe`, `chrome.exe`, `winword.exe`, `excel.exe`

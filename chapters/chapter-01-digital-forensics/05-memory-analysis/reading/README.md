@@ -140,7 +140,7 @@ We will use Volatility3, and resort to Volatility2 only in case of missing funct
 
 Unix utility used to extract strings from memory.
 
-`strings memory.dmp | grep [pattern|regular expression]` # default for ASCII strings, grep a specific pattern or regex
+`strings memory.dmp | grep [pattern|regex]` # default for ASCII strings, grep a specific pattern or regular expression
 
 `strings memory.dmp -e l` # for windows UTF-16LE strings
 

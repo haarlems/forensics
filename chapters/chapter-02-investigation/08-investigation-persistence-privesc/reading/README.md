@@ -1,4 +1,5 @@
 # Investigation: persistence & privesc
+
 Some of the questions we are answering in the case of persistence and privilege escalation are quite straightforward:
 - what did the attacker do?
 - were **backdoors** or **persistence mechanisms** installed?
@@ -15,6 +16,7 @@ In order to successfully establish a persistence mechanism, elevated privileges 
 However, if the user that clicked the malicious file is privileged, or the exploited app or service is already running as root, administrator, or another privileged service user, there is no need for **privilege escalation**.
 
 ## Persistence
+
 - boot or logon autostart execution / initialization scripts
   -  new [registry run keys / startup folder](https://attack.mitre.org/techniques/T1547/001/)
   -  loadable kernel modules (LKMs)
@@ -32,6 +34,7 @@ However, if the user that clicked the malicious file is privileged, or the explo
 - external remote services (ex. VPNs)
 
 ## Privilege Escalation
+
 - abuse elevation control mechanism
   - setuid, setgid
   - bypass UAC
@@ -42,8 +45,9 @@ However, if the user that clicked the malicious file is privileged, or the explo
 - process injection
 
 ## Investigate case 
-Disk evidence: [TODO]() *<br />
-Memory evidence: [TODO]()<br />
+
+Disk evidence: [TODO](todo) *<br />
+Memory evidence: [TODO](todo)<br />
 **persistence is disk based, though evidence may also be seen in memory* <br />
 
 - possible memory artifacts:
@@ -55,7 +59,7 @@ Memory evidence: [TODO]()<br />
     - other utilities such as `fcron`, `anacron`, `tsp`, `at`, `batch` may be used for one-time or recurring jobs
   - suspicious dll loaded into `explorer.exe`, `svchost.exe`, `winlogon.exe`, `userinit.exe`
 - possible disk artifacts:
-  - Scheduled tasks: in `C:\Windows\System32\Tasks` 
+  - Scheduled tasks: in `C:\Windows\System32\Tasks`
   - Registry Run keys: `Run` or `RunOnce` loaded in `HKLM` or `HKCU`
     - `HKLM\Software\Microsoft\Windows\CurrentVersion\Run`
     - `HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce`
@@ -75,18 +79,25 @@ Memory evidence: [TODO]()<br />
     - account tampering is not needed if an attacker gains access to private ssh keys or valid, cleartext credentials
 
 ## Summary
+
 - summary
 
 ## Drills
+
 ### Challenge 1
+
 Description
+
 ### Challenge 2
+
 Description
+
 ### Challenge 3
+
 Description
 
 ## Further reading
+
 [+] [Understanding systemd services](https://wiki.debian.org/systemd/Services)<br />
 [+] [Primer on persistence mechanisms](https://www.elastic.co/security-labs/primer-on-persistence-mechanisms)<br />
 [+] [Persistence via systemd generators](https://pberba.github.io/security/2022/02/07/linux-threat-hunting-for-persistence-systemd-generators/)<br />
-[+] []()<br />

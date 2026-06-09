@@ -1,19 +1,20 @@
 # Network analysis
 
-Network analysis offers insight into the network activity of threat actors: initial access, the flow of traffic from a compromised host to a C2 (Command and Control) server, exfiltration. 
+Network analysis offers insight into the network activity of threat actors: initial access, the flow of traffic from a compromised host to a C2 (Command and Control) server, exfiltration.
 The main challenge is sifting through vast amounts of logs.
 
-- the network is the great equalizer 
+- the network is the great equalizer
 - most malware needs to communicate (except some wipers or air-gapped purposed malware)
 - no matter how much time it may lie dormant, it eventually calls home to a C2 server
 
 The packet captures used in this class:
+
 - [2026-02-03 (TUESDAY): GULOADER FOR AGENTTESLA STYLE MALWARE WITH FTP DATA EXFILTRATION](https://www.malware-traffic-analysis.net/2026/02/03/index.html)
 
 ## Network evidence
 
-Network traffic should be captured before, during and post compromise. 
-The rolling retention of network evidence at key points in the network architecture is recommended. 
+Network traffic should be captured before, during and post compromise.
+The rolling retention of network evidence at key points in the network architecture is recommended.
 
 When analyzed, network evidence can give insights into:
 
@@ -62,10 +63,10 @@ Extract unique URIs<br />
 `-T` changes the output format to specific fields only<br />
 `-e` exact fields to display<br />
 
-Extract unique User-Agent fields<br />
+Extract unique `User-Agent` fields<br />
 `tshark -nnr evidence-https-192.168.1.111.pcap -Y 'http and http.user_agent' -T fields -e 'http.user_agent' | uniq -c`<br />
 
-Extract unique URI-User-Agent<br />
+Extract unique `URI`<br />
 `tshark -nnr evidence-https-192.168.1.111.pcap -Y 'http and http.user_agent' -T fields -E separator='|' -e 'http.request.uri' -e 'ip.src' -e 'http.host' | sort | uniq -c | wc -l`<br />
 
 ### Wireshark
@@ -105,13 +106,13 @@ A 1GB pcap may result in 200MB worth of zeek logs, depending on on the actual tr
   - shows dns queries and responses
   - helps identify C2 domains or DNS used for C2
 - http.log
-  - generated if http/https seen
+  - generated if HTTP/HTTPS seen
   - shows http requests and responses (including methods, URLs, status codes, user agents)
   - helps identify exploit delivery for initial access, or C2 beaconing over http
 - ssl.log
   - generated if TLS seen
   - shows TLS handshake metadata
-  - helps identify C2 encrypted beaconing over https, suspicious certificates
+  - helps identify C2 encrypted beaconing over HTTPS, suspicious certificates
 - files.log
   - not enabled by default
   - contains files observed in traffic if unencrypted
@@ -138,11 +139,11 @@ Extract data from logs (JSON) with jq:<br />
 
 ## Real Intelligence Threat Analytics (RITA)
 
-- command line tool that analyzes network behaviour
+- command-line tool that analyzes network behaviour
 - can process large 24h packet captures
 - takes in zeek logs, imports them into a database (we chose to name it investigation)
   - `rita import *.log investigation`
-- flags beaconing patterns, long connections, 
+- flags beaconing patterns, long connections
   - `rita show-beacons investigation`
 - identify, list and sort connections with unusually high durations
   - `rita show-long-connections investigation`
@@ -151,7 +152,7 @@ Extract data from logs (JSON) with jq:<br />
 - ranked list of unique user agent strings
   - `rita show-useragents`
 
-## Arkime 
+## Arkime
 
 - to examine large network packet captures
 - organized by sessions
@@ -170,7 +171,7 @@ Protocols used for C2 communication:
 - ICMP = not very common as it's immediately suspicious to see large amounts of ICMP requests to remote hosts
 - SMB = used to pivot peer-to-peer in windows environments, does not cross external network boundaries
 
-With an additional layer of abstraction, C2s can also be achieved via applications, like the Google suite (Calendar, Drive, etc.), Discord, Velociraptor and many others, but they are outside the scope of this class. 
+With an additional layer of abstraction, C2s can also be achieved via applications, like the Google suite (Calendar, Drive, etc.), Discord, Velociraptor and many others, but they are outside the scope of this class.
 
 ## Identify initial access
 
@@ -180,12 +181,12 @@ With an additional layer of abstraction, C2s can also be achieved via applicatio
 - unusual inbound connections, high volume of failed logins
 - unexpected protocol versions or sequence anomalies
 - http status manipulation where 4xx errors still deliver payloads
-  - `cat http.log | zeek-cut method host uri user_agent status_code response_body_len` 
+  - `cat http.log | zeek-cut method host uri user_agent status_code response_body_len`
 
 ## Identify data exfiltration
 
 - large volumes of bytes seen outbound to suspicious destinations in zeek logs or packet captures
-- outbound HTTP/S POST requests with large payloads or to unusual URLs
+- outbound HTTP/S `POST` requests with large payloads or to unusual URLs
 - unusual FTP/FTP usage
 - unauthorized cloud storage uploads
 

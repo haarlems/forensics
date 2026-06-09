@@ -5,7 +5,8 @@ Some of the questions we are answering:
 - what systems are affected?
   - which endpoints, server, cloud resources are compromised?
   - are backups impacted?
-  - are domain controllers affected? did the attacked gain administrative or domain-level access?
+  - are domain controllers affected?
+    - did the attacked gain administrative or domain-level access?
   - what data is at risk?
 - what did the attacker do?
   - was data accessed, exfiltrated, or altered?
@@ -22,7 +23,7 @@ Some of the questions we are answering:
 - internal phishing
 - lateral tool transfer
   - admin shares, RDP
-  - scp, rsync, curl, sftp, onedrive
+  - scp, rsync, `curl`, sftp, onedrive
 
 ## Defense Evasion
 
@@ -90,4 +91,5 @@ Description
 Description
 
 ## Further reading
+
 [+] [todo](todo)<br />

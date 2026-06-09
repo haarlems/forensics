@@ -73,7 +73,7 @@ We will use Volatility3, and resort to Volatility2 only in case of missing funct
 
 `python3 vol.py -f memory.dmp windows.info` # display memory image information
 
-`python3 vol.py -f unix.dmp banners` # attempt to identify unix kernel version details 
+`python3 vol.py -f unix.dmp banners` # attempt to identify unix kernel version details
 
 - to analyze a Linux or macOS RAM capture with Volatility3 you must to use appropriate kernel debugging information
 - collection of [symbol](https://github.com/Abyss-W4tcher/volatility3-symbols) tables

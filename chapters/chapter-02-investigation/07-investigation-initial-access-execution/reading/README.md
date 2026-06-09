@@ -1,8 +1,9 @@
 # Investigation: initial access & execution
+
 Here are the most frequently asked questions of the forensic investigator.<br />
 
 - what happened?
-  - what type of incident this is (ransomware, data exfil, insider threat, etc.) 
+  - what type of incident this is (ransomware, data exfil, insider threat, etc.)
 - when did the breach first occur?
   - how was it detected?
   - is the attack ongoing?
@@ -33,11 +34,13 @@ Here are the most frequently asked questions of the forensic investigator.<br />
 In this chapter we will focus on answering the questions related to Initial Access and Execution.<br />
 
 ## ATT&CK Matrix
+
 ![MITRE](../media/mitre.png)
 
 _NOTE: the MITRE ATT&CK Matrix is to be taken as a mere frame of reference._
 
 ## Initial access vectors
+
 - [phishing](https://attack.mitre.org/techniques/T1566/) - the most common
   - targeted or non-targeted
 - [valid accounts](https://attack.mitre.org/techniques/T1078/)
@@ -59,6 +62,7 @@ _NOTE: the MITRE ATT&CK Matrix is to be taken as a mere frame of reference._
 - and others
 
 ## Execution
+
 - [user execution](https://attack.mitre.org/techniques/T1204/)
   - social engineering to execute malicious code or open a malicious document or link
   - enabling remote access tools (RAT)
@@ -72,7 +76,9 @@ _NOTE: the MITRE ATT&CK Matrix is to be taken as a mere frame of reference._
 - and others
 
 ### Known Exploited Vulnerabilities
+
 The [KEV](https://www.cisa.gov/known-exploited-vulnerabilities-catalog) database is a list of CVEs that are confirmed to be exploited in the wild.<br />
+
 - helps narrow down initial access hypotheses: phishing, credential abuse or _exploitation of a vulnerability_?
 - vulnerabilities in: edge devices, web apps, email servers, app frameworks
 - cross-reference exposed services against KEV CVEs
@@ -80,6 +86,7 @@ The [KEV](https://www.cisa.gov/known-exploited-vulnerabilities-catalog) database
 - search for exploitation artifacts tied to specific CVEs
 
 ## Investigate case "Breaking Dawn"
+
 Disk evidence: [TODO]()<br />
 Memory evidence: [TODO]()<br />
 Network evidence: [TODO]()<br />
@@ -97,27 +104,29 @@ Network evidence: [TODO]()<br />
   - `SMTP` session with suspicious or spoofed sender, lookalike or newly registered domain
   - `DNS` query to phishing domain
   - `TLS` handshake to phishing server
-  - `HTTP` GET, POST if credentials submitted
+  - `HTTP` `GET`, `POST` if credentials submitted
 
 ## Summary
+
 - initial access frequently phishing, stolen credentials to exposed remote services
 - execution frequently user execution via social engineering
 - investigate in memory, on disk and network capture looking for specific indicators
 
 ### Challenge 1
+
 Description
+
 ### Challenge 2
+
 Description
+
 ### Challenge 3
+
 Description
 
 ## Further reading
+
 [+] [MITRE ATT&CK Matrix](https://attack.mitre.org/)<br />
 [+] [Threat actor groups](https://attack.mitre.org/groups/)<br />
 [+] [OWASP Top 10](https://owasp.org/Top10/2025/)<br />
 [+] [Known Exploited Vulnerabilities](https://www.cisa.gov/known-exploited-vulnerabilities-catalog)<br />
-[+] []()<br />
-[+] []()<br />
-[+] []()<br />
-[+] []()<br />
-[+] []()<br />

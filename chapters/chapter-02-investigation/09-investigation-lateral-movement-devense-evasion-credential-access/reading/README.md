@@ -1,5 +1,7 @@
 # Investigation: lateral movement, defense evasion & credential access
+
 Some of the questions we are answering:
+
 - what systems are affected?
   - which endpoints, server, cloud resources are compromised?
   - are backups impacted?
@@ -11,6 +13,7 @@ Some of the questions we are answering:
   - were logs deleted or tampered with?
 
 ## Lateral Movement
+
 - remote services
   - RDP, SSH, SMB, WinRM
   - via valid accounts or via service exploitation
@@ -22,6 +25,7 @@ Some of the questions we are answering:
   - scp, rsync, curl, sftp, onedrive
 
 ## Defense Evasion
+
 - impair defenses
   - disable logging, EDR
   - disable or modify firewall
@@ -35,6 +39,7 @@ Some of the questions we are answering:
   - file path exclusions
 
 ## Credential Access
+
 - OS credential dumping
   - LSASS, SAM, NTDS, DCSync
   - `/etc/passwd` and `/etc/shadow`
@@ -54,9 +59,10 @@ Some of the questions we are answering:
 - keylogging
 
 ## Investigate case
-Disk evidence: [TODO]()<br />
-Memory evidence: [TODO]()<br />
-Network evidence: [TODO]()<br />
+
+Disk evidence: [TODO](todo)<br />
+Memory evidence: [TODO](todo)<br />
+Network evidence: [TODO](todo)<br />
 
 - possible memory artifacts:
   - todo
@@ -66,18 +72,22 @@ Network evidence: [TODO]()<br />
   - todo
 
 ## Summary
+
 - summary
 
 ## Drills
+
 ### Challenge 1
+
 Description
+
 ### Challenge 2
+
 Description
+
 ### Challenge 3
+
 Description
 
 ## Further reading
-[+] []()<br />
-[+] []()<br />
-[+] []()<br />
-[+] []()<br />
+[+] [todo](todo)<br />

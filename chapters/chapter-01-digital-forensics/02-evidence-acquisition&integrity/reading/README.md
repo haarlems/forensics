@@ -177,9 +177,8 @@ To summarize host-based acquisition:
 For a live Windows system, `FTK Imager` handles both disk and memory.
 `KAPE` is a better option when the time is short and you need the most important artifacts fast, before full imaging completes.
 
-For a live Unix system, `UAC` collects the standard artifact set, while for memory acquisition `LiME` is used, a loadable kernel module that dumps physical memory to a file or over the network. 
-For offline aquisition (when the disk is removed and connected to the forensic workstation with a write blocker) `dd` is used when interoperability is important, or `FTK Imager` when you need builtin compression, hash verification and case metadata.
-
+For a live Unix system, `UAC` collects the standard artifact set, while for memory acquisition `LiME` is used, a loadable kernel module that dumps physical memory to a file or over the network.
+For offline aquisition (when the disk is removed and connected to the forensic workstation with a write blocker) `dd` is used when interoperability is important, or `FTK Imager` when you need built-in compression, hash verification and case metadata.
 
 ## Evidence acquisition - Network
 

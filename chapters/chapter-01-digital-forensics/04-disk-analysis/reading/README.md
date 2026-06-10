@@ -10,7 +10,7 @@ At this stage:
 - analyze system and user activity artifacts, including logs
 - narrow down to timeframe of suspicious activity
 
-The disk image used in this class: [TODO](TODO)
+The disk image used in this class: [download here](https://cfreds.nist.gov/all/JeanMiguel%2FUTFPR/Linuxforensicsscenariosimulatedattackonacompanyserver) from the [Computer Forensics Reference Dataset](https://cfreds.nist.gov/).
 
 ## Looking for evil
 

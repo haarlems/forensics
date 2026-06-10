@@ -92,6 +92,12 @@ _image and layers source: Hal Pomeranz' Linux Forensics_
   - blocks are organized into Block Groups of 32K blocks
   - each block group contains inodes and data blocks
 
+When a file is deleted in EXT4, the operating system does not overwrite or delete the file's data blocks.
+It only marks the inode as free and removes the directory entry that mapped the filename to that inode.
+The data blocks themselves are marked as available, but their contents remain on disk until the OS overwrites them with new data.
+
+That is why file recovery is possible: if the inode has not been reallocated and the data blocks not overwritten, we can recover both the metadtaa and the file contents.
+
 ### Directory structure
 
 ![Linux Forensics](../media/unix-dir.png) <br />
@@ -198,7 +204,6 @@ Used together, `fls` identifies deleted files by inode, `istat` confirms the ino
 - used when simple file recovery methods fail (files are corrupted, deleted, overwritten)
 - main challenges: time-consuming on large disks, false positives that need manual review
 
-  
 ### Tools
 
 **Foremost** carves files based on header/footer signatures defined in a config file.<br />
@@ -216,16 +221,20 @@ Hex editors can be useful for manual carving (**hexedit**, **HxD**, **Bless**, e
 
 ## Timestamp tampering (timestomping)
 
-- used by attackers to modify file MACB (modification, access, change, birth) metadata
+Used by attackers to modify file MACB (modification, access, change, birth) metadata to disrupt chronological timeline analysis, making a binary look like it existed on the system for years, or that a file was created during the known attack window.
+
   - (M) Modify – Updated when the file contents are changed
   - (A) Access – Updated when the file contents are accessed (usually via cli, accessing a file via GUI does not always update the access time)
   - (C) Change – Metadata change time for the file i.e. file ownership change
   - (B) Birth – Date the file was created. This is based on the operating system time and exists on EXT4
-- purpose: disruption of chronological timeline analysis
-- example Windows: check time differences between $STANDARD_INFORMATION and $FILE_NAME attributes and $LogFile
-  - `istat <disk_image> <inode_number>`
-  - parse $LogFile with `logfileparser`
-  - analyze any differences between timestamps to indicate tampering
+
+NTFS stores timestamps in two separate locations: `$STANDARD_INFORMATION` and `$FILE_NAME`.
+
+`$STANDARD_INFORMATION` is visible to via `Explorer`, `dir`, or forensic viewers.
+They are writable by any process using standard Windows API calls, so an unprivileged attacker can modify them.
+
+`$FILE_NAME` is updated by the NTFS kernel driver but it's not writable via the standard API without kernel-level access.
+If an attacker uses a timestomping tool, they modify $STANDARD_INFORMATION only, leaving $FILE_NAME untouched.
 
 ## Summary
 

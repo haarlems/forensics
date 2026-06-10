@@ -10,10 +10,19 @@ The main goal is to identify the **root cause** of an incident.
 
 The general approach of this methodology is the analysis of digital evidence to prove or disprove a hypothesis. [1]
 
-Note this is a comprehensive list, not all the steps are mandatory for all investigations.
+It starts with identification and scoping, evidence collection, analysis, normalization and correlation, building a timeline, analysing the kill chain and reporting.
 
 ![Methodology](../media/fim.png)<br />
 *image source: Digital Forensics and Incident Response by Gerard Johansen*
+
+Note not all incidents require a full 10 step methodology, knowing when to triage and when to deep-dive saves time and resources.
+
+Triage is a rapid high-level assessment, used then time pressure demands immediate containment.
+The goal is scoping: is this a real incident or a false positive, what systems are affected?
+The result is enough information to decide whether to escalate or not.
+
+A full investigation is a complete, documented and legally defensible process.
+Performed when the incident is a true positive, when law enforcement or regulatory notification may be required, or litigation is anticipated.
 
 ## DFIR
 
@@ -71,6 +80,15 @@ IoCs can be:
 
 - atomic (IPs, domain names that tie back to an adversary C2 infrastructure)
 - computed (hashes)
+- behavioural (patterns of activity that indicate malicious intent, ex. `base64` encoded powershell execution)
+
+Atomic IoCs age quickly. An IP used today may be reassigned or abbandoned in a few hours.
+
+Behavioural IoCs, or TTPs are valid for longer because changing behaviour requires the adversary to retrain, retool or restructure their operations. 
+
+This is sometimes called the [Pyramid of Pain](https://detect-respond.blogspot.com/2013/03/the-pyramid-of-pain.html): the higher an IoC sits, the more it costs the adversary to change it.
+
+![Pyramid of Pain](../media/pop.png)
 
 ## Diamond model
 
@@ -79,6 +97,8 @@ It states:
 
 > *"For every intrusion event, there exists an adversary taking a step toward an
 > intended goal by using a capability over infrastructure against a victim."*
+
+The relationships between the components of an attack lead to the building of the model associated with the intrusion.
 
 ![Diamond model](../media/diamondmodel.png)<br />
 *[The Diamond Model of Intrusion Analysis](https://www.researchgate.net/publication/379381999_The_Diamond_Model_of_Intrusion_Analysis) by Sergio Caltagirone, Andrew Pendergast, Cristopher Betz*
@@ -148,8 +168,9 @@ The cases below show the model in practice.
 
 ## Chain of custody
 
-Preserving the *integrity* of the evidence (preventing alteration or deletion) is prioritized. <br />
-**Chain of custody** is used to track evidence by documenting each person and organization who handles it, the date/time it was collected or transferred, and the purpose of the transfer. [4] <br />
+Preserving the integrity of the evidence (preventing alteration or deletion) is prioritized.
+
+**Chain of custody** is used to track evidence by documenting each person and organization who handles it, the date/time it was collected or transferred, and the purpose of the transfer. [4]
 
 Example [chain of custody form](https://www.oreilly.com/library/view/implementing-digital-forensic/9780128045015/XHTML/B9780128044544150142/B9780128044544150142.xhtml):<br />
 

@@ -223,10 +223,10 @@ Hex editors can be useful for manual carving (**hexedit**, **HxD**, **Bless**, e
 
 Used by attackers to modify file MACB (modification, access, change, birth) metadata to disrupt chronological timeline analysis, making a binary look like it existed on the system for years, or that a file was created during the known attack window.
 
-  - (M) Modify – Updated when the file contents are changed
-  - (A) Access – Updated when the file contents are accessed (usually via cli, accessing a file via GUI does not always update the access time)
-  - (C) Change – Metadata change time for the file i.e. file ownership change
-  - (B) Birth – Date the file was created. This is based on the operating system time and exists on EXT4
+- (M) Modify – Updated when the file contents are changed
+- (A) Access – Updated when the file contents are accessed (usually via cli, accessing a file via GUI does not always update the access time)
+- (C) Change – Metadata change time for the file i.e. file ownership change
+- (B) Birth – Date the file was created. This is based on the operating system time and exists on EXT4
 
 NTFS stores timestamps in two separate locations: `$STANDARD_INFORMATION` and `$FILE_NAME`.
 

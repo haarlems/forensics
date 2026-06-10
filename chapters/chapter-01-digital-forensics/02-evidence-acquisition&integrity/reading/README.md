@@ -1,12 +1,28 @@
 # Evidence acquisition & integrity
 
-Digital forensics is concerned with "_analyzing digital evidence in a manner that is legally acceptable in any legal proceedings_", thus [evidence integrity](https://www.isaca.org/resources/white-papers/overview-of-digital-forensics) is key.<br />
+Digital forensics is concerned with "analyzing digital evidence in a manner that is legally acceptable in any legal proceedings", thus [evidence integrity](https://www.isaca.org/resources/white-papers/overview-of-digital-forensics) is key.<br />
+
+Before touching any system:
+
+- confirm you have written permission to collect data from it
+- define the scope: which systems, what evidence, what time range
+- assign an evidence custodian to maintain the chain of custody
+- prepare the forensic workstation:
+  - write blocker, imaging tools, and hashing tools ready
+  - storage media wiped
+- make note of every step taken in a documentation template
+
 After an incident has been identified and scoped, next comes the evidence collection phase.<br />
 Collected evidence must:
 
 - be relevant and of consequence to proving or disproving a hypothesis
 - have its integrity preserved
 - be thoroughly documented
+
+Choosing a collection tool depends on:
+
+- is the system live or offline?
+- what is the target OS?
 
 ## Preserving integrity
 
@@ -44,7 +60,7 @@ Get-FileHash <file> -Algorithm MD5
 
 Evidence collection should be prioritized based on evidence volatility.<br />
 According to the IETF [RFC 3227 - Guidelines for Evidence Collection and Archiving](https://www.ietf.org/rfc/rfc3227.txt), when collecting evidence you should proceed from the volatile to the less volatile.<br />
-Here is an example order of volatility for a typical system:
+The order of volatility for a typical system:
 
 - registers, cache
 - routing table, arp cache, process table, kernel statistics, memory
@@ -59,7 +75,12 @@ For example, if network logs roll over a 24h period, they should be acquired at 
 ## Evidence acquisition - Host-based
 
 From the hosts we usually collect disk and memory artifacts.<br />
-_Network captures can also be performed on a single host, but they are usually performed at the edge of a network perimeter_.<br />
+Network captures can also be performed on a single host, but they are usually performed at the edge of a network perimeter.
+
+Full disk images and memory captures are large and must be stored on dedicated forensic storage, not on the same device being investigated, but on an external drive or NAS that has been wiped before.
+
+Never save memory dumps directly on the compromised disk, to avoid overwriting deleted files or artifacts.
+
 Disk artifacts may include:
 
 - **information about file system metadata**
@@ -151,6 +172,15 @@ Options:
 ![ez](../media/ez.png) <br />
 _image source: `ericzimmerman.github.io`_
 
+To summarize host-based acquisition:
+
+For a live Windows system, `FTK Imager` handles both disk and memory.
+`KAPE` is a better option when the time is short and you need the most important artifacts fast, before full imaging completes.
+
+For a live Unix system, `UAC` collects the standard artifact set, while for memory acquisition `LiME` is used, a loadable kernel module that dumps physical memory to a file or over the network. 
+For offline aquisition (when the disk is removed and connected to the forensic workstation with a write blocker) `dd` is used when interoperability is important, or `FTK Imager` when you need builtin compression, hash verification and case metadata.
+
+
 ## Evidence acquisition - Network
 
 ### [tcpdump](https://www.tcpdump.org/)
@@ -188,7 +218,7 @@ Can be deployed on multiple systems and handle tens of GB/sec.
 - viewer
 - opensearch / elasticsearch
 
-The Viewer includes the Sessions page overview, listing individual sessions that can be expanded to view metadata and packet details.
+The Viewer includes the Sessions page overview, listing individual sessions that can be expanded to view metadata and packet details that have been captured.
 
 ![Arkime](../media/arkime.png)<br />
 _image source: [arkime](https://github.com/arkime/arkimeweb/blob/main/assets/sessions.png)_

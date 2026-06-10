@@ -1,7 +1,8 @@
 # Forensic investigation methodology
 
-[Digital forensics](https://www.nist.gov/digital-evidence) is the field of forensic science concerned with ***retrieving, storing and analyzing*** data that can be useful in investigations.  <br />
-This includes information retrieved from computers, mobile phones, IoT devices, motor vehicles, drones, satellites or the cloud.<br />
+[Digital forensics](https://www.nist.gov/digital-evidence) is the field of forensic science concerned with **retrieving, storing and analyzing** data that can be useful in investigations.
+
+This includes information retrieved from servers, workstations, mobile phones, IoT devices, motor vehicles, drones, satellites or the cloud.
 
 The main goal is to identify the **root cause** of an incident.
 
@@ -9,14 +10,17 @@ The main goal is to identify the **root cause** of an incident.
 
 The general approach of this methodology is the analysis of digital evidence to prove or disprove a hypothesis. [1]
 
+Note this is a comprehensive list, not all the steps are mandatory for all investigations.
+
 ![Methodology](../media/fim.png)<br />
 *image source: Digital Forensics and Incident Response by Gerard Johansen*
 
 ## DFIR
 
-The term **DFIR (Digital Forensics and Incident Response)** is often used referring to the broader discipline including incident response.<br />
-This track focuses on the Digital Forensics process.<br />
-For those seeking more info on Incident Response, refer to the [NIST Special Publication 800-61r3](https://csrc.nist.gov/pubs/sp/800/61/r3/final). [2]<br />
+The term **DFIR** (Digital Forensics and Incident Response) is often used referring to the broader discipline including incident response.<br />
+
+This track focuses on the **Digital Forensics** process.<br />
+For those seeking more info on **Incident Response**, refer to the [NIST Special Publication 800-61r3](https://csrc.nist.gov/pubs/sp/800/61/r3/final). [2]<br />
 
 ![DFIR](../media/dfir.png) <br />
 *image source: WIZ*
@@ -39,6 +43,12 @@ The following phases are part of the forensic process, though not included in th
 
 A key principle in forensics is **Locard's principle of exchange**, often summarized as "every contact leaves a trace".<br />
 It states that when a criminal comes in contact with an object, or a person, a cross-transfer of **evidence** occurs.<br />
+When faced with massive amounts of artifacts, this principle reminds us that, if an attack happened, evidence of the intrusion is there.
+
+We just have to find it. 
+
+There is no such thing as undetectable and no such thing as unhackable.
+
 Main ***types of evidence*** retrieved and analyzed:
 
 - disk (files, logs, command history, browser artifacts, etc.)
@@ -95,6 +105,7 @@ The target of the intrusion: an organization, network, system, or individual.
 
 The model shows the **relationships** between components.<br />
 Knowing one component allows investigators to pivot: a known IP (infrastructure) can reveal other victims, a malware hash (capability) can surface related campaigns, a victim profile can predict future targets.<br />
+
 The cases below show the model in practice.
 
 ## Case examples

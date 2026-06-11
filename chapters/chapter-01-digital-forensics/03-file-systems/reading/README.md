@@ -109,8 +109,10 @@ New Technology File System (NTFS) is the default file system for modern Windows-
 Formatting a volume with NTFS results in the creation of several system metadata files that store information about all files and folders on the NTFS volume:
 
 - **$MFT** (Master File Table)
-- **$Bitmap**
 - **$LogFile**
+- **$UsnJrnl**
+- **$Boot**
+- **$Bitmap**
 - and others.
 
 ### Layout

@@ -92,11 +92,21 @@ _image and layers source: Hal Pomeranz' Linux Forensics_
   - blocks are organized into Block Groups of 32K blocks
   - each block group contains inodes and data blocks
 
-When a file is deleted in EXT4, the operating system does not overwrite or delete the file's data blocks.
-It only marks the inode as free and removes the directory entry that mapped the filename to that inode.
+On a disk we can find: allocated files, deleted files, unallocated space, and slack space.
+
+When a file is deleted in EXT4, the operating system does not overwrite or delete the file's data blocks.<br />
+It only marks the inode as free and removes the directory entry that mapped the filename to that inode.<br />
 The data blocks themselves are marked as available, but their contents remain on disk until the OS overwrites them with new data.
 
-That is why file recovery is possible: if the inode has not been reallocated and the data blocks not overwritten, we can recover both the metadtaa and the file contents.
+That is why file recovery is possible: if the inode has not been reallocated and the data blocks not overwritten, we can recover both the metadata and the file contents.
+
+**Unallocated space** means the filesystem deems those blocks free to be written, not necessarily empty.
+
+**Slack space** means the space left after a file has been allocated.<br />
+When a file is written, it usually doesn't occupy exactly the number of bytes in a block.
+
+When we write a 3000 byte file on a filesystem where the blocksize is 4096, there are 1096 bytes of slack space.<br />
+Its forensic value is that it can contain fragments of deleted files that had been stored in the same location.
 
 ### Directory structure
 

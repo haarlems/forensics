@@ -28,15 +28,66 @@ Types of data on disk:
 
 Timeline analysis serves in piecing the breadcrumbs together into a coherent record of the intrusion.<br />
 Timelines are a guide to evidence, not evidence themselves.<br />
-Timestamps are ephemeral: we only see the last modified time, change time, admin users are allowed to change timestamps.
 
-- on Unix:
-  - collect raw timestamp data into a body file (ex. with `fls` from Sleuthkit)
-  - generate csv timeline with `mactime`
-  - visualize with Timeline Explorer from EZ Tools
+#### On Unix
+
+We collect raw timestamp data into a bodyfile.
+``` bash
+# use fls from TSK
+# -r recursive
+# -m / display files in time machine format, the string given will be prepended to the filenames as the mounting point
+$ sudo fls -r -m / /dev/sda1 > bodyfile.txt
+$ ls -lh bodyfile.txt
+-rw-rw-r-- 1 sss sss 26M Jun 11 09:34 bodyfile.txt
+$ head bodyfile.txt
+[..]
+0|/var/lib/dpkg/info/samba-libs:amd64.list|552740|r/rrw-r--r--|0|0|8812|1781087381|1780559162|1780559162|1780559162
+[..]
+# or use the UAC output (the ir_triage profile collects a bodyfile by default)
+$ sudo ./uac -p ir_triage /tmp
+$ ls -lf /tmp/bodyfile/bodyfile.txt
+
+```
+
+The bodyfile contains: `MD5|name|inode|mode_as_string|UID|GID|size|atime|mtime|ctime|crtime`
+
+- `MD5` (0 because fls does not calculate hashes)
+- filename with the mount point appended (that we specified with `-m /`)
+- inode number
+- file type and permissions (d for directory, r for regular file, l symlink, c character device, b block device)
+- user ID that owns the file
+- group ID that owns the file
+- file size in bytes
+- atime last access time (unix epoch)
+- mtime last content modification time
+- ctime last metadata modification time
+- crtime creation time (or birth) if the filesystem supports that
+
+We generate a csv timeline with `mactime` using the bodyfile as input.
+``` bash
+$ mactime -b bodyfile.txt -d > timeline.csv
+```
+
+We analyze the csv timeline with Timeline Explorer from EZ Tools.
+
+``` csv
+Line	Tag	Timestamp	macb	Meta	File Name	File Size
+388074	Unchecked	2026-06-04 10:46:02	m.cb	552740	/var/lib/dpkg/info/samba-libs:amd64.list	8812
+[..]
+583881	Unchecked	2026-06-10 13:29:41	.a..	552740	/var/lib/dpkg/info/samba-libs:amd64.list	8812
+[..]
+```
+
+Note the example file shown above has one entry in the `bodyfile` but shows as two entries in the timeline.
+
+That is because `mactime` builds a chronological timeline, and the access time (seen as .a..) for this file differred from the other three (seen as m.cb).
+
+The bodyfile shows unique entries per file, and the timeline shows unique entries per time per file.
+
+
 - on Windows:
-  - extract the $MFT table with `mftecmd.exe`
-  - visualize with Timeline Explorer from EZ Tools
+- extract the $MFT table with `mftecmd.exe`
+- visualize with Timeline Explorer from EZ Tools
 
 ### Time normalization
 

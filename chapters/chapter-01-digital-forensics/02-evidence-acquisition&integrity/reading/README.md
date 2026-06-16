@@ -24,6 +24,17 @@ Choosing a collection tool depends on:
 - is the system live or offline?
 - what is the target OS?
 
+## Prerequisites
+
+- a unix forensic vm with
+  - TSK
+  - UAC
+  - tcpdump
+  - wireshark
+- a windows forensic vm with
+  - EZ Tools
+  - KAPE
+
 ## Preserving integrity
 
 ### Write blockers

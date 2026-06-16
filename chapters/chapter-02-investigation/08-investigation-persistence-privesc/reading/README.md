@@ -16,6 +16,11 @@ To avoid having to repeat the initial exploitation steps (maybe crafting a new p
 In order to successfully establish a persistence mechanism, elevated privileges are usually, but not always, required. <br />
 However, if the user that clicked the malicious file is privileged, or the exploited app or service is already running as root, administrator, or another privileged service user, there is no need for **privilege escalation**.
 
+## Prerequisites
+
+- a unix forensic vm
+- a windows forensic vm
+
 ## Persistence
 
 - boot or logon autostart execution / initialization scripts

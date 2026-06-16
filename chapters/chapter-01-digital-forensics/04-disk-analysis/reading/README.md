@@ -293,7 +293,6 @@ $ cat uac/\[root\]/home/sss/.ssh/authorized_keys
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN21TIWOoH2qDkPGZfL8MEdJa7qFGOW7dr60/s9UZhH2 admin
 ```
 
-
 ## Windows artifacts & analysis
 
 ### $MFT
@@ -303,7 +302,7 @@ The most important artifact showing filesystem metadata is the `$MFT` table.
 We extracted the $MFT table with KAPE, using the `MFTECmd.exe` module to parse it into a csv.
 
 ``` powershell
-PS C:\Users\test1\Documents\KAPE> .\kape.exe --tsource C: --tdest C:\Users\test1\Downloads\kapemfttout --target '$MFT' --module 'MFTECmd_$MFT' --mdest C:\Users\test1\Downloads\kapemftmout
+> .\kape.exe --tsource C: --tdest C:\Users\test1\Downloads\kapemfttout --target '$MFT' --module 'MFTECmd_$MFT' --mdest C:\Users\test1\Downloads\kapemftmout
 KAPE version 1.3.0.2, Author: Eric Zimmerman, Contact: https://www.kroll.com/kape (kape@kroll.com)
 
 KAPE directory: C:\Users\test1\Documents\KAPE
@@ -406,7 +405,11 @@ The hash is derived from the executable's full path and commandline.
 
 They are enabled by default on workstations and disabled on servers.
 
-We parse prefetch files and output to csv.
+We parse prefetch files with `PECmd.exe` and output to csv.
+
+``` powershell
+> .\PECmd.exe -d C:\Windows\Prefetch\ --csv C:\pecmdout
+```
 
 We analyze the 2 csv outputs with Timeline Explorer from EZ Tools.
 
@@ -442,7 +445,97 @@ We look for:
 
 ### ShimCache (AppCompatCache)
 
+The Application Compatibility Cache is used by Windows to track executables that may need to apply compatibility fixes (or shims).
+
+An entry in the ShimCache means the OS saw the file (it was browsed to, or listed in a directory, or run).
+Note this is evidence of presence, not necessarily of execution.
+
+It records a timestamp of the file's last modified time, not the run time, and it takes this from `$STANDARD_INFORMATION` which can be timestomped, so it it not reliable.
+
+It exists in the registry `HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\AppCompatCache\AppCompatCache` and is written to disk at shutdown.
+Data since the last boot will be absent from a disk image, but can be extracted from memory.
+
+We parse it with `AppCompatCacheParser.exe`.
+
+``` powershell
+.\AppCompatCacheParser.exe -f C:\kape-evidence\targets\C\Windows\System32\config\SYSTEM --csv C:\appcompatcacheout
+AppCompatCache Parser version 1.5.1.0
+[..]
+Found 367 cache entries for Windows10C_11 in ControlSet001
+
+Results saved to 'C:\appcompatcache\20260616091516_Windows10C_11_SYSTEM_AppCompatCache.csv'
+```
+
+We analyze the csv output with Timeline Explorer from EZ Tools. 
+
+```
+Cache Entry Position	Executed	Last Modified Time UTC	Path	Source File
+36	                  Yes	      2026-06-05 16:32:26	    C:\Users\test1\AppData\Local\Microsoft\OneDrive\26.088.0510.0004\payload.exe	C:\kape-evidence\C\Windows\System32\config\SYSTEM
+```
+
+The most important fields are:
+
+- Cache Entry Position (relative ordering, position 0 is the most recent)
+- Executed (exists if the OS version supports it)
+- Last Modified Time UTC (the file's `$SI` modified time, not a run time, can be tampered with)
+- Path
+
+We look for:
+- adversary cleanup, a deleted file still has an entry here
+- suspicious paths (world writable locations)
+- the same binary in two paths
+- known post exploitation tooling
+
+We use this artifact as a record of file presence, and correlate with other artifacts.
+
 ### AmCache
+
+The Amcache is a registry hive populated by Microsoft Compatibility Appraiser to store information related to program execution in `C:\Windows\AppCompat\Programs\Amcache.hve`.
+
+The AmCache registry hive correlates with the ShimCache:
+
+- ShimCache records presence and ordering
+- AmCache records presence and installation (stores the `sha1` hash of the executable, even if the binary is deleted)
+
+We parse it with `AmCacheParser.exe`.
+
+```
+> .\AmcacheParser.exe -f C:\kape-evidence\C\Windows\AppCompat\Programs\Amcache.hve --csv C:\amcacheout\
+AmcacheParser version 1.5.2.0
+[..]
+Total file entries found: 445
+Total shortcuts found: 49
+
+Found 264 unassociated file entry
+
+Results saved to: C:\amcacheout\
+
+Total parsing time: 0.644 seconds
+```
+
+We analyze the output csv files with Timeline Explorer.
+There are several, but the most relevant is `UnassociatedFileEntries`.
+
+```
+Line	Tag	Application Name	Program Id	File Key Last Write Timestamp	SHA1	Is Os Component	Full Path	Name	File Extension	Link Date	Product Name	Size	Version	Product Version	Long Path Hash	Binary Type	Is Pe File	Bin File Version	Bin Product Version	Language	Description
+9	Unchecked	Unassociated	000688f466beb6626fc165ed042fe4664be80000ffff	2026-06-06 12:25:35	a284698dfcb3ad167ea17492743ea5951b40cb1e	Unchecked	c:\users\test1\bitmorph.exe	bitmorph.exe	.exe	2026-03-16 11:51:42		903168				pe64_amd64	Unchecked			0	
+```
+
+The most important fields are:
+
+- Full Path
+- SHA1
+- File Key Last Write Timestamp (when the Appraiser scheduled task wrote the entry, harder to forge)
+- Link Date (PE compile time)
+- Size and version metadata (often blank for malware)
+
+What to look for:
+- check the SHA1 hash in VirusTotal to identify known malware without the binary
+- suspicious paths
+- deleted files
+- missing or fake metadata
+
+While ShimCache shows the order of files, AmCache shows their hash.
 
 ### Logs
 - security logs
@@ -561,6 +654,7 @@ Description
 [+] [Windows Registry Forensics](https://www.cybertriage.com/blog/windows-registry-forensics-cheat-sheet-2025/)<br />
 [+] [Windows Event IDs](https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/) <br />
 [+] [Body file](https://wiki.sleuthkit.org/index.php?title=Body_file)<br />
+[+] [AmCache](https://www.thedfirspot.com/post/evidence-of-program-existence-amcache)
 [+] [$LogFile](https://forensafe.com/blogs/windowslogfile.html)<br />
 [+] [Forensic Timelines](https://www.thedfirspot.com/post/from-chaos-to-chronology-the-power-of-forensic-timelines)<br />
 [+] [You don't know jack about bash history](https://www.youtube.com/watch?v=wv1xqOV2RyE)<br />

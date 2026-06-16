@@ -20,6 +20,17 @@ Enter: **the file**. <br />
 <br />
 The part of the operating system dealing with files is the **file system**.
 
+## Prerequisites
+
+- a unix forensic vm with
+  - TSK
+  - nice to have but not mandatory
+    - UAC outputs
+- a windows forensic vm with
+  - nice to have but not mandatory
+    - KAPE outputs
+    - Timeline Explorer
+
 ## Files
 
 A file is an abstraction, that gives a way to store data on the disk and read it, shielding the user from the details data storage. <br />

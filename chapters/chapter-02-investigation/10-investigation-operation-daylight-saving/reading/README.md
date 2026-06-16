@@ -4,6 +4,11 @@ Disk evidence: [TODO](todo)<br />
 Memory evidence: [TODO](todo)<br />
 Network evidence: [TODO](todo)<br />
 
+## Prerequisites
+
+- a unix forensic vm
+- a windows forensic vm
+
 ## Identification and scoping
 
 ## Evidence collection

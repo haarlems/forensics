@@ -7,6 +7,13 @@ The memory image used in this class: [TODO](TODO)
 
 The main focus of memory analysis is finding malicious processes or executables to extract and examine further.
 
+## Prerequisites
+
+- a unix forensic vm with
+  - volatility3
+  - nice to have but not mandatory
+    - volatility2
+
 ## Memory artifacts
 
 - network connections

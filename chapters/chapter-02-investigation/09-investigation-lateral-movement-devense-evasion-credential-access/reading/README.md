@@ -13,6 +13,11 @@ Some of the questions we are answering:
   - was lateral movement observed?
   - were logs deleted or tampered with?
 
+## Prerequisites
+
+- a unix forensic vm
+- a windows forensic vm
+
 ## Lateral Movement
 
 - remote services

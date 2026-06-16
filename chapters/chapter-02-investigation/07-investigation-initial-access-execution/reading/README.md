@@ -35,6 +35,11 @@ Here are the most frequently asked questions of the forensic investigator.<br />
 
 In this chapter we will focus on answering the questions related to Initial Access and Execution.<br />
 
+## Prerequisites
+
+- a unix forensic vm
+- a windows forensic vm
+
 ## ATT&CK Matrix
 
 ![MITRE](../media/mitre.png)

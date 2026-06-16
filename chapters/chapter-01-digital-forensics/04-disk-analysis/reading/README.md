@@ -538,23 +538,63 @@ What to look for:
 While ShimCache shows the order of files, AmCache shows their hash.
 
 ### Logs
-- security logs
+
+Windows Event logs are used to correlate the evidence we found with who was logged in, what process was spawned and with what commandline, with a timestamp.
+But, the most relevant events are off by default.
+
+Logs are stored as `.evtx` files in `C:\Windows\System32\winevt\Logs\`, one per channel.
+
+We can parse them with `EvtxECmd.exe` or use the one from KAPE.
+
+``` powershell
+> .\EvtxECmd.exe -d C:\kape-evidence\targets\C\Windows\System32\winevt\logs --csv C:\evtxout
+EvtxECmd version 1.5.2.0
+[..]
+Records included: 57 Errors: 0 Events dropped: 0
+
+Metrics (including dropped events)
+Event ID        Count
+400             8
+403             1
+600             48
+
+Processed 128 files in 39.0874 seconds
+
+Files with errors
+C:\kape-evidence\targets\C\Windows\System32\winevt\logs\Microsoft-Windows-Perflib%4Operational.evtx error count: 259
+C:\kape-evidence\targets\C\Windows\System32\winevt\logs\Microsoft-Windows-Windows Firewall With Advanced Security%4FirewallDiagnostics.evtx error count: 6
+```
+
+We analyze the csv with Timeline Explorer.
+
+The most important fields:
+
+- Time Created
+- Event Id
+- Process Id
+- Computer (hostname)
+- User Id
+- Payload Data
+
+Relevant events to look for:
+
+- security logs (authentication, privileges, process creations, commonly tampered with)
   - eventID 4624 and 4634 - logon and logoff
   - eventID 4625 - failed logon
   - eventID 4672 - privilege escalation
   - eventID 4688 - new process created
-- application logs
-- system logs
-- sysmon event logs (optional, will be integrated in Windows 11 and Server 2025, but off by default)
+- system logs (service installs, driver loads)
+- application logs (application crashes, some EDR events)
+- `Microsoft-Windows-PowerShell/Operational`
+  - eventID 4104 - script execution
+  - eventID 4103 - module logging
+- `Sysmon/Operational` (optional, will be integrated in Windows 11 and Server 2025, but off by default)
   - eventID 1 - process creation
+  - eventID 3 - network connection
   - eventID 8 - CreateRemoteThread (indicator of process injection)
   - eventID 10 - process access (indicator of post-exploitation, credential dumping, process injection)
 
-### Other Windows artifacts
-
-- USN Journal, Windows Search Index
-- SRUM
-- Registry (UserAssist, RunMRU, RecentDocs, OpenSaveMRU, ShellBags)
+For more advanced log analysis, [DeepBlueCLI](https://github.com/sans-blue-team/deepbluecli) is useful to dig through massive amounts of logs.
 
 ### $Logfile
 
@@ -600,40 +640,83 @@ Alternatively, it can be opened with LibreOffice.
 
 While the `$LogFile` is not the first place to look, it can be useful if we're tracking or recovering deleted files, to reconstruct the incident timeline.
 
+### Other Windows artifacts
+
+The artifacts covered so far are only a few of what a Windows host stores.
+We will introduce some of them briefly so you know they exist and can dig further on your own.
+
+**USN Journal**
+
+The USN Journal `Extend$UsnJrnl:J` is a change log with every create, delete, rename on a volume.
+It fills the gaps the `$MFT` leaves, which shows the current state of a file, while the USN Journal shows the sequence of changes.
+Parsed with `MFTECmd.exe`, pointed at the $J stream.
+
+**Windows Search Index**
+
+The Windows Search Index (`Windows.edb`, an ESE database) stores filenames, properties and sometimes content.
+It can show evidence of deleted files and requires an ESE database parser, like [sidr](https://github.com/strozfriedberg/sidr).
+
+**System Resource Usage Monitor**
+
+SRUM (`C:\Windows\System32\sru\SRUDB.dat`, also ESE) stores per application resource usage, including bytes sent and received, cpu time, and the user that ran it.
+It is useful to see the network data volume per application, to identify data exfiltration.
+It usually stores 30-60 days of history.
+
+It can be parsed with `SrumECMD.exe`, extracted with KAPE, or with [srum-dump](https://github.com/markbaggett/srum-dump).
+
+```
+Line	Tag	Id	Timestamp	Exe Info	Sid Type	Sid	User Name	Bytes Received	Bytes Sent	Interface Luid	Interface Type	L2Profile Flags	L2Profile Id	Profile Name
+290	Unchecked	439	2026-06-06 12:28:00	\device\harddiskvolume3\users\test1\bitmorph.exe	UnknownOrUserSid	S-1-5-21-3757327896-2532397730-150904874-1001	test1	23110	160415	1689399616077824	IF_TYPE_ETHERNET_CSMACD	0	0	
+```
+
+The most relevant fields include the bytes received and bytes sent per application.
+In the example output we see the agent did not send significant amounts of data to the C2 server.
+
+**Registry**
+
+The Windows registry stores many artifacts, several keys are valuable to reconstruct user activity across the `NTUSER.DAT` and `UsrClass.dat` user hives and the `SYSTEM` and `SOFTWARE` system hives:
+
+- Run / RunOnce (autostart keys used for persistence)
+- UserAssist (stores program execution with run counts and last run times, evidence a user interactively ran something)
+- RunMRU (commands typed in the `Win+R` dialog in order)
+- OpenSaveMRU (files recently opened or saved)
+- RecentDocs (recently opened files by extension)
+- ShellBags (folder browsing history, evidence a folder was accessed even after deletion)
+
+The same principles apply, make sure the timestamps are UTC and correlate with other artifacts rather than in isolation.
+
 ## Browser artifacts
 
-- browsing history, search, cookies, credentials, bookmarks, autofill
-  - Firefox or Chromium on Unix
-  - Chrome or Firefox on Windows
-  - Safari on macOS
+Browser artifacts often show evidence of initial access, when a phishing link was clicked or a file was downloaded.
+We can see the browsing history, search, cookies, credentials, bookmarks, or autofill details.
 
-### Persistence
+Firefox for example, stores profile data in SQLite databases, which can be extracted with both KAPE and UAC.
 
-- rootkits (Loadable Kernel Modules)
-- scheduled tasks
-- service start-up scripts
-- account modification (new admin accounts, new ssh authorized_keys, enhanced `sudo` privileges uid 0)
-- Registry (Run/RunOnce Keys, Windows Services, Winlogon, Scheduled Tasks)
+Profile locations:
+- Unix: `~/.mozilla/firefox/`
+- Windows: `C:\Users\<user>\AppData\Roaming\Mozilla\Firefox\Profiles\<random>.default-release\`
 
 ## [Autopsy](https://www.autopsy.com/download/)
 
+Autopsy is the TSK GUI that ties together many of the artifacts we have already seen.
+Instead of parsing one artifact at a time with targeted tools, it ingests a whole disk image and parses many artifacts at once.
+
 - start a case
-- select data source (evidence already acquired)
+- select data source (evidence already acquired, `.dd`, `E01`, `vmdk`)
 - analyze artifacts (installed programs, metadata, recent documents, run programs, shellbags, web accounts, cookies, history)
+- tag items of interest and generate a csv report
 
 ![Autopsy](../media/autopsy.png)
 
-## [bulk_extractor](https://github.com/simsong/bulk_extractor)
-
-- scans and extracts structured information (ex. emails, CCN, JPEGs, JSON snippets) without parsing file system structures
+Note it can be slow, some artifact formats may not be parsed. For in depth work, targeted tools such as EZ perform better.
 
 ## Summary
 
 - high volume data, high potential for false positives
 - learn what normal looks like, look for outliers
 - convert all timestamps to UTC
-- seek evidence of execution, past file existence
-- analyze logs, user activity artifacts
+- seek evidence of execution, past file existence, logs
+- analyze browser artifacts for initial access
 
 ## Drills
 

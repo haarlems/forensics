@@ -11,6 +11,15 @@ The packet captures used in this class:
 
 - [2026-02-03 (TUESDAY): GULOADER FOR AGENTTESLA STYLE MALWARE WITH FTP DATA EXFILTRATION](https://www.malware-traffic-analysis.net/2026/02/03/index.html)
 
+## Prerequisites
+
+- a unix forensic vm with
+  - tcpdump
+  - wireshark
+  - nice to have but not mandatory
+    - zeek
+    - rita
+
 ## Network evidence
 
 Network traffic should be captured before, during and post compromise.

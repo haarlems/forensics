@@ -31,9 +31,11 @@ Choosing a collection tool depends on:
   - UAC
   - tcpdump
   - wireshark
+  - LiME or AVML
 - a windows forensic vm with
   - EZ Tools
   - KAPE
+  - FTK Imager (community edition)
 
 ## Preserving integrity
 
@@ -190,6 +192,84 @@ For a live Windows system, `FTK Imager` handles both disk and memory.
 
 For a live Unix system, `UAC` collects the standard artifact set, while for memory acquisition `LiME` is used, a loadable kernel module that dumps physical memory to a file or over the network.
 For offline aquisition (when the disk is removed and connected to the forensic workstation with a write blocker) `dd` is used when interoperability is important, or `FTK Imager` when you need built-in compression, hash verification and case metadata.
+
+### [LiME](https://github.com/jtsylve/LiME)
+
+Loadable Kernel Module (LKM) for volatile memory acquisition from unix like devices, including Android.
+
+It has a minimal interaction with user and kernel space processes during acquisition, producing forensically sound memory captures.
+
+```bash
+# we acquire memory over the network from the target to a collector
+# on the target we find the kernel release
+$ uname -r
+6.17.0-35-generic
+# on the collector we generate a .ko for the kernel release of our target
+$ sudo apt install -y linux-headers-6.17.0-35-generic
+$ git clone https://github.com/jtsylve/LiME.git
+$ cd LiME/src/
+$ make KVER=6.17.0-35-generic
+$ ls
+[..] lime-6.17.0-35-generic.ko
+$ modinfo lime-6.17.0-35-generic.ko | grep vermagic
+vermagic:       6.17.0-35-generic SMP preempt mod_unload modversions
+# we transfer the .ko from the collector to the target
+# on the target we insert the module and send the output over the network
+$ sudo insmod ./lime-$(uname -r).ko path=tcp:4444 format=lime
+# on the collector
+$ nc 192.168.181.100 4444 > ram.lime
+$ ls -l ram.lime
+-rw-r--r-- 1 dfir dfir 4294367360 Jun 17 10:30 ram.lime
+```
+
+To analyze the linux memory images with Volatility, we need to the ISF (symbol table) for the target kernel.
+
+To be discussed in the memory analysis lesson.
+
+### [AVML](https://github.com/microsoft/avml)
+
+AVML is another memory acquisition tool for unix devices, which can be used not knowing the kernel release.
+
+``` bash
+# we acquire memory over the network from the target to the collector
+# on the collector we start a listener
+$ nc -l -p 4444 > avml.mem
+# on the target we create a fifo pipe
+$ sudo mkfifo /tmp/mem.pipe
+$ sudo chmod 666 /tmp/mem.pipe
+# we start a background job to write from the pipe to the network to our collector
+$ nc 192.168.181.200 4444 < /tmp/mem.pipe &
+# we run avml and write to the pipe
+$ sudo ./avml /tmp/mem.pipe
+# on the collector we check the output
+$ ls -l avml.mem
+-rw-r--r-- 1 dfir dfir 3222923326 Jun 17 15:14 avml.mem
+```
+
+The symbol table is needed as well to analyze the memory capture with Volatility.
+
+### [WinPmem](https://github.com/Velocidex/WinPmem/tree/master)
+
+Apart from FTK Imager, WinPmem could also be used to capture Windows memory but only if DSE (Driver Signature Enforcement) is disabled already.
+
+Disabling it would require a reboot, which defeats the purpose of capturing volatile memory.
+
+``` powershell
+# we run winpmem and write the output to a separate disk
+PS E:\> .\winpmem64.exe E:\winpmem.raw
+WinPmem64
+Extracting driver to C:\Users\test1\AppData\Local\Temp\win5771.tmp
+Driver Unloaded.
+Loaded Driver C:\Users\test1\AppData\Local\Temp\win5771.tmp.
+Deleting C:\Users\test1\AppData\Local\Temp\win5771.tmp
+The system time is: 17:43:01
+Will generate a RAW image
+ - buffer_size_: 0x1000
+CR3: 0x00001AE000
+ 6 memory ranges:
+Start 0x00002000 - Length 0x0009E000
+[..]
+```
 
 ## Evidence acquisition - Network
 

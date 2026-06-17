@@ -272,6 +272,15 @@ Description
 
 Description
 
+## Further practice
+
+- capture a unix disk image with dd
+- collect triage artifacts from a unix machine with UAC
+- capture a unix memory image with AVML or LiME
+- capture a windows disk and memory image with FTK Imager
+- collect triage artifacts from a windows machine with KAPE
+- capture traffic with tcpdump or wireshark
+
 ## References & further reading
 
 [+] ISACA Whitepaper - [Overview of Digital Forensics](https://www.isaca.org/resources/white-papers/overview-of-digital-forensics)<br />

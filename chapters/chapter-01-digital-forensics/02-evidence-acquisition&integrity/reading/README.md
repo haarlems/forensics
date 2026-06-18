@@ -185,14 +185,6 @@ Options:
 ![ez](../media/ez.png) <br />
 _image source: `ericzimmerman.github.io`_
 
-To summarize host-based acquisition:
-
-For a live Windows system, `FTK Imager` handles both disk and memory.
-`KAPE` is a better option when the time is short and you need the most important artifacts fast, before full imaging completes.
-
-For a live Unix system, `UAC` collects the standard artifact set, while for memory acquisition `LiME` is used, a loadable kernel module that dumps physical memory to a file or over the network.
-For offline aquisition (when the disk is removed and connected to the forensic workstation with a write blocker) `dd` is used when interoperability is important, or `FTK Imager` when you need built-in compression, hash verification and case metadata.
-
 ### [LiME](https://github.com/jtsylve/LiME)
 
 Loadable Kernel Module (LKM) for volatile memory acquisition from unix like devices, including Android.
@@ -270,6 +262,15 @@ CR3: 0x00001AE000
 Start 0x00002000 - Length 0x0009E000
 [..]
 ```
+
+To summarize host-based acquisition:
+
+For a live Windows system, `FTK Imager` handles both disk and memory.
+`KAPE` is a better option when the time is short and you need the most important artifacts fast, before full imaging completes.
+
+For a live Unix system, `UAC` collects the standard artifact set, while for memory acquisition `LiME` or `AVML` can be used to dump memory to a file or over the network.
+
+For offline aquisition (when the disk is removed and connected to the forensic workstation with a write blocker) `dd` is used when interoperability is important, or `FTK Imager` when you need built-in compression, hash verification and case metadata.
 
 ## Evidence acquisition - Network
 

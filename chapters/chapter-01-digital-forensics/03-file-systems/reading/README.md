@@ -214,7 +214,7 @@ Shows the inode record for a specific file: timestamps, permissions, owner, and 
 
 ### icat (data layer)
 
-Extracts the contents of a file by inode number, even if deleted.<br />
+Extracts the contents of a file by inode number.<br />
 
 ![icat](../media/icat.png)
 

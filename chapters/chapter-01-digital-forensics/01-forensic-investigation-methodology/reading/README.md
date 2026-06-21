@@ -66,7 +66,7 @@ Main ***types of evidence*** retrieved and analyzed:
 
 ### Indicators of compromise
 
-IoCs (or eyeoks, depending on who you ask) represent evidence that an attacker has breached an entity’s network or endpoint.<br />
+IoCs represent evidence that an attacker has breached an entity’s network or endpoint.<br />
 Indicators may be email based, network, host or behavioural.
 They may include:
 
@@ -189,17 +189,24 @@ Example [chain of custody form](https://www.oreilly.com/library/view/implementin
 
 ## Drills
 
-### Challenge 1
+### sketchy-trail
 
-Description
+The first responder swears this crime-scene photo is clean, nothing but pixels.
+Does the investigator think the same?
 
-### Challenge 2
+### silly-warden
 
-Description
+Evidence Item #002: a chain-of-custody form, scanned and filed.
+Looks complete, every handoff signed, but what's it hiding?
 
-### Challenge 3
+### ice-miner
 
-Description
+What's that over there, deep underground?
+
+### eye-ok
+
+Threat intel dumped a pile of indicators on your desk, all jumbled together.
+Can you tell a coherent story based on that?
 
 ## References & further reading
 

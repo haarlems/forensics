@@ -54,7 +54,7 @@ A key principle in forensics is **Locard's principle of exchange**, often summar
 It states that when a criminal comes in contact with an object, or a person, a cross-transfer of **evidence** occurs.<br />
 When faced with massive amounts of artifacts, this principle reminds us that, if an attack happened, evidence of the intrusion is there.
 
-We just have to find it. 
+We just have to find it.
 
 There is no such thing as undetectable and no such thing as unhackable.
 
@@ -82,9 +82,10 @@ IoCs can be:
 - computed (hashes)
 - behavioural (patterns of activity that indicate malicious intent, ex. `base64` encoded powershell execution)
 
-Atomic IoCs age quickly. An IP used today may be reassigned or abbandoned in a few hours.
+Atomic IoCs age quickly.
+An IP used today may be reassigned or abbandoned in a few hours.
 
-Behavioural IoCs, or TTPs are valid for longer because changing behaviour requires the adversary to retrain, retool or restructure their operations. 
+Behavioural IoCs, or TTPs are valid for longer because changing behaviour requires the adversary to retrain, retool or restructure their operations.
 
 This is sometimes called the [Pyramid of Pain](https://detect-respond.blogspot.com/2013/03/the-pyramid-of-pain.html): the higher an IoC sits, the more it costs the adversary to change it.
 

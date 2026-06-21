@@ -7,10 +7,6 @@ The main challenge is sifting through vast amounts of logs.
 - most malware needs to communicate (except some wipers or air-gapped purposed malware)
 - no matter how much time it may lie dormant, it eventually calls home to a C2 server
 
-The packet captures used in this class:
-
-- [2026-02-03 (TUESDAY): GULOADER FOR AGENTTESLA STYLE MALWARE WITH FTP DATA EXFILTRATION](https://www.malware-traffic-analysis.net/2026/02/03/index.html)
-
 ## Prerequisites
 
 - a unix forensic vm with
